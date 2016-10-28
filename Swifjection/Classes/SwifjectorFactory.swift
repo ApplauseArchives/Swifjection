@@ -6,21 +6,15 @@ import Foundation
 
 public class SwifjectorFactory {
     
-    var injector: Injecting?
+    public private(set) var injector: Injecting?
     
     private var runningSpecs: Bool {
         get { return NSClassFromString("XCTest") != nil }
     }
     
-    init(injector: Injecting) {
-        self.injector = injector
-    }
-
-    func createInjector() -> Injecting? {
-        guard runningSpecs == false else {
-            return nil
+    public init(bindings: Bindings) {
+        if runningSpecs == false {
+            self.injector = Swifjector(bindings: bindings)
         }
-        return injector
     }
-    
 }

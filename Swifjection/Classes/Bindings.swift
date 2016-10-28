@@ -4,13 +4,14 @@
 
 import Foundation
 
-public class Bindings {
+open class Bindings {
     weak var injector: Injecting?
-    
     var bindings: [String: AnyObject] = [:]
     var closureBindings: [String: ((Injecting) -> AnyObject)] = [:]
+
+    public init() { }
     
-    func findBinding(type: Any) -> AnyObject? {
+    public func findBinding(type: Any) -> AnyObject? {
         let typeName = "\(type)"
         if let binding = bindings[typeName] {
             return binding
@@ -20,13 +21,13 @@ public class Bindings {
         }
         return nil
     }
-    
-    func bind(object: AnyObject, toType type: Any) {
+
+    public func bind(object: AnyObject, toType type: Any) {
         let typeName = "\(type)"
         bindings[typeName] = object
     }
-    
-    func bind(closure: @escaping ((Injecting) -> AnyObject), toType type: Any) {
+
+    public func bind(closure: @escaping ((Injecting) -> AnyObject), toType type: Any) {
         let typeName = "\(type)"
         closureBindings[typeName] = closure
     }

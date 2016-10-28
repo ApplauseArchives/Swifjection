@@ -20,16 +20,6 @@ extension Injecting {
         return type.init()
     }
     
-    public func getObject<T>(withType type: T.Type) -> T? where T: Creatable {
-        if let object = findBinding(type: type) as? T {
-            return object
-        }
-        if let object = type.init(injector: self) {
-            return object
-        }
-        return nil
-    }
-    
     public func getObject<T>(withType type: T.Type) -> T? where T: Injectable {
         if let object = findBinding(type: type) as? T {
             return object

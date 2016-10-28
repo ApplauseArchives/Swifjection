@@ -4,12 +4,8 @@
 
 import Foundation
 
-protocol Creatable {
+protocol Injectable {
     init?(injector: Injecting)
-}
-
-protocol Injectable: Creatable {
-    var injector: Injecting? {get set}
     func injectDependencies(injector: Injecting)
 }
 

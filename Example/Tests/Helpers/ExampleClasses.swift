@@ -11,14 +11,6 @@ class ClassConformingToProtocol: EmptySwiftProtocol {}
 
 class EmptySwiftClass {}
 
-class CreatableClass: Creatable {
-    
-    required convenience init?(injector: Injecting) {
-        self.init()
-    }
-    
-}
-
 class InjectableClass: Injectable {
     
     var injector: Injecting?
@@ -61,7 +53,6 @@ class ClassWithDependencies: Injectable {
     
     var objectConformingToProtocol: EmptySwiftProtocol?
     var emptySwiftObject: EmptySwiftClass?
-    var creatableObject: CreatableClass?
     var injectableObject: InjectableClass?
     var injectableObjCObject: InjectableObjCClass?
     var objCObject: ObjCClass?
@@ -74,7 +65,6 @@ class ClassWithDependencies: Injectable {
     func injectDependencies(injector: Injecting) {
         self.objectConformingToProtocol = injector.getObject(withType: EmptySwiftProtocol.self)
         self.emptySwiftObject = injector.getObject(withType: EmptySwiftClass.self)
-        self.creatableObject = injector.getObject(withType: CreatableClass.self)
         self.injectableObject = injector.getObject(withType: InjectableClass.self)
         self.injectableObjCObject = injector.getObject(withType: InjectableObjCClass.self)
         self.objCObject = injector.getObject(withType: ObjCClass.self)

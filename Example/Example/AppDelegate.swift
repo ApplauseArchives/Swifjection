@@ -11,9 +11,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var injector: Injecting?
 
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {        
-        let defaultInjector = Swifjector(bindings: MyBindings())
-        injector = SwifjectorFactory(injector: defaultInjector).createInjector()
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        injector = SwifjectorFactory(bindings: MyBindings()).injector
         
         if let injector = self.injector, let rootViewController = window?.rootViewController as? ViewController {
             rootViewController.injectDependencies(injector: injector)

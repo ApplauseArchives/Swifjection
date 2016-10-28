@@ -4,7 +4,7 @@
 
 import Foundation
 
-protocol Injecting: class {
+public protocol Injecting: class {
     var bindings: Bindings {get}
     init(bindings: Bindings)
     

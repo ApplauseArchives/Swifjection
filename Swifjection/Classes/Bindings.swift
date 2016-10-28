@@ -4,8 +4,7 @@
 
 import Foundation
 
-class Bindings {
-    
+public class Bindings {
     weak var injector: Injecting?
     
     var bindings: [String: AnyObject] = [:]

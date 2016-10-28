@@ -4,10 +4,10 @@
 
 import Foundation
 
-class Swifjector: Injecting {
-    var bindings: Bindings
+public class Swifjector: Injecting {
+    public var bindings: Bindings
     
-    required init(bindings: Bindings) {
+    required public init(bindings: Bindings) {
         self.bindings = bindings
         self.bindings.injector = self
     }

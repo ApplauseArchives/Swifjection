@@ -4,7 +4,7 @@
 
 import Foundation
 
-extension Injecting {
+public extension Injecting {
 
     public func getObject<T>(withType type: T.Type) -> T? {
         if let object = findBinding(type: type) as? T {

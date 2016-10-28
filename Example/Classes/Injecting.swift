@@ -4,7 +4,7 @@
 
 import Foundation
 
-protocol Injecting {
+public protocol Injecting {
     var bindings: [String: AnyObject] { get set }
     var closureBindings: [String: ((Injecting) -> AnyObject)] {get set}
     

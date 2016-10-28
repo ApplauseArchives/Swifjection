@@ -1,5 +1,3 @@
-// https://github.com/Quick/Quick
-
 import Quick
 import Nimble
 @testable import Swifjection
@@ -8,10 +6,12 @@ class InjectingSpec: QuickSpec {
 
     override func spec() {
 
-        var injector: SpecInjector!
+        var injector: Swifjector!
+        var bindings: Bindings!
 
         beforeEach {
-            injector = SpecInjector()
+            bindings = Bindings()
+            injector = Swifjector(bindings: bindings)
         }
 
         describe("injectDependencies") {
@@ -74,11 +74,11 @@ class InjectingSpec: QuickSpec {
                 context("object bindings") {
 
                     beforeEach {
-                        injector.bind(object: objectConformingToProtocol!, toType: EmptySwiftProtocol.self)
-                        injector.bind(object: emptySwiftObject!, toType: EmptySwiftClass.self)
-                        injector.bind(object: injectableObject!, toType: InjectableClass.self)
-                        injector.bind(object: injectableObjCObject!, toType: InjectableObjCClass.self)
-                        injector.bind(object: objCObject!, toType: ObjCClass.self)
+                        bindings.bind(object: objectConformingToProtocol!, toType: EmptySwiftProtocol.self)
+                        bindings.bind(object: emptySwiftObject!, toType: EmptySwiftClass.self)
+                        bindings.bind(object: injectableObject!, toType: InjectableClass.self)
+                        bindings.bind(object: injectableObjCObject!, toType: InjectableObjCClass.self)
+                        bindings.bind(object: objCObject!, toType: ObjCClass.self)
 
                         objectWithDependencies = ClassWithDependencies(injector: injector)
                         objectWithDependencies?.injectDependencies(injector: injector)
@@ -120,23 +120,23 @@ class InjectingSpec: QuickSpec {
                         injectableObject?.injectDependencies(injector: injector)
                         injectableObjCObject?.injectDependencies(injector: injector)
 
-                        injector.bind(closure: { (injector: Injecting) -> AnyObject in
+                        bindings.bind(closure: { (injector: Injecting) -> AnyObject in
                             return objectConformingToProtocol!
                         }, toType: EmptySwiftProtocol.self)
 
-                        injector.bind(closure: { (injector: Injecting) -> AnyObject in
+                        bindings.bind(closure: { (injector: Injecting) -> AnyObject in
                             return emptySwiftObject!
                         }, toType: EmptySwiftClass.self)
 
-                        injector.bind(closure: { (injector: Injecting) -> AnyObject in
+                        bindings.bind(closure: { (injector: Injecting) -> AnyObject in
                             return injectableObject!
                         }, toType: InjectableClass.self)
 
-                        injector.bind(closure: { (injector: Injecting) -> AnyObject in
+                        bindings.bind(closure: { (injector: Injecting) -> AnyObject in
                             return injectableObjCObject!
                         }, toType: InjectableObjCClass.self)
 
-                        injector.bind(closure: { (injector: Injecting) -> AnyObject in
+                        bindings.bind(closure: { (injector: Injecting) -> AnyObject in
                             return objCObject!
                         }, toType: ObjCClass.self)
 
@@ -177,27 +177,27 @@ class InjectingSpec: QuickSpec {
                 context("closure bindings with new instances") {
 
                     beforeEach {
-                        injector.bind(closure: { (injector: Injecting) -> AnyObject in
+                        bindings.bind(closure: { (injector: Injecting) -> AnyObject in
                             return ClassConformingToProtocol()
                         }, toType: EmptySwiftProtocol.self)
 
-                        injector.bind(closure: { (injector: Injecting) -> AnyObject in
+                        bindings.bind(closure: { (injector: Injecting) -> AnyObject in
                             return EmptySwiftClass()
                         }, toType: EmptySwiftClass.self)
 
-                        injector.bind(closure: { (injector: Injecting) -> AnyObject in
+                        bindings.bind(closure: { (injector: Injecting) -> AnyObject in
                             let injectableObject = InjectableClass()
                             injectableObject.injectDependencies(injector: injector)
                             return injectableObject
                         }, toType: InjectableClass.self)
 
-                        injector.bind(closure: { (injector: Injecting) -> AnyObject in
+                        bindings.bind(closure: { (injector: Injecting) -> AnyObject in
                             let injectableObjCObject = InjectableObjCClass()
                             injectableObjCObject.injectDependencies(injector: injector)
                             return injectableObjCObject
                         }, toType: InjectableObjCClass.self)
 
-                        injector.bind(closure: { (injector: Injecting) -> AnyObject in
+                        bindings.bind(closure: { (injector: Injecting) -> AnyObject in
                             return ObjCClass()
                         }, toType: ObjCClass.self)
 

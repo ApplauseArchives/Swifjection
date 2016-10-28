@@ -5,3 +5,8 @@ target 'Swifjection_Tests' do
   pod 'Quick'
   pod 'Nimble'
 end
+
+target 'Example' do
+  pod 'Swifjection', :path => '../'
+end
+

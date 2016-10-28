@@ -2,7 +2,7 @@
 //  Copyright © 2016 Applause Inc. All rights reserved.
 //
 
-extension Injecting {
+public extension Injecting {
     
     func findBinding(type: Any) -> AnyObject? {
         let typeName = "\(type)"

@@ -4,11 +4,11 @@
 
 import Foundation
 
-protocol Injectable {
+public protocol Injectable {
     init?(injector: Injecting)
     func injectDependencies(injector: Injecting)
 }
 
-extension Injectable {
+public extension Injectable {
     func injectDependencies(injector: Injecting) {}
 }

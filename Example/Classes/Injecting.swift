@@ -10,7 +10,6 @@ protocol Injecting {
     
     func getObject<T>(withType type: T.Type) -> T?
     func getObject<T>(withType type: T.Type) -> T? where T: NSObject
-    func getObject<T>(withType type: T.Type) -> T? where T: Creatable
     func getObject<T>(withType type: T.Type) -> T? where T: Injectable
     func getObject<T>(withType type: T.Type) -> T? where T: NSObject, T: Injectable
     

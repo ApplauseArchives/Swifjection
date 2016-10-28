@@ -1,9 +1,9 @@
 Pod::Spec.new do |s|
   s.name             = 'Swifjection'
-  s.version          = '0.2.0'
+  s.version          = '0.3.0'
   s.summary          = 'Dependency Injection library for Swift'
   s.description      = <<-DESC
-Swifjection is a simple Dependency Injection library for Swift language.
+Lightweight and simplistic dependency injection framework written in Swift for Swift . 
                        DESC
   s.homepage         = 'https://github.com/ApplauseAQI/Swifjection'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }

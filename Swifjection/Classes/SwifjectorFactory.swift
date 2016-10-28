@@ -4,7 +4,7 @@
 
 import Foundation
 
-class InjectorFactory {
+public class SwifjectorFactory {
     
     var injector: Injecting?
     

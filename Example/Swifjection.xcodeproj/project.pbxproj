@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		07C7AC731D15A8E458884687 /* Pods_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAD44134AC2BB4C40265990A /* Pods_Example.framework */; };
+		15A5E1691DC4B47100A4D8CF /* TypeBinding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A5E1681DC4B47100A4D8CF /* TypeBinding.swift */; };
+		15A5E16B1DC50DAE00A4D8CF /* TypeBindingSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A5E16A1DC50DAE00A4D8CF /* TypeBindingSpec.swift */; };
+		15A5E16D1DC52A1400A4D8CF /* SwifjectionIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A5E16C1DC52A1400A4D8CF /* SwifjectionIntegrationTests.swift */; };
 		15DFDEA71DC41D3F00B4687E /* Binding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DFDEA21DC41D3F00B4687E /* Binding.swift */; };
 		15DFDEA81DC41D3F00B4687E /* Bindings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DFDEA31DC41D3F00B4687E /* Bindings.swift */; };
 		15DFDEA91DC41D3F00B4687E /* ClosureBinding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DFDEA41DC41D3F00B4687E /* ClosureBinding.swift */; };
@@ -42,6 +45,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		15A5E1681DC4B47100A4D8CF /* TypeBinding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TypeBinding.swift; sourceTree = "<group>"; };
+		15A5E16A1DC50DAE00A4D8CF /* TypeBindingSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TypeBindingSpec.swift; sourceTree = "<group>"; };
+		15A5E16C1DC52A1400A4D8CF /* SwifjectionIntegrationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwifjectionIntegrationTests.swift; sourceTree = "<group>"; };
 		15DFDEA21DC41D3F00B4687E /* Binding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Binding.swift; sourceTree = "<group>"; };
 		15DFDEA31DC41D3F00B4687E /* Bindings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bindings.swift; sourceTree = "<group>"; };
 		15DFDEA41DC41D3F00B4687E /* ClosureBinding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClosureBinding.swift; sourceTree = "<group>"; };
@@ -129,6 +135,8 @@
 				15DFDEB11DC4203900B4687E /* ObjectBindingSpec.swift */,
 				15DFDEA61DC41D3F00B4687E /* SingletonBinding.swift */,
 				15DFDEB31DC4208200B4687E /* SingletonBindingSpec.swift */,
+				15A5E1681DC4B47100A4D8CF /* TypeBinding.swift */,
+				15A5E16A1DC50DAE00A4D8CF /* TypeBindingSpec.swift */,
 			);
 			path = Bindings;
 			sourceTree = "<group>";
@@ -221,6 +229,7 @@
 				9405E3851DC36AE5005327D4 /* Protocols */,
 				9405E3891DC36AE5005327D4 /* Swifjector.swift */,
 				9405E3991DC36BA9005327D4 /* SwifjectorSpec.swift */,
+				15A5E16C1DC52A1400A4D8CF /* SwifjectionIntegrationTests.swift */,
 				9405E38A1DC36AE5005327D4 /* SwifjectorFactory.swift */,
 			);
 			name = Classes;
@@ -533,12 +542,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				15A5E16B1DC50DAE00A4D8CF /* TypeBindingSpec.swift in Sources */,
 				15DFDEB41DC4208200B4687E /* SingletonBindingSpec.swift in Sources */,
 				9405E39B1DC36BB0005327D4 /* SwifjectorSpec.swift in Sources */,
 				15DFDEAE1DC41D8700B4687E /* ClosureBindingSpec.swift in Sources */,
 				15DFDEB21DC4203900B4687E /* ObjectBindingSpec.swift in Sources */,
 				15DFDEB01DC41EE300B4687E /* FakeInjector.swift in Sources */,
 				15DFDEB61DC422FF00B4687E /* BindingsSpec.swift in Sources */,
+				15A5E16D1DC52A1400A4D8CF /* SwifjectionIntegrationTests.swift in Sources */,
 				D8BD010E1DC23E1A00122227 /* ExampleClasses.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -571,6 +582,7 @@
 				9405E3981DC36AE5005327D4 /* SwifjectorFactory.swift in Sources */,
 				15DFDEA71DC41D3F00B4687E /* Binding.swift in Sources */,
 				9405E3901DC36AE5005327D4 /* Injectable.swift in Sources */,
+				15A5E1691DC4B47100A4D8CF /* TypeBinding.swift in Sources */,
 				9405E3961DC36AE5005327D4 /* Swifjector.swift in Sources */,
 				15DFDEAA1DC41D3F00B4687E /* ObjectBinding.swift in Sources */,
 				15DFDEA81DC41D3F00B4687E /* Bindings.swift in Sources */,

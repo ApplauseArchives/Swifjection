@@ -10,7 +10,7 @@ public class ObjectBinding: Binding {
         self.object = object
     }
     
-    public func getObject(withInjector injector: Injecting) -> Any {
+    public func getObject(withInjector injector: Injecting) -> Any? {
         return object
     }
     

@@ -32,5 +32,25 @@ open class Bindings {
         let typeName = "\(type)"
         bindings[typeName] = SingletonBinding(withType: type)
     }
+    
+    public func bind<T>(type boundType: T.Type, toType type: Any) {
+        let typeName = "\(type)"
+        bindings[typeName] = TypeBinding(withType: boundType)
+    }
+    
+    public func bind<T>(type boundType: T.Type, toType type: Any) where T: Injectable {
+        let typeName = "\(type)"
+        bindings[typeName] = TypeBinding(withType: boundType)
+    }
+    
+    public func bind<T>(type boundType: T.Type, toType type: Any) where T: NSObject {
+        let typeName = "\(type)"
+        bindings[typeName] = TypeBinding(withType: boundType)
+    }
+    
+    public func bind<T>(type boundType: T.Type, toType type: Any) where T: NSObject, T: Injectable {
+        let typeName = "\(type)"
+        bindings[typeName] = TypeBinding(withType: boundType)
+    }
 
 }

@@ -8,15 +8,21 @@
 
 /* Begin PBXBuildFile section */
 		07C7AC731D15A8E458884687 /* Pods_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAD44134AC2BB4C40265990A /* Pods_Example.framework */; };
+		15DFDEA71DC41D3F00B4687E /* Binding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DFDEA21DC41D3F00B4687E /* Binding.swift */; };
+		15DFDEA81DC41D3F00B4687E /* Bindings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DFDEA31DC41D3F00B4687E /* Bindings.swift */; };
+		15DFDEA91DC41D3F00B4687E /* ClosureBinding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DFDEA41DC41D3F00B4687E /* ClosureBinding.swift */; };
+		15DFDEAA1DC41D3F00B4687E /* ObjectBinding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DFDEA51DC41D3F00B4687E /* ObjectBinding.swift */; };
+		15DFDEAB1DC41D3F00B4687E /* SingletonBinding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DFDEA61DC41D3F00B4687E /* SingletonBinding.swift */; };
+		15DFDEAE1DC41D8700B4687E /* ClosureBindingSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DFDEAC1DC41D8100B4687E /* ClosureBindingSpec.swift */; };
+		15DFDEB01DC41EE300B4687E /* FakeInjector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DFDEAF1DC41EE300B4687E /* FakeInjector.swift */; };
+		15DFDEB21DC4203900B4687E /* ObjectBindingSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DFDEB11DC4203900B4687E /* ObjectBindingSpec.swift */; };
+		15DFDEB41DC4208200B4687E /* SingletonBindingSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DFDEB31DC4208200B4687E /* SingletonBindingSpec.swift */; };
+		15DFDEB61DC422FF00B4687E /* BindingsSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DFDEB51DC422FF00B4687E /* BindingsSpec.swift */; };
 		1A6EC6F8F7569BB7B911E9E1 /* Pods_Swifjection_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ACE728CAC97BD5A39E76D531 /* Pods_Swifjection_Tests.framework */; };
 		9405E3691DC365D3005327D4 /* Bar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9405E3651DC365D3005327D4 /* Bar.swift */; };
 		9405E36A1DC365D3005327D4 /* Foo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9405E3661DC365D3005327D4 /* Foo.swift */; };
 		9405E36B1DC365D3005327D4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9405E3681DC365D3005327D4 /* ViewController.swift */; };
 		9405E3801DC36933005327D4 /* MyBindings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9405E37F1DC36933005327D4 /* MyBindings.swift */; };
-		9405E38B1DC36AE5005327D4 /* .gitkeep in Resources */ = {isa = PBXBuildFile; fileRef = 9405E3831DC36AE5005327D4 /* .gitkeep */; };
-		9405E38C1DC36AE5005327D4 /* .gitkeep in Resources */ = {isa = PBXBuildFile; fileRef = 9405E3831DC36AE5005327D4 /* .gitkeep */; };
-		9405E38D1DC36AE5005327D4 /* Bindings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9405E3841DC36AE5005327D4 /* Bindings.swift */; };
-		9405E38E1DC36AE5005327D4 /* Bindings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9405E3841DC36AE5005327D4 /* Bindings.swift */; };
 		9405E38F1DC36AE5005327D4 /* Injectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9405E3861DC36AE5005327D4 /* Injectable.swift */; };
 		9405E3901DC36AE5005327D4 /* Injectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9405E3861DC36AE5005327D4 /* Injectable.swift */; };
 		9405E3911DC36AE5005327D4 /* Injecting+CreatingObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9405E3871DC36AE5005327D4 /* Injecting+CreatingObjects.swift */; };
@@ -36,6 +42,16 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		15DFDEA21DC41D3F00B4687E /* Binding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Binding.swift; sourceTree = "<group>"; };
+		15DFDEA31DC41D3F00B4687E /* Bindings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bindings.swift; sourceTree = "<group>"; };
+		15DFDEA41DC41D3F00B4687E /* ClosureBinding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClosureBinding.swift; sourceTree = "<group>"; };
+		15DFDEA51DC41D3F00B4687E /* ObjectBinding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObjectBinding.swift; sourceTree = "<group>"; };
+		15DFDEA61DC41D3F00B4687E /* SingletonBinding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingletonBinding.swift; sourceTree = "<group>"; };
+		15DFDEAC1DC41D8100B4687E /* ClosureBindingSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClosureBindingSpec.swift; sourceTree = "<group>"; };
+		15DFDEAF1DC41EE300B4687E /* FakeInjector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FakeInjector.swift; sourceTree = "<group>"; };
+		15DFDEB11DC4203900B4687E /* ObjectBindingSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObjectBindingSpec.swift; sourceTree = "<group>"; };
+		15DFDEB31DC4208200B4687E /* SingletonBindingSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingletonBindingSpec.swift; sourceTree = "<group>"; };
+		15DFDEB51DC422FF00B4687E /* BindingsSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BindingsSpec.swift; sourceTree = "<group>"; };
 		1D0519A19FF923381A3514B2 /* Pods-Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Example/Pods-Example.debug.xcconfig"; sourceTree = "<group>"; };
 		37AF8943EF5EA45674ABD0A9 /* Pods_Applause_Swiftjection_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Applause_Swiftjection_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		44B573404D359A0E2E551137 /* Pods_Swiftjection_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Swiftjection_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -47,8 +63,6 @@
 		9405E3661DC365D3005327D4 /* Foo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Foo.swift; sourceTree = "<group>"; };
 		9405E3681DC365D3005327D4 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		9405E37F1DC36933005327D4 /* MyBindings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyBindings.swift; sourceTree = "<group>"; };
-		9405E3831DC36AE5005327D4 /* .gitkeep */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitkeep; sourceTree = "<group>"; };
-		9405E3841DC36AE5005327D4 /* Bindings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bindings.swift; sourceTree = "<group>"; };
 		9405E3861DC36AE5005327D4 /* Injectable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Injectable.swift; sourceTree = "<group>"; };
 		9405E3871DC36AE5005327D4 /* Injecting+CreatingObjects.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Injecting+CreatingObjects.swift"; sourceTree = "<group>"; };
 		9405E3881DC36AE5005327D4 /* Injecting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Injecting.swift; sourceTree = "<group>"; };
@@ -103,6 +117,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		15DFDEA11DC41D3F00B4687E /* Bindings */ = {
+			isa = PBXGroup;
+			children = (
+				15DFDEA21DC41D3F00B4687E /* Binding.swift */,
+				15DFDEA31DC41D3F00B4687E /* Bindings.swift */,
+				15DFDEB51DC422FF00B4687E /* BindingsSpec.swift */,
+				15DFDEA41DC41D3F00B4687E /* ClosureBinding.swift */,
+				15DFDEAC1DC41D8100B4687E /* ClosureBindingSpec.swift */,
+				15DFDEA51DC41D3F00B4687E /* ObjectBinding.swift */,
+				15DFDEB11DC4203900B4687E /* ObjectBindingSpec.swift */,
+				15DFDEA61DC41D3F00B4687E /* SingletonBinding.swift */,
+				15DFDEB31DC4208200B4687E /* SingletonBindingSpec.swift */,
+			);
+			path = Bindings;
+			sourceTree = "<group>";
+		};
 		607FACC71AFB9204008FA782 = {
 			isa = PBXGroup;
 			children = (
@@ -187,8 +217,7 @@
 		9405E3821DC36AE5005327D4 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				9405E3831DC36AE5005327D4 /* .gitkeep */,
-				9405E3841DC36AE5005327D4 /* Bindings.swift */,
+				15DFDEA11DC41D3F00B4687E /* Bindings */,
 				9405E3851DC36AE5005327D4 /* Protocols */,
 				9405E3891DC36AE5005327D4 /* Swifjector.swift */,
 				9405E3991DC36BA9005327D4 /* SwifjectorSpec.swift */,
@@ -241,6 +270,7 @@
 			isa = PBXGroup;
 			children = (
 				D8BD010D1DC23E1A00122227 /* ExampleClasses.swift */,
+				15DFDEAF1DC41EE300B4687E /* FakeInjector.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -393,7 +423,6 @@
 				944F76691DC35E3E004A2C63 /* LaunchScreen.storyboard in Resources */,
 				944F76661DC35E3E004A2C63 /* Assets.xcassets in Resources */,
 				944F76641DC35E3E004A2C63 /* Main.storyboard in Resources */,
-				9405E38B1DC36AE5005327D4 /* .gitkeep in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -401,7 +430,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9405E38C1DC36AE5005327D4 /* .gitkeep in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -505,7 +533,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				15DFDEB41DC4208200B4687E /* SingletonBindingSpec.swift in Sources */,
 				9405E39B1DC36BB0005327D4 /* SwifjectorSpec.swift in Sources */,
+				15DFDEAE1DC41D8700B4687E /* ClosureBindingSpec.swift in Sources */,
+				15DFDEB21DC4203900B4687E /* ObjectBindingSpec.swift in Sources */,
+				15DFDEB01DC41EE300B4687E /* FakeInjector.swift in Sources */,
+				15DFDEB61DC422FF00B4687E /* BindingsSpec.swift in Sources */,
 				D8BD010E1DC23E1A00122227 /* ExampleClasses.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -522,7 +555,6 @@
 				9405E3691DC365D3005327D4 /* Bar.swift in Sources */,
 				944F765F1DC35E3E004A2C63 /* AppDelegate.swift in Sources */,
 				9405E3931DC36AE5005327D4 /* Injecting.swift in Sources */,
-				9405E38D1DC36AE5005327D4 /* Bindings.swift in Sources */,
 				9405E38F1DC36AE5005327D4 /* Injectable.swift in Sources */,
 				9405E3911DC36AE5005327D4 /* Injecting+CreatingObjects.swift in Sources */,
 			);
@@ -533,11 +565,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				9405E3921DC36AE5005327D4 /* Injecting+CreatingObjects.swift in Sources */,
+				15DFDEAB1DC41D3F00B4687E /* SingletonBinding.swift in Sources */,
+				15DFDEA91DC41D3F00B4687E /* ClosureBinding.swift in Sources */,
 				9405E3941DC36AE5005327D4 /* Injecting.swift in Sources */,
 				9405E3981DC36AE5005327D4 /* SwifjectorFactory.swift in Sources */,
+				15DFDEA71DC41D3F00B4687E /* Binding.swift in Sources */,
 				9405E3901DC36AE5005327D4 /* Injectable.swift in Sources */,
 				9405E3961DC36AE5005327D4 /* Swifjector.swift in Sources */,
-				9405E38E1DC36AE5005327D4 /* Bindings.swift in Sources */,
+				15DFDEAA1DC41D3F00B4687E /* ObjectBinding.swift in Sources */,
+				15DFDEA81DC41D3F00B4687E /* Bindings.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

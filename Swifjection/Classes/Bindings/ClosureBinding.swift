@@ -4,13 +4,13 @@
 
 public class ClosureBinding: Binding {
     
-    var closure: ((Injecting) -> AnyObject)
+    var closure: ((Injecting) -> Any)
     
-    public init(withClosure closure: @escaping (Injecting) -> AnyObject) {
+    public init(withClosure closure: @escaping (Injecting) -> Any) {
         self.closure = closure
     }
     
-    public func getObject(withInjector injector: Injecting) -> AnyObject {
+    public func getObject(withInjector injector: Injecting) -> Any {
         return self.closure(injector)
     }
     

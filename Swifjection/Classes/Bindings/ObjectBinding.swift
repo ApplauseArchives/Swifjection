@@ -4,13 +4,13 @@
 
 public class ObjectBinding: Binding {
     
-    var object: AnyObject
+    var object: Any
 
-    public init(withObject object: AnyObject) {
+    public init(withObject object: Any) {
         self.object = object
     }
     
-    public func getObject(withInjector injector: Injecting) -> AnyObject {
+    public func getObject(withInjector injector: Injecting) -> Any {
         return object
     }
     

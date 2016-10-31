@@ -18,7 +18,7 @@ class ClosureBindingSpec: QuickSpec {
         
         describe("getObject") {
             
-            var returnedObject: AnyObject?
+            var returnedObject: Any?
             
             beforeEach {
                 returnedObject = closureBinding?.getObject(withInjector: FakeInjector())

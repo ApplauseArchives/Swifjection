@@ -16,7 +16,7 @@ class SingletonBindingSpec: QuickSpec {
             
             describe("getObject") {
                 
-                var returnedObject: AnyObject?
+                var returnedObject: Any?
                 
                 beforeEach {
                     returnedObject = closureBinding?.getObject(withInjector: FakeInjector())
@@ -31,7 +31,7 @@ class SingletonBindingSpec: QuickSpec {
                 
                 context("when called second time") {
                     
-                    var anotherReturnedObject: AnyObject?
+                    var anotherReturnedObject: Any?
                     
                     beforeEach {
                         anotherReturnedObject = closureBinding?.getObject(withInjector: FakeInjector())
@@ -63,7 +63,7 @@ class SingletonBindingSpec: QuickSpec {
             
             describe("getObject") {
                 
-                var returnedObject: AnyObject?
+                var returnedObject: Any?
                 
                 beforeEach {
                     returnedObject = closureBinding?.getObject(withInjector: FakeInjector())
@@ -78,7 +78,7 @@ class SingletonBindingSpec: QuickSpec {
                 
                 context("when called second time") {
                     
-                    var anotherReturnedObject: AnyObject?
+                    var anotherReturnedObject: Any?
                     
                     beforeEach {
                         anotherReturnedObject = closureBinding?.getObject(withInjector: FakeInjector())
@@ -106,7 +106,7 @@ class SingletonBindingSpec: QuickSpec {
             
             describe("getObject") {
                 
-                var returnedObject: AnyObject?
+                var returnedObject: Any?
                 
                 beforeEach {
                     returnedObject = closureBinding?.getObject(withInjector: FakeInjector())
@@ -124,7 +124,7 @@ class SingletonBindingSpec: QuickSpec {
                 
                 context("when called second time") {
                     
-                    var anotherReturnedObject: AnyObject?
+                    var anotherReturnedObject: Any?
                     
                     beforeEach {
                         anotherReturnedObject = closureBinding?.getObject(withInjector: FakeInjector())

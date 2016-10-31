@@ -6,27 +6,19 @@ import Foundation
 
 public class SingletonBinding: Binding {
     
-    var type: AnyObject.Type
-    var instance: AnyObject?
+    var type: Any.Type
+    var instance: Any?
     
-    public init<T>(withType type: T.Type) where T: Injectable {
-        self.type = type as! AnyObject.Type
-    }
-    
-    public init<T>(withType type: T.Type) where T: NSObject {
+    public init(withType type: Any.Type) {
         self.type = type
     }
     
-    public init<T>(withType type: T.Type) where T: NSObject, T: Injectable {
-        self.type = type
-    }
-    
-    public func getObject(withInjector injector: Injecting) -> AnyObject {
+    public func getObject(withInjector injector: Injecting) -> Any {
         if self.instance == nil {
             if let type = self.type as? Injectable.Type {
                 let instance = type.init(injector: injector)
                 instance?.injectDependencies(injector: injector)
-                self.instance = instance as AnyObject?
+                self.instance = instance
             } else if let type = self.type as? NSObject.Type {
                 self.instance = type.init()
             }

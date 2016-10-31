@@ -236,7 +236,7 @@ class BindingsSpec: QuickSpec {
             context("the binding") {
                 
                 var binding: Binding?
-                var returnedObject: AnyObject?
+                var returnedObject: Any?
                 
                 beforeEach {
                     binding = bindings.bindings["\(InjectableClass.self)"]
@@ -259,7 +259,7 @@ class BindingsSpec: QuickSpec {
             context("when binding for the type exists") {
                 
                 var object: InjectableClass?
-                var returnedObject: AnyObject?
+                var returnedObject: Any?
                 
                 beforeEach {
                     object = InjectableClass()
@@ -276,7 +276,7 @@ class BindingsSpec: QuickSpec {
             
             context("when binding for the type doesn't exist") {
                 
-                var returnedObject: AnyObject?
+                var returnedObject: Any?
                 
                 beforeEach {
                     returnedObject = bindings.findBinding(type: InjectableClass.self)

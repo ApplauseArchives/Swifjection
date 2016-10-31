@@ -16,14 +16,18 @@ class InjectableClass: Injectable {
     var injector: Injecting?
     
     var injectDependenciesCalled = false
+    var initCallsCount = 0
+    var injectDependenciesCallsCount = 0
     
     required convenience init?(injector: Injecting) {
         self.init()
+        self.initCallsCount += 1
         self.injector = injector
     }
     
     func injectDependencies(injector: Injecting) {
         self.injectDependenciesCalled = true
+        self.injectDependenciesCallsCount += 1
     }
     
 }
@@ -33,19 +37,31 @@ class InjectableObjCClass: NSObject, Injectable {
     var injector: Injecting?
     
     var injectDependenciesCalled = false
+    var initCallsCount = 0
+    var injectDependenciesCallsCount = 0
     
     required convenience init?(injector: Injecting) {
         self.init()
+        self.initCallsCount += 1
         self.injector = injector
     }
     
     func injectDependencies(injector: Injecting) {
         self.injectDependenciesCalled = true
+        self.injectDependenciesCallsCount += 1
     }
     
 }
 
-class ObjCClass: NSObject {}
+class ObjCClass: NSObject {
+    
+    var initCallsCount = 0
+    
+    override init() {
+        self.initCallsCount += 1
+    }
+
+}
 
 class ClassWithDependencies: Injectable {
     

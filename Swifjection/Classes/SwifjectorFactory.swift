@@ -6,7 +6,7 @@ import Foundation
 
 public class SwifjectorFactory {
     
-    public private(set) var injector: Injecting?
+    public private(set) var injector: Swifjector?
     
     private var runningSpecs: Bool {
         get { return NSClassFromString("XCTest") != nil }

@@ -13,19 +13,19 @@ class EmptySwiftClass {}
 
 class InjectableClass: Injectable {
     
-    var injector: Injecting?
+    var injector: Swifjector?
     
     var injectDependenciesCalled = false
     var initCallsCount = 0
     var injectDependenciesCallsCount = 0
     
-    required convenience init?(injector: Injecting) {
+    required convenience init?(injector: Swifjector) {
         self.init()
         self.initCallsCount += 1
         self.injector = injector
     }
     
-    func injectDependencies(injector: Injecting) {
+    func injectDependencies(injector: Swifjector) {
         self.injectDependenciesCalled = true
         self.injectDependenciesCallsCount += 1
     }
@@ -34,19 +34,19 @@ class InjectableClass: Injectable {
 
 class InjectableObjCClass: NSObject, Injectable {
     
-    var injector: Injecting?
+    var injector: Swifjector?
     
     var injectDependenciesCalled = false
     var initCallsCount = 0
     var injectDependenciesCallsCount = 0
     
-    required convenience init?(injector: Injecting) {
+    required convenience init?(injector: Swifjector) {
         self.init()
         self.initCallsCount += 1
         self.injector = injector
     }
     
-    func injectDependencies(injector: Injecting) {
+    func injectDependencies(injector: Swifjector) {
         self.injectDependenciesCalled = true
         self.injectDependenciesCallsCount += 1
     }
@@ -65,7 +65,7 @@ class ObjCClass: NSObject {
 
 class ClassWithDependencies: Injectable {
     
-    var injector: Injecting?
+    var injector: Swifjector?
     
     var objectConformingToProtocol: EmptySwiftProtocol?
     var emptySwiftObject: EmptySwiftClass?
@@ -73,12 +73,12 @@ class ClassWithDependencies: Injectable {
     var injectableObjCObject: InjectableObjCClass?
     var objCObject: ObjCClass?
     
-    required convenience init?(injector: Injecting) {
+    required convenience init?(injector: Swifjector) {
         self.init()
         self.injector = injector
     }
     
-    func injectDependencies(injector: Injecting) {
+    func injectDependencies(injector: Swifjector) {
         self.objectConformingToProtocol = injector.getObject(withType: EmptySwiftProtocol.self)
         self.emptySwiftObject = injector.getObject(withType: EmptySwiftClass.self)
         self.injectableObject = injector.getObject(withType: InjectableClass.self)

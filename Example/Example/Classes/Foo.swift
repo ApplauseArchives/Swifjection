@@ -5,7 +5,7 @@
 import Foundation
 
 class Foo: Injectable {
-    convenience required init?(injector: Injecting) {
+    convenience required init?(injector: Swifjector) {
         self.init()
     }    
 }

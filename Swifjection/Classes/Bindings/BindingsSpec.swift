@@ -73,7 +73,7 @@ class BindingsSpec: QuickSpec {
         
         describe("bind(closure:, toType:)") {
             
-            var closure: ((Injecting) -> AnyObject)!
+            var closure: ((Swifjector) -> AnyObject)!
             
             beforeEach {
                 closure = { injector in
@@ -100,7 +100,7 @@ class BindingsSpec: QuickSpec {
             
             context("when adding another closure binding for the same type") {
                 
-                var otherClosure: ((Injecting) -> AnyObject)!
+                var otherClosure: ((Swifjector) -> AnyObject)!
                 var otherClosureCalled = false
                 
                 beforeEach {

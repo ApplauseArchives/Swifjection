@@ -25,10 +25,6 @@
 		9405E3801DC36933005327D4 /* MyBindings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9405E37F1DC36933005327D4 /* MyBindings.swift */; };
 		9405E38F1DC36AE5005327D4 /* Injectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9405E3861DC36AE5005327D4 /* Injectable.swift */; };
 		9405E3901DC36AE5005327D4 /* Injectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9405E3861DC36AE5005327D4 /* Injectable.swift */; };
-		9405E3911DC36AE5005327D4 /* Injecting+CreatingObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9405E3871DC36AE5005327D4 /* Injecting+CreatingObjects.swift */; };
-		9405E3921DC36AE5005327D4 /* Injecting+CreatingObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9405E3871DC36AE5005327D4 /* Injecting+CreatingObjects.swift */; };
-		9405E3931DC36AE5005327D4 /* Injecting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9405E3881DC36AE5005327D4 /* Injecting.swift */; };
-		9405E3941DC36AE5005327D4 /* Injecting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9405E3881DC36AE5005327D4 /* Injecting.swift */; };
 		9405E3951DC36AE5005327D4 /* Swifjector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9405E3891DC36AE5005327D4 /* Swifjector.swift */; };
 		9405E3961DC36AE5005327D4 /* Swifjector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9405E3891DC36AE5005327D4 /* Swifjector.swift */; };
 		9405E3971DC36AE5005327D4 /* SwifjectorFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9405E38A1DC36AE5005327D4 /* SwifjectorFactory.swift */; };
@@ -64,8 +60,6 @@
 		9405E3681DC365D3005327D4 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		9405E37F1DC36933005327D4 /* MyBindings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyBindings.swift; sourceTree = "<group>"; };
 		9405E3861DC36AE5005327D4 /* Injectable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Injectable.swift; sourceTree = "<group>"; };
-		9405E3871DC36AE5005327D4 /* Injecting+CreatingObjects.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Injecting+CreatingObjects.swift"; sourceTree = "<group>"; };
-		9405E3881DC36AE5005327D4 /* Injecting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Injecting.swift; sourceTree = "<group>"; };
 		9405E3891DC36AE5005327D4 /* Swifjector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Swifjector.swift; sourceTree = "<group>"; };
 		9405E38A1DC36AE5005327D4 /* SwifjectorFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwifjectorFactory.swift; sourceTree = "<group>"; };
 		9405E3991DC36BA9005327D4 /* SwifjectorSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwifjectorSpec.swift; sourceTree = "<group>"; };
@@ -231,8 +225,6 @@
 			isa = PBXGroup;
 			children = (
 				9405E3861DC36AE5005327D4 /* Injectable.swift */,
-				9405E3871DC36AE5005327D4 /* Injecting+CreatingObjects.swift */,
-				9405E3881DC36AE5005327D4 /* Injecting.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -554,9 +546,7 @@
 				9405E3951DC36AE5005327D4 /* Swifjector.swift in Sources */,
 				9405E3691DC365D3005327D4 /* Bar.swift in Sources */,
 				944F765F1DC35E3E004A2C63 /* AppDelegate.swift in Sources */,
-				9405E3931DC36AE5005327D4 /* Injecting.swift in Sources */,
 				9405E38F1DC36AE5005327D4 /* Injectable.swift in Sources */,
-				9405E3911DC36AE5005327D4 /* Injecting+CreatingObjects.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -564,10 +554,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9405E3921DC36AE5005327D4 /* Injecting+CreatingObjects.swift in Sources */,
 				15DFDEAB1DC41D3F00B4687E /* SingletonBinding.swift in Sources */,
 				15DFDEA91DC41D3F00B4687E /* ClosureBinding.swift in Sources */,
-				9405E3941DC36AE5005327D4 /* Injecting.swift in Sources */,
 				9405E3981DC36AE5005327D4 /* SwifjectorFactory.swift in Sources */,
 				15DFDEA71DC41D3F00B4687E /* Binding.swift in Sources */,
 				9405E3901DC36AE5005327D4 /* Injectable.swift in Sources */,

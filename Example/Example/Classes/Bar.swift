@@ -11,7 +11,7 @@ class Bar: Injectable {
         self.foo = foo
     }
     
-    convenience required init?(injector: Injecting) {
+    convenience required init?(injector: Swifjector) {
         guard let foo = injector.getObject(withType: Foo.self) else {
             return nil
         }

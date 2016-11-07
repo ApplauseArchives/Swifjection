@@ -8,11 +8,11 @@ class ViewController: UIViewController, Injectable {
     
     var bar: Bar?
     
-    required convenience init?(injector: Injecting) {
+    required convenience init?(injector: Swifjector) {
         self.init()
     }
     
-    func injectDependencies(injector: Injecting) {
+    func injectDependencies(injector: Swifjector) {
         bar = injector.getObject(withType: Bar.self)
     }
 }

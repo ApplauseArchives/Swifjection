@@ -5,10 +5,10 @@
 import Foundation
 
 public protocol Injectable {
-    init?(injector: Injecting)
-    func injectDependencies(injector: Injecting)
+    init?(injector: Swifjector)
+    func injectDependencies(injector: Swifjector)
 }
 
 public extension Injectable {
-    func injectDependencies(injector: Injecting) {}
+    func injectDependencies(injector: Swifjector) {}
 }

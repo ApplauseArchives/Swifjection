@@ -2,16 +2,10 @@
 
 class FakeBindings: Bindings {}
 
-class FakeInjector: Injecting {
-    
-    var bindings: Bindings
+class FakeInjector: Swifjector {
     
     convenience init() {
         self.init(bindings: FakeBindings())
-    }
-    
-    public required init(bindings: Bindings) {
-        self.bindings = bindings
     }
     
 }

@@ -5,7 +5,7 @@
 import Foundation
 
 open class Bindings {
-    weak var injector: Injecting?
+    weak var injector: Swifjector?
     var bindings: [String: Binding] = [:]
 
     public init() { }
@@ -23,7 +23,7 @@ open class Bindings {
         bindings[typeName] = ObjectBinding(withObject: object)
     }
 
-    public func bind(closure: @escaping ((Injecting) -> Any), toType type: Any.Type) {
+    public func bind(closure: @escaping ((Swifjector) -> Any), toType type: Any.Type) {
         let typeName = "\(type)"
         bindings[typeName] = ClosureBinding(withClosure: closure)
     }

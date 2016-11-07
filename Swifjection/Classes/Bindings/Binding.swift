@@ -3,5 +3,5 @@
 //
 
 public protocol Binding {
-    func getObject(withInjector injector: Injecting) -> Any
+    func getObject(withInjector injector: Swifjector) -> Any
 }

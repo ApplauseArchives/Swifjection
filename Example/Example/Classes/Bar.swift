@@ -6,6 +6,8 @@ import Foundation
 
 class Bar: Injectable {
     var foo: Foo
+    var singleton: ExampleSingleton?
+    var object: MyObject?
     
     init(foo: Foo) {
         self.foo = foo
@@ -16,5 +18,7 @@ class Bar: Injectable {
             return nil
         }
         self.init(foo: foo)
+        singleton = injector.getObject(withType: ExampleSingleton.self)
+        object = injector.getObject(withType: MyObject.self)
     }
 }

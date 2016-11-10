@@ -13,7 +13,7 @@ public class SingletonBinding: Binding {
         self.type = type
     }
     
-    public func getObject(withInjector injector: Injecting) -> Any {
+    public func getObject(withInjector injector: Injecting) -> Any? {
         if self.instance == nil {
             if let type = self.type as? Injectable.Type {
                 let instance = type.init(injector: injector)

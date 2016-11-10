@@ -210,6 +210,102 @@ class BindingsSpec: QuickSpec {
             
         }
         
+        describe("bind<T>(type:, toType:)") {
+            
+            beforeEach {
+                bindings.bind(type: ClassConformingToProtocol.self, toType: EmptySwiftProtocol.self)
+            }
+            
+            it("should add one binding") {
+                expect(bindings.bindings.count).to(equal(1))
+            }
+            
+            context("when adding another singleton binding for the same type") {
+                
+                beforeEach {
+                    bindings.bind(type: ClassConformingToProtocol.self, toType: EmptySwiftProtocol.self)
+                }
+                
+                it("should replace the binding") {
+                    expect(bindings.bindings.count).to(equal(1))
+                }
+                
+            }
+            
+        }
+        
+        describe("bind<T>(type:, toType:) where T: Injectable") {
+            
+            beforeEach {
+                bindings.bind(type: InjectableClass.self, toType: Injectable.self)
+            }
+            
+            it("should add one binding") {
+                expect(bindings.bindings.count).to(equal(1))
+            }
+            
+            context("when adding another singleton binding for the same type") {
+                
+                beforeEach {
+                    bindings.bind(type: InjectableClass.self, toType: Injectable.self)
+                }
+                
+                it("should replace the binding") {
+                    expect(bindings.bindings.count).to(equal(1))
+                }
+                
+            }
+            
+        }
+        
+        describe("bind<T>(type:, toType:) where T: NSObject") {
+            
+            beforeEach {
+                bindings.bind(type: ObjCClass.self, toType: NSObject.self)
+            }
+            
+            it("should add one binding") {
+                expect(bindings.bindings.count).to(equal(1))
+            }
+            
+            context("when adding another singleton binding for the same type") {
+                
+                beforeEach {
+                    bindings.bind(type: ObjCClass.self, toType: NSObject.self)
+                }
+                
+                it("should replace the binding") {
+                    expect(bindings.bindings.count).to(equal(1))
+                }
+                
+            }
+            
+        }
+        
+        describe("bind<T>(type:, toType:) where T: NSObject, T: Injectable") {
+            
+            beforeEach {
+                bindings.bind(type: InjectableObjCClass.self, toType: Injectable.self)
+            }
+            
+            it("should add one binding") {
+                expect(bindings.bindings.count).to(equal(1))
+            }
+            
+            context("when adding another singleton binding for the same type") {
+                
+                beforeEach {
+                    bindings.bind(type: InjectableObjCClass.self, toType: Injectable.self)
+                }
+                
+                it("should replace the binding") {
+                    expect(bindings.bindings.count).to(equal(1))
+                }
+                
+            }
+            
+        }
+        
         describe("when adding multiple bindings for one type") {
             
             var closureCalled = false

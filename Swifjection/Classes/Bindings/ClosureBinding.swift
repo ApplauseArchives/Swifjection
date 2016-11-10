@@ -10,7 +10,7 @@ public class ClosureBinding: Binding {
         self.closure = closure
     }
     
-    public func getObject(withInjector injector: Injecting) -> Any {
+    public func getObject(withInjector injector: Injecting) -> Any? {
         return self.closure(injector)
     }
     

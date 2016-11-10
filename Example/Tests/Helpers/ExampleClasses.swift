@@ -5,13 +5,15 @@
 import Foundation
 @testable import Swifjection
 
-protocol EmptySwiftProtocol {}
+protocol EmptySwiftProtocol: class {}
 
 class ClassConformingToProtocol: EmptySwiftProtocol {}
 
 class EmptySwiftClass {}
 
-class InjectableClass: Injectable {
+protocol InjectableClassProtocol: class, Injectable {}
+
+class InjectableClass: InjectableClassProtocol {
     
     var injector: Injecting?
     

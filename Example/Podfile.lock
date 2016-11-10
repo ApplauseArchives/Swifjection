@@ -1,7 +1,7 @@
 PODS:
-  - Nimble (5.1.0)
+  - Nimble (5.1.1)
   - Quick (0.10.0)
-  - Swifjection (0.3.1)
+  - Swifjection (0.4.0)
 
 DEPENDENCIES:
   - Nimble
@@ -13,9 +13,9 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  Nimble: 5ea121a2eda60440287054cde077fc0ad22227b3
+  Nimble: 415e3aa3267e7bc2c96b05fa814ddea7bb686a29
   Quick: 5d290df1c69d5ee2f0729956dcf0fd9a30447eaa
-  Swifjection: 20daf03faec7a01906f02b5984ffaa6580b80fbf
+  Swifjection: 57e834d990aebfb3b39c63db209508ae871b86c8
 
 PODFILE CHECKSUM: 60d64b0fbabf954b03972ce4ed30ea4722d7aa72
 

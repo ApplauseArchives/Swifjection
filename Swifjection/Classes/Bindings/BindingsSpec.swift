@@ -17,39 +17,72 @@ class BindingsSpec: QuickSpec {
         
         describe("bind(object:, toType:)") {
             
-            var object: AnyObject!
-            
-            beforeEach {
-                object = ClassConformingToProtocol()
-                bindings.bind(object: object, toType: ClassConformingToProtocol.self)
-            }
-            
-            it("should add one binding") {
-                expect(bindings.bindings.count).to(equal(1))
-            }
-            
-            context("when adding same object to another type") {
+            context("when binding object to it's class") {
+                
+                var object: AnyObject!
                 
                 beforeEach {
-                    bindings.bind(object: object, toType: EmptySwiftProtocol.self)
+                    object = ClassConformingToProtocol()
+                    bindings.bind(object: object, toType: ClassConformingToProtocol.self)
                 }
                 
-                it("should add another binding") {
-                    expect(bindings.bindings.count).to(equal(2))
+                it("should add one binding") {
+                    expect(bindings.bindings.count).to(equal(1))
+                }
+                
+                context("when adding same object to another type") {
+                    
+                    beforeEach {
+                        bindings.bind(object: object, toType: EmptySwiftProtocol.self)
+                    }
+                    
+                    it("should add another binding") {
+                        expect(bindings.bindings.count).to(equal(2))
+                    }
+                    
+                }
+                
+                context("when adding another object binding for the same type") {
+                    
+                    var otherObject: AnyObject!
+                    
+                    beforeEach {
+                        otherObject = ClassConformingToProtocol()
+                        bindings.bind(object: otherObject, toType: ClassConformingToProtocol.self)
+                    }
+                    
+                    it("should replace the binding") {
+                        expect(bindings.bindings.count).to(equal(1))
+                    }
+                    
+                    context("the binding") {
+                        
+                        var binding: ObjectBinding?
+                        
+                        beforeEach {
+                            binding = bindings.bindings["\(ClassConformingToProtocol.self)"] as! ObjectBinding?
+                        }
+                        
+                        it("should contain the other object") {
+                            expect(binding?.object).to(beIdenticalTo(otherObject))
+                        }
+                        
+                    }
+                    
                 }
                 
             }
             
-            context("when adding another object binding for the same type") {
+            context("when binding a struct instance to the protocol") {
                 
-                var otherObject: AnyObject!
+                var structInstance: Any!
                 
                 beforeEach {
-                    otherObject = ClassConformingToProtocol()
-                    bindings.bind(object: otherObject, toType: ClassConformingToProtocol.self)
+                    structInstance = StructConformingToProtocol()
+                    bindings.bind(object: structInstance, toType: EmptySwiftProtocol.self)
                 }
                 
-                it("should replace the binding") {
+                it("should add one binding") {
                     expect(bindings.bindings.count).to(equal(1))
                 }
                 
@@ -58,11 +91,11 @@ class BindingsSpec: QuickSpec {
                     var binding: ObjectBinding?
                     
                     beforeEach {
-                        binding = bindings.bindings["\(ClassConformingToProtocol.self)"] as! ObjectBinding?
+                        binding = bindings.bindings["\(EmptySwiftProtocol.self)"] as! ObjectBinding?
                     }
                     
-                    it("should contain the other object") {
-                        expect(binding?.object).to(beIdenticalTo(otherObject))
+                    it("should contain the instance of struct") {
+                        expect(binding?.object as? StructConformingToProtocol).notTo(beNil())
                     }
                     
                 }

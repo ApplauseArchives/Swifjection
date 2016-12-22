@@ -18,7 +18,7 @@ open class Bindings {
         return nil
     }
 
-    public func bind(object: AnyObject, toType type: Any.Type) {
+    public func bind(object: Any, toType type: Any.Type) {
         let typeName = "\(type)"
         bindings[typeName] = ObjectBinding(withObject: object)
     }

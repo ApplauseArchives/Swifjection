@@ -5,9 +5,11 @@
 import Foundation
 @testable import Swifjection
 
-protocol EmptySwiftProtocol: class {}
+protocol EmptySwiftProtocol {}
 
 class ClassConformingToProtocol: EmptySwiftProtocol {}
+
+struct StructConformingToProtocol: EmptySwiftProtocol {}
 
 class EmptySwiftClass {}
 

@@ -41,6 +41,13 @@
 		944F76641DC35E3E004A2C63 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 944F76621DC35E3E004A2C63 /* Main.storyboard */; };
 		944F76661DC35E3E004A2C63 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 944F76651DC35E3E004A2C63 /* Assets.xcassets */; };
 		944F76691DC35E3E004A2C63 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 944F76671DC35E3E004A2C63 /* LaunchScreen.storyboard */; };
+		945F5E6F1DD0761A00A90DC3 /* SingletonBinding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DFDEA61DC41D3F00B4687E /* SingletonBinding.swift */; };
+		945F5E701DD0762000A90DC3 /* ObjectBinding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DFDEA51DC41D3F00B4687E /* ObjectBinding.swift */; };
+		945F5E711DD0762400A90DC3 /* ClosureBinding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DFDEA41DC41D3F00B4687E /* ClosureBinding.swift */; };
+		945F5E721DD0762800A90DC3 /* Bindings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DFDEA31DC41D3F00B4687E /* Bindings.swift */; };
+		945F5E731DD0762B00A90DC3 /* Binding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DFDEA21DC41D3F00B4687E /* Binding.swift */; };
+		945F5E751DD0770D00A90DC3 /* ExampleSingleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 945F5E741DD0770D00A90DC3 /* ExampleSingleton.swift */; };
+		945F5E771DD077B400A90DC3 /* MyObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 945F5E761DD077B400A90DC3 /* MyObject.swift */; };
 		D8BD010E1DC23E1A00122227 /* ExampleClasses.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8BD010D1DC23E1A00122227 /* ExampleClasses.swift */; };
 /* End PBXBuildFile section */
 
@@ -81,6 +88,8 @@
 		944F76651DC35E3E004A2C63 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		944F76681DC35E3E004A2C63 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		944F766A1DC35E3E004A2C63 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		945F5E741DD0770D00A90DC3 /* ExampleSingleton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExampleSingleton.swift; sourceTree = "<group>"; };
+		945F5E761DD077B400A90DC3 /* MyObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyObject.swift; sourceTree = "<group>"; };
 		ACE728CAC97BD5A39E76D531 /* Pods_Swifjection_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Swifjection_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CAD44134AC2BB4C40265990A /* Pods_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CC7D4013D08A3EA58164DAFC /* Pods-Swifjection_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Swifjection_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Swifjection_Tests/Pods-Swifjection_Tests.release.xcconfig"; sourceTree = "<group>"; };
@@ -208,6 +217,8 @@
 			children = (
 				9405E3661DC365D3005327D4 /* Foo.swift */,
 				9405E3651DC365D3005327D4 /* Bar.swift */,
+				945F5E741DD0770D00A90DC3 /* ExampleSingleton.swift */,
+				945F5E761DD077B400A90DC3 /* MyObject.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -558,13 +569,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				945F5E751DD0770D00A90DC3 /* ExampleSingleton.swift in Sources */,
 				9405E3971DC36AE5005327D4 /* SwifjectorFactory.swift in Sources */,
+				945F5E711DD0762400A90DC3 /* ClosureBinding.swift in Sources */,
 				9405E36B1DC365D3005327D4 /* ViewController.swift in Sources */,
+				945F5E771DD077B400A90DC3 /* MyObject.swift in Sources */,
 				9405E3801DC36933005327D4 /* MyBindings.swift in Sources */,
+				945F5E731DD0762B00A90DC3 /* Binding.swift in Sources */,
+				945F5E6F1DD0761A00A90DC3 /* SingletonBinding.swift in Sources */,
 				9405E36A1DC365D3005327D4 /* Foo.swift in Sources */,
 				9405E3951DC36AE5005327D4 /* Swifjector.swift in Sources */,
 				9405E3691DC365D3005327D4 /* Bar.swift in Sources */,
 				944F765F1DC35E3E004A2C63 /* AppDelegate.swift in Sources */,
+				945F5E721DD0762800A90DC3 /* Bindings.swift in Sources */,
+				945F5E701DD0762000A90DC3 /* ObjectBinding.swift in Sources */,
 				9405E3931DC36AE5005327D4 /* Injecting.swift in Sources */,
 				9405E38F1DC36AE5005327D4 /* Injectable.swift in Sources */,
 				9405E3911DC36AE5005327D4 /* Injecting+CreatingObjects.swift in Sources */,
@@ -704,6 +722,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F7274C4AF10CF79A5B459D1F /* Pods-Swifjection_Tests.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -720,6 +739,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = CC7D4013D08A3EA58164DAFC /* Pods-Swifjection_Tests.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				INFOPLIST_FILE = Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.$(PRODUCT_NAME:rfc1034identifier)";
@@ -732,6 +752,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 1D0519A19FF923381A3514B2 /* Pods-Example.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -753,6 +774,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = FE6D1025BAD1A44D9F39B826 /* Pods-Example.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;

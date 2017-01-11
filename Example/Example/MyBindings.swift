@@ -7,8 +7,8 @@ import Foundation
 class MyBindings: Bindings {
     
     override init() {
-        super.init()
-        
-        bind(object: Foo(), toType: Foo.self)        
+        super.init()        
+        bind(object: Foo(), toType: Foo.self)
+        bindSingleton(forType: ExampleSingleton.self)
     }
 }

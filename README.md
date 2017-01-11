@@ -44,48 +44,49 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 ## Mapping objects for injector
 
-As in any other DI framework you can to setup mapping for objects you would like to inject. Currently Swifjection supports:
+As in any other DI framework you can setup mapping for objects you would like to inject. Currently Swifjection supports:
 * **closure to type mapping**
-```swift
-let bindings = Bindings()
-let closure = { injector in
-    let object = MyClass() // create your object
-    object.setup() // do some additional setup
-    return object
-}
-bindings.bind(closure: closure, toType: ClassConformingToProtocol.self)
-```
+
+  ```swift
+  let bindings = Bindings()
+  let closure = { injector in
+      let object = MyClass() // create your object
+      object.setup() // do some additional setup
+      return object
+  }
+  bindings.bind(closure: closure, toType: ClassConformingToProtocol.self)
+  ```
 
 * **instance to type mapping**
 
-```swift
-let bindings = Bindings()
+  ```swift
+  let bindings = Bindings()
 
-let object = MyClass()
-bindings.bind(object: object, toType: MyClass.self) // binding object to class
-bindings.bind(object: object, toType: MyProtocol.self) // binding object to protocol
+  let object = MyClass()
+  bindings.bind(object: object, toType: MyClass.self) // binding object to class
+  bindings.bind(object: object, toType: MyProtocol.self) // binding object to protocol
 
-let structObject = MyStruct()
-bindings.bind(object: structObject, toType: MyProtocol.self) // binding struct to protocol
-```
+  let structObject = MyStruct()
+  bindings.bind(object: structObject, toType: MyProtocol.self) // binding struct to protocol
+  ```
 
 * **type to type mapping**
 
-```swift
-let bindings = Bindings()
-bindings.bind(type: MyClass.self, toType: MyProtocol.self) // binding class to protocol
-```
+  ```swift
+  let bindings = Bindings()
+  bindings.bind(type: MyClass.self, toType: MyProtocol.self) // binding class to protocol
+  ```
 
 * **singleton binding**
 
-```swift
-let bindings = Bindings()
-bindings.bindSingleton(forType: MyClass.self) // binding class as singleton
-```
+  ```swift
+  let bindings = Bindings()
+  bindings.bindSingleton(forType: MyClass.self) // binding class as singleton
+  ```
 
-When no instance is mapped in module, Swifjection *tries* to create a fresh instance if one of the condition is met:
+The biggest advantage of using Swifjection as your Dependency Injection framework is that you don't have to map all your types in the module. When no instance or closure is mapped to type in module, Swifjection *tries* to create a fresh instance if one of the condition is met:
 - class inherits from `NSObject` - instance is created by calling `init`
-- class or struct conforms to `Injectable` - instance is created by calling `init?(injector:)`
+- class or struct conforms to `Injectable` protocol - instance is created by calling `init?(injector:)`
 
 Othewrwise injector will return nil.
 

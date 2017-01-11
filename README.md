@@ -44,7 +44,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 ## Mapping objects for injector
 
-As in any other DI framework you can to setup mapping for objects you would like to inject. Currently Swifjection supports **closure to type mapping**, **instance to type mapping**, **type to type mapping**, and **singleton binding**
+As in any other DI framework you can to setup mapping for objects you would like to inject. Currently Swifjection supports:
+* **closure to type mapping**
+* **instance to type mapping**
+* **type to type mapping**
+* **singleton binding**
 
 ```swift
 let bindings = Bindings()

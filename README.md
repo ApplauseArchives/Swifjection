@@ -46,10 +46,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 As in any other DI framework you can to setup mapping for objects you would like to inject. Currently Swifjection supports:
 * **closure to type mapping**
-* **instance to type mapping**
-* **type to type mapping**
-* **singleton binding**
-
 ```swift
 let bindings = Bindings()
 let closure = { injector in
@@ -59,6 +55,8 @@ let closure = { injector in
 }
 bindings.bind(closure: closure, toType: ClassConformingToProtocol.self)
 ```
+
+* **instance to type mapping**
 
 ```swift
 let bindings = Bindings()
@@ -71,10 +69,14 @@ let structObject = MyStruct()
 bindings.bind(object: structObject, toType: MyProtocol.self) // binding struct to protocol
 ```
 
+* **type to type mapping**
+
 ```swift
 let bindings = Bindings()
 bindings.bind(type: MyClass.self, toType: MyProtocol.self) // binding class to protocol
 ```
+
+* **singleton binding**
 
 ```swift
 let bindings = Bindings()

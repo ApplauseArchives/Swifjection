@@ -22,7 +22,7 @@ Changes that are cosmetic in nature and do not add anything substantial to the s
 
 #### **Do you have questions about the source code?**
 
-* Ask authors any question about how to use Swifjection: [Aleksander Zubala](mailto:azubala@applause.com) or [Łukasz Przytuła](lprzytula@applause.com).
+* Ask authors any question about how to use Swifjection: [Aleksander Zubala](mailto:azubala@applause.com) or [Łukasz Przytuła](mailto:lprzytula@applause.com).
 
 </br>
 Swifjection is a volunteer effort. We encourage you to pitch in and join the team.

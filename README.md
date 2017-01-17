@@ -19,7 +19,7 @@ pod "Swifjection"
 
 ## Setting up injector
 
-Swifjection comes with `Swifector` class which conforms to `Injecting` protocol and is the default injector for your application.
+Swifjection comes with `Swifjector` class which conforms to `Injecting` protocol and is the default injector for your application.
 
 Our framework (for now) does not provide functionality to store default injector, we recommand to create one and store in your `AppDelegate` using our `SwifjectorFactory` -- helper class which detects if app is running specs and gives you option to setup spec injector (see **Tests setup**):
 

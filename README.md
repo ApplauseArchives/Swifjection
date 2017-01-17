@@ -2,7 +2,7 @@
 
 # About
 
-Welcome to **Swijection** -- lightweight and simplistic dependency injection framework written in Swift for Swift .
+Welcome to **Swifjection** -- lightweight and simplistic dependency injection framework written in Swift for Swift .
 
 The main idea behind this project is to achieve DI for Swift objects that does not inherit from Objective-C classes.
 

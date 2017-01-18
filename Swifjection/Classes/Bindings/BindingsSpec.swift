@@ -112,7 +112,7 @@ class BindingsSpec: QuickSpec {
                 closure = { injector in
                     return ClassConformingToProtocol()
                 }
-                bindings.bind(closure: closure, toType: ClassConformingToProtocol.self)
+                bindings.bind(type: ClassConformingToProtocol.self, with: closure)
             }
             
             it("should add one binding") {
@@ -122,7 +122,7 @@ class BindingsSpec: QuickSpec {
             context("when binding same closure to another type") {
                 
                 beforeEach {
-                    bindings.bind(closure: closure, toType: EmptySwiftProtocol.self)
+                    bindings.bind(type: EmptySwiftProtocol.self, with: closure)
                 }
                 
                 it("should add another binding") {
@@ -141,7 +141,7 @@ class BindingsSpec: QuickSpec {
                         otherClosureCalled = true
                         return ClassConformingToProtocol()
                     }
-                    bindings.bind(closure: otherClosure, toType: ClassConformingToProtocol.self)
+                    bindings.bind(type: ClassConformingToProtocol.self, with: otherClosure)
                 }
                 
                 afterEach {
@@ -347,10 +347,10 @@ class BindingsSpec: QuickSpec {
             beforeEach {
                 object = InjectableClass()
                 bindings.bind(object: object, toType: InjectableClass.self)
-                bindings.bind(closure: { injector in
+                bindings.bind(type: InjectableClass.self) { injector in
                     closureCalled = true
                     return object
-                }, toType: InjectableClass.self)
+                }
                 bindings.bindSingleton(forType: InjectableClass.self)
             }
             

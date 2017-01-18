@@ -1,5 +1,7 @@
 ![img](./swifjection-logo.png)
 
+[![Travis CI](https://api.travis-ci.org/ApplauseOSS/Swifjection.svg?branch=master)](https://api.travis-ci.org/ApplauseOSS/Swifjection)
+
 # About
 
 Welcome to **Swifjection** -- lightweight and simplistic dependency injection framework written in Swift for Swift .

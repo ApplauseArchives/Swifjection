@@ -5,7 +5,7 @@ podfile: Example/Podfile
 rvm: 2.2.4
 before_install:
 - gem install cocoapods -v '1.1.1'
+- bundle install
 - pod repo update
 - pod install --project-directory=Example
-script:
-- set -o pipefail && xcrun xcodebuild test -workspace Example/Swifjection.xcworkspace -scheme Swifjection -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 7,OS=latest' ONLY_ACTIVE_ARCH=NO | xcpretty
+script: travis/script.sh

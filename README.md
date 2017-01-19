@@ -1,5 +1,7 @@
 ![img](./swifjection-logo.png)
 
+[![Build Status](https://jenkins.applause.com/buildStatus/icon?job=Swifjection-Master-Builder)](https://jenkins.applause.com/job/Swifjection-Master-Builder)
+
 # About
 
 Welcome to **Swifjection** -- lightweight and simplistic dependency injection framework written in Swift for Swift .

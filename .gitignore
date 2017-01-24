@@ -22,4 +22,7 @@ DerivedData
 # Bundler
 .bundle
 
+# SPM
+.build
+
 Pods/

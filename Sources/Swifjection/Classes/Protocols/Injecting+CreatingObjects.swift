@@ -5,7 +5,6 @@
 import Foundation
 
 public extension Injecting {
-
     public func getObject<T>(withType type: T.Type) -> T? where T: Any {
         if let object = bindings.findBinding(type: type) as? T {
             return object
@@ -41,5 +40,4 @@ public extension Injecting {
         }
         return nil
     }
-    
 }

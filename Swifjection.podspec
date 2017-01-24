@@ -11,9 +11,9 @@ Lightweight and simplistic dependency injection framework written in Swift for S
                          'Aleksander Zubala' => 'azubala@applause.com' }
   s.source           = { :git => 'https://github.com/ApplauseOSS/Swifjection.git', :tag => s.version.to_s }
   s.platforms = { :ios => "8.0", :osx => "10.9", :watchos => "2.0", :tvos => "9.0" }
-  s.source_files = 'Swifjection/Classes/**/*'
+  s.source_files = 'Sources/Swifjection/Classes/**/*'
   s.exclude_files = [
-    'Swifjection/Classes/**/*Spec.swift',
-    'Swifjection/Classes/**/*Tests.swift'
+    'Sources/Swifjection/Classes/**/*Spec.swift',
+    'Sources/Swifjection/Classes/**/*Tests.swift'
   ]
 end

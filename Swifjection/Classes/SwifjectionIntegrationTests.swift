@@ -40,10 +40,10 @@ class SwifjectionIntegrationTests: QuickSpec {
             
             beforeEach {
                 object = EmptySwiftClass()
-                bindings.bind(closure: { injector in
+                bindings.bind(type: EmptySwiftClass.self) { injector in
                     closureCalled = true
                     return object
-                }, toType: EmptySwiftClass.self)
+                }
                 
                 returnedObject = injector.getObject(withType: EmptySwiftClass.self)
             }
@@ -127,10 +127,10 @@ class SwifjectionIntegrationTests: QuickSpec {
                 
                 beforeEach {
                     object = InjectableClass()
-                    bindings.bind(closure: { injector in
+                    bindings.bind(type: InjectableClass.self) { injector in
                         closureCalled = true
                         return object
-                        }, toType: InjectableClass.self)
+                    }
                     
                     returnedObject = injector.getObject(withType: InjectableClassProtocol.self)
                 }

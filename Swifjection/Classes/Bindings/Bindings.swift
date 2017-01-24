@@ -23,7 +23,7 @@ open class Bindings {
         bindings[typeName] = ObjectBinding(withObject: object)
     }
 
-    public func bind(closure: @escaping ((Injecting) -> Any), toType type: Any.Type) {
+    public func bind(type: Any.Type, with closure: @escaping ((Injecting) -> Any)) {
         let typeName = "\(type)"
         bindings[typeName] = ClosureBinding(withClosure: closure)
     }

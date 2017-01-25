@@ -8,6 +8,13 @@ Welcome to **Swifjection** -- lightweight and simplistic dependency injection fr
 
 The main idea behind this project is to achieve DI for Swift objects that does not inherit from Objective-C classes.
 
+# Why Swifjection?
+
+* It can initialize new instances of `NSObject` subclasses, as well as pure `Swift` classes conforming to `Injectable` protocol
+* Due to previous point, you don't have to bind/register every new class you create, which is helpful in fast growing projects
+* Simple
+* Lightweight
+
 # Installation
 
 **Swifjection** is available through [CocoaPods](http://cocoapods.org). To install

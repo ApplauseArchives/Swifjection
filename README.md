@@ -10,10 +10,13 @@ The main idea behind this project is to achieve DI for Swift objects that does n
 
 # Why Swifjection?
 
-* It can initialize new instances of `NSObject` subclasses, as well as pure `Swift` classes conforming to `Injectable` protocol
-* Due to previous point, you don't have to bind/register every new class you create, which is helpful in fast growing projects
-* Simple
-* Lightweight
+We build **Swifjection** for our use in the first place. These are the key points what was our motivation:
+
+* No need to inherit from `NSObject` in order to inject dependencies
+* To inject *pure* `Swift` types you just to conform to simple `Injectable` protocol
+* No action required to inject `NSObject` sublcasses
+* Clear and simple binding system inspired by Objective-C framework [Objection](https://github.com/atomicobject/objection)
+* Lightweight -- we wanted to avoid unnecessary clutter and made the APIs as simple as possible
 
 # Installation
 

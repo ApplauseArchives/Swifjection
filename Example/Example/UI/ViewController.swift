@@ -3,6 +3,7 @@
 //
 
 import UIKit
+import Swifjection
 
 class ViewController: UIViewController, Injectable {
     

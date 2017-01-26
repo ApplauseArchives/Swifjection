@@ -38,6 +38,7 @@
 		944F76691DC35E3E004A2C63 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 944F76671DC35E3E004A2C63 /* LaunchScreen.storyboard */; };
 		945F5E751DD0770D00A90DC3 /* ExampleSingleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 945F5E741DD0770D00A90DC3 /* ExampleSingleton.swift */; };
 		945F5E771DD077B400A90DC3 /* MyObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 945F5E761DD077B400A90DC3 /* MyObject.swift */; };
+		D87A35991E3A05A900CF2606 /* Fee.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87A35981E3A05A900CF2606 /* Fee.swift */; };
 		D8BD010E1DC23E1A00122227 /* ExampleClasses.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8BD010D1DC23E1A00122227 /* ExampleClasses.swift */; };
 /* End PBXBuildFile section */
 
@@ -87,6 +88,7 @@
 		D7F3F747FB45DD40710AB145 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		D838D33F1DC33591002B091C /* Swifjection.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; name = Swifjection.podspec; path = ../Swifjection.podspec; sourceTree = "<group>"; };
 		D85568AD1DC3308B0081E014 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D87A35981E3A05A900CF2606 /* Fee.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Fee.swift; sourceTree = "<group>"; };
 		D8BD00F41DC2358E00122227 /* Swifjection.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Swifjection.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8BD010D1DC23E1A00122227 /* ExampleClasses.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExampleClasses.swift; sourceTree = "<group>"; };
 		EA602F772D38427EA5280725 /* Pods-Swiftjection_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Swiftjection_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Swiftjection_Tests/Pods-Swiftjection_Tests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -231,6 +233,7 @@
 			children = (
 				9405E3661DC365D3005327D4 /* Foo.swift */,
 				9405E3651DC365D3005327D4 /* Bar.swift */,
+				D87A35981E3A05A900CF2606 /* Fee.swift */,
 				945F5E741DD0770D00A90DC3 /* ExampleSingleton.swift */,
 				945F5E761DD077B400A90DC3 /* MyObject.swift */,
 			);
@@ -563,6 +566,7 @@
 				9405E36B1DC365D3005327D4 /* ViewController.swift in Sources */,
 				945F5E771DD077B400A90DC3 /* MyObject.swift in Sources */,
 				9405E3801DC36933005327D4 /* MyBindings.swift in Sources */,
+				D87A35991E3A05A900CF2606 /* Fee.swift in Sources */,
 				9405E36A1DC365D3005327D4 /* Foo.swift in Sources */,
 				9405E3691DC365D3005327D4 /* Bar.swift in Sources */,
 				944F765F1DC35E3E004A2C63 /* AppDelegate.swift in Sources */,

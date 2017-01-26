@@ -3,6 +3,7 @@
 //
 
 import Foundation
+import Swifjection
 
 class MyBindings: Bindings {
     
@@ -10,5 +11,7 @@ class MyBindings: Bindings {
         super.init()        
         bind(object: Foo(), toType: Foo.self)
         bindSingleton(forType: ExampleSingleton.self)
+        bindSingleton(forType: Fee.self)
+        bind(type: Fee.self, toType:Fie.self)
     }
 }

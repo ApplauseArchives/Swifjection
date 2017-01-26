@@ -37,7 +37,7 @@ class TypeBinding: Binding {
      - Returns: An initialized `TypeBinding` object.
      */
     public init<T>(withType type: T.Type) {
-        self.objectCreationClosure = { injector in
+        objectCreationClosure = { injector in
             return injector.getObject(withType: type)
         }
     }
@@ -50,7 +50,7 @@ class TypeBinding: Binding {
      - Returns: An initialized `TypeBinding` object.
      */
     public init<T>(withType type: T.Type) where T: Injectable {
-        self.objectCreationClosure = { injector in
+        objectCreationClosure = { injector in
             return injector.getObject(withType: type)
         }
     }
@@ -63,7 +63,7 @@ class TypeBinding: Binding {
      - Returns: An initialized `TypeBinding` object.
      */
     public init<T>(withType type: T.Type) where T: NSObject {
-        self.objectCreationClosure = { injector in
+        objectCreationClosure = { injector in
             return injector.getObject(withType: type)
         }
     }
@@ -76,7 +76,7 @@ class TypeBinding: Binding {
      - Returns: An initialized `TypeBinding` object.
      */
     public init<T>(withType type: T.Type) where T: NSObject, T: Injectable {
-        self.objectCreationClosure = { injector in
+        objectCreationClosure = { injector in
             return injector.getObject(withType: type)
         }
     }
@@ -89,6 +89,6 @@ class TypeBinding: Binding {
      - Returns: Object of `type` created using the `injector`, or nil.
      */
     func getObject(withInjector injector: Injecting) -> Any? {
-        return self.objectCreationClosure(injector)
+        return objectCreationClosure(injector)
     }
 }

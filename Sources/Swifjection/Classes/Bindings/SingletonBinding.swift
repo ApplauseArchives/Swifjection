@@ -56,7 +56,7 @@ public class SingletonBinding: Binding {
      - Returns: An singleton instance of `type` provided during initialization of this binding.
      */
     public func getObject(withInjector injector: Injecting) -> Any? {
-        if self.instance == nil {
+        if instance == nil {
             if let type = self.type as? Injectable.Type {
                 let instance = type.init(injector: injector)
                 instance?.injectDependencies(injector: injector)

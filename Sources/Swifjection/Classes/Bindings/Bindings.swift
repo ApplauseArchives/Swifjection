@@ -4,6 +4,8 @@
 
 import Foundation
 
+/// Groups all bindings for the injector, which uses it as a look up table when serving objects/structs.
+
 open class Bindings {
     /**
      The `injector` used for creating new instances of objects in certain bindings.
@@ -13,7 +15,7 @@ open class Bindings {
     weak var injector: Injecting?
     
     /**
-     Dictionary of binding objects bound to type names.
+     Dictionary of `Binding` objects bound to type names converted to `String`.
      */
     var bindings: [String: Binding] = [:]
     
@@ -25,11 +27,11 @@ open class Bindings {
     public init() { }
     
     /**
-     Looks for the `Binding` assigned to provided `type`, and returns object returned by calling `getObject(withInjector injector: Injecting)`, or nil if no binding found.
+     Looks for the `Binding` assigned to provided `type`, and returns object returned by calling `getObject(withInjector injector: Injecting)`, or `nil` if no binding found.
      
      - Parameter type: Function will search for `Binding` object assigned to this `type`.
      
-     - Returns: Object returned from binding, or nil.
+     - Returns: Object returned from binding, or `nil`.
      */
     public func findBinding(type: Any.Type) -> Any? {
         let typeName = "\(type)"
@@ -77,7 +79,7 @@ open class Bindings {
     /**
      Binds provided `boundType` using `TypeBinding` to the `type`.
      
-     When there is no other `Binding` bound to `boundType`, this function will return nil, as non `NSObject` and non `Injectable` type cannot be initialized.
+     When there is no other `Binding` bound to `boundType`, this function will return `nil`, as non `NSObject` and non `Injectable` type cannot be initialized.
      
      - Parameter boundType: Injector will look for another `Binding`, bound to `boundType` when asked for creating `type` object.
      - Parameter type: The `type` to which the `boundType` should be bound.
@@ -95,7 +97,7 @@ open class Bindings {
      - Parameter boundType: Injector will try to initialize object of `boundType` when asked for creating `type` object.
      - Parameter type: The `type` to which the `boundType` should be bound.
      
-     - Returns: Instance of `boundType`, or nil.
+     - Returns: Instance of `boundType`, or `nil`.
      */
     public func bind<T>(type boundType: T.Type, toType type: Any.Type) where T: Injectable {
         let typeName = "\(type)"
@@ -108,7 +110,7 @@ open class Bindings {
      - Parameter boundType: Injector will try to initialize object of `boundType` when asked for creating `type` object.
      - Parameter type: The `type` to which the `boundType` should be bound.
      
-     - Returns: Instance of `boundType`, or nil.
+     - Returns: Instance of `boundType`, or `nil`.
      */
     public func bind<T>(type boundType: T.Type, toType type: Any.Type) where T: NSObject {
         let typeName = "\(type)"
@@ -121,7 +123,7 @@ open class Bindings {
      - Parameter boundType: Injector will try to initialize object of `boundType` when asked for creating `type` object.
      - Parameter type: The `type` to which the `boundType` should be bound.
      
-     - Returns: Instance of `boundType`, or nil.
+     - Returns: Instance of `boundType`, or `nil`.
      */
     public func bind<T>(type boundType: T.Type, toType type: Any.Type) where T: NSObject, T: Injectable {
         let typeName = "\(type)"

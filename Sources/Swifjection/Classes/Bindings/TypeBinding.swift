@@ -4,6 +4,8 @@
 
 import Foundation
 
+/// Binds type to another type -- in most cases used for binding concrete class to a protocol. 
+
 class TypeBinding: Binding {
     /**
      An closure created during initialization of binding, used to create instance of `type` provided during the initialization.

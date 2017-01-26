@@ -4,6 +4,8 @@
 
 import Foundation
 
+/// Helper factory for creating injector, its main purpose is to NOT create default injector when application is being tested.
+
 public class SwifjectorFactory {
     /**
      Returns `Swifjector` instance, when called while not running tests. In tests, it will be set to nil.

@@ -4,6 +4,8 @@
 
 import Foundation
 
+/// Concrete implementation of `Injecting`, designed to be used as default injector.
+
 public class Swifjector: Injecting {
     /**
      Returns the `bindings` object provided to initializer.

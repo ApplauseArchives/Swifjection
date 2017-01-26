@@ -2,6 +2,8 @@
 //  Copyright © 2017 Applause Inc. All rights reserved.
 //
 
+/// Binds closure to create an object for given type. 
+
 public class ClosureBinding: Binding {
     /**
      Returns the `closure` provided during initialization of binding.

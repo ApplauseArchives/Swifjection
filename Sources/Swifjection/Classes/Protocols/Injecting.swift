@@ -4,6 +4,8 @@
 
 import Foundation
 
+/// Describes a generic type which serves as `Injectable` types factory. 
+
 public protocol Injecting: class {
     /**
      Returns the `bindings` object provided to initializer.

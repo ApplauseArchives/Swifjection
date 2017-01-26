@@ -2,6 +2,8 @@
 //  Copyright © 2017 Applause Inc. All rights reserved.
 //
 
+/// Binds concrete instance of the object to given type.
+
 public class ObjectBinding: Binding {
     /**
      Returns the `object` provided during initialization of binding.

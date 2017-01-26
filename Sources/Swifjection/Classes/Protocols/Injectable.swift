@@ -4,6 +4,8 @@
 
 import Foundation
 
+/// Describes a type which is compatible with Swijection -- it can have its dependencies injected and can be created from injector  
+
 public protocol Injectable {
     /**
      Initializes injectable object, using provided `injector`.

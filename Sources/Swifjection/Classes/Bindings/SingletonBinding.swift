@@ -2,6 +2,8 @@
 //  Copyright © 2017 Applause Inc. All rights reserved.
 //
 
+/// Binds given type to lazy singleton object -- instance will be created when type is requested
+
 import Foundation
 
 public class SingletonBinding: Binding {

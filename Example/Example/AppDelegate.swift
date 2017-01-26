@@ -3,6 +3,7 @@
 //
 
 import UIKit
+import Swifjection
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

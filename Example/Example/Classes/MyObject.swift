@@ -3,6 +3,7 @@
 //
 
 import Foundation
+import Swifjection
 
 class MyObject: NSObject {
     

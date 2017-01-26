@@ -5,8 +5,10 @@
 import Foundation
 import Swifjection
 
-class Foo: Injectable {
+protocol Fie {}
+
+class Fee: Fie, Injectable {
     convenience required init?(injector: Injecting) {
         self.init()
-    }    
+    }
 }

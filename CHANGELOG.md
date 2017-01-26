@@ -1,13 +1,14 @@
 # Swifjection Changelog
 
-## [Unreleased]
+## [0.6.0] - 26.01.2017
 ### Added:
 * Continuous Integration setup with build status badge in README
 * Code documentation
 * Swift Package manifest
-* CHANGELOG
+* `CHANGELOG`
 
 ### Changed:
+* Resolved exception when `Swifjection` couldn't create instance of singleton object 
 * Changed order of closure binding function parameters:
 
   ```Swift

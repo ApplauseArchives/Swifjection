@@ -145,9 +145,27 @@ class SingletonBindingSpec: QuickSpec {
                 }
                 
             }
-            
         }
         
+        context("created with not Injectable, nor NSObject type") {
+            
+            beforeEach {
+                closureBinding = SingletonBinding(withType: EmptySwiftClass.self)
+            }
+            
+            describe("getObject") {
+                
+                var returnedObject: Any?
+                
+                beforeEach {
+                    returnedObject = closureBinding?.getObject(withInjector: FakeInjector())
+                }
+                
+                it("should return nil") {
+                    expect(returnedObject).to(beNil())
+                }
+            }
+        }
     }
     
 }

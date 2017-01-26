@@ -53,7 +53,7 @@ open class Bindings {
      */
     public func findBinding(type: Any.Type) -> Any? {
         let typeName = "\(type)"
-        if let injector = self.injector, let binding = bindings[typeName] {
+        if let injector = injector, let binding = bindings[typeName] {
             return binding.getObject(withInjector: injector)
         }
         return nil

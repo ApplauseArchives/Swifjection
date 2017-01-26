@@ -48,6 +48,6 @@ public class ClosureBinding: Binding {
      - Returns: Object created using the `closure`.
      */
     public func getObject(withInjector injector: Injecting) -> Any? {
-        return self.closure(injector)
+        return closure(injector)
     }    
 }

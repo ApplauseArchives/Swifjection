@@ -64,7 +64,7 @@ public class SingletonBinding: Binding {
             } else if let type = self.type as? NSObject.Type {
                 self.instance = type.init()
             }
-        }
-        return self.instance!
+        }        
+        return self.instance
     }
 }

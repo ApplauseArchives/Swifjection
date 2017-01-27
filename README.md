@@ -61,12 +61,12 @@ As in any other DI framework you can setup mapping for objects you would like to
 
   ```swift
   let bindings = Bindings()
-  let closure = { injector in
+  bindings.bind(type: ClassConformingToProtocol.self) { injector in
       let object = MyClass() // create your object
       object.setup() // do some additional setup
       return object
   }
-  bindings.bind(closure: closure, toType: ClassConformingToProtocol.self)
+  
   ```
 
 * **instance to type mapping**

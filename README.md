@@ -66,7 +66,7 @@ As in any other DI framework you can setup mapping for objects you would like to
       object.setup() // do some additional setup
       return object
   }
-  
+
   ```
 
 * **instance to type mapping**
@@ -102,7 +102,23 @@ The biggest advantage of using Swifjection as your Dependency Injection framewor
 
 Othewrwise injector will return nil.
 
-## Fetching dependencies
+## Creating objects using `Swifjector`
+
+`Injecting` protocol provides default implementation of `getObject(withType:)` generic function, which returns object of `T` type, passed as an argument.
+
+```Swift
+let object = injector.getObject(withType: MyClass.self)
+let otherObject: MyClass? = injector.getObject(withType: MyClass.self) // This does not require any casting
+```
+
+In addition to this function, we've implemented `subscript` function, which takes the type as an argument, but is not generic, so may require explicit casting of returned object in some cases:
+
+```Swift
+let object = injector[MyClass.self]
+let otherObject: MyClass? = injector[MyClass.self] as MyClass // This requires explicit casting
+```
+
+## Fetching object's dependencies
 
 Each class or struct which can be injected and/or has dependencies to be injected should conform to `Injectable` protocol:
 

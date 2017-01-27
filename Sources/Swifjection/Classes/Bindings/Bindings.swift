@@ -26,13 +26,6 @@ import Foundation
 
 open class Bindings {
     /**
-     The `injector` used for creating new instances of objects in certain bindings.
-     
-     Injector will be passed to `getObject(withInjector injector: Injecting)` function.
-     */
-    weak var injector: Injecting?
-    
-    /**
      Dictionary of `Binding` objects bound to type names converted to `String`.
      */
     var bindings: [String: Binding] = [:]
@@ -43,21 +36,6 @@ open class Bindings {
      - Returns: An initialized `Bindings` object.
      */
     public init() { }
-    
-    /**
-     Looks for the `Binding` assigned to provided `type`, and returns object returned by calling `getObject(withInjector injector: Injecting)`, or `nil` if no binding found.
-     
-     - Parameter type: Function will search for `Binding` object assigned to this `type`.
-     
-     - Returns: Object returned from binding, or `nil`.
-     */
-    public func findBinding(type: Any.Type) -> Any? {
-        let typeName = "\(type)"
-        if let injector = injector, let binding = bindings[typeName] {
-            return binding.getObject(withInjector: injector)
-        }
-        return nil
-    }
 
     /**
      Binds provided `object` using `ObjectBinding` to the `type`.
@@ -146,5 +124,16 @@ open class Bindings {
     public func bind<T>(type boundType: T.Type, toType type: Any.Type) where T: NSObject, T: Injectable {
         let typeName = "\(type)"
         bindings[typeName] = TypeBinding(withType: boundType)
+    }
+    
+    public subscript(type: Any.Type) -> Binding? {
+        get {
+            let typeName = "\(type)"
+            return bindings[typeName]
+        }
+        set {
+            let typeName = "\(type)"
+            bindings[typeName] = newValue
+        }
     }
 }

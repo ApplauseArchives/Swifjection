@@ -20,16 +20,35 @@ class SwifjectionIntegrationTests: QuickSpec {
             
             var object: EmptySwiftClass!
             
-            beforeEach {
-                object = EmptySwiftClass()
-                bindings.bind(object: object, toType: EmptySwiftClass.self)
+            context("using getObject function", { 
                 
-                returnedObject = injector.getObject(withType: EmptySwiftClass.self)
-            }
+                beforeEach {
+                    object = EmptySwiftClass()
+                    bindings.bind(object: object, toType: EmptySwiftClass.self)
+                    
+                    returnedObject = injector.getObject(withType: EmptySwiftClass.self)
+                }
+                
+                it("should return bound object") {
+                    expect(returnedObject).to(beIdenticalTo(object))
+                }
+
+            });
             
-            it("should return bound object") {
-                expect(returnedObject).to(beIdenticalTo(object))
-            }
+            context("using subscript", {
+                
+                beforeEach {
+                    object = EmptySwiftClass()
+                    bindings.bind(object: object, toType: EmptySwiftClass.self)
+                    
+                    returnedObject = injector[EmptySwiftClass.self] as AnyObject
+                }
+                
+                it("should return bound object") {
+                    expect(returnedObject).to(beIdenticalTo(object))
+                }
+                
+            });
             
         }
         

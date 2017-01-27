@@ -23,21 +23,21 @@ import Foundation
 
 public extension Injecting {
     public func getObject<T>(withType type: T.Type) -> T? where T: Any {
-        if let object = bindings.findBinding(type: type) as? T {
+        if let object = bindings[type]?.getObject(withInjector: self) as? T {
             return object
         }
         return nil
     }
     
     public func getObject<T>(withType type: T.Type) -> T? where T: NSObject {
-        if let object = bindings.findBinding(type: type) as? T {
+        if let object = bindings[type]?.getObject(withInjector: self) as? T {
             return object
         }
         return type.init()
     }
     
     public func getObject<T>(withType type: T.Type) -> T? where T: Injectable {
-        if let object = bindings.findBinding(type: type) as? T {
+        if let object = bindings[type]?.getObject(withInjector: self) as? T {
             return object
         }
         if let object = type.init(injector: self) {
@@ -48,7 +48,35 @@ public extension Injecting {
     }
     
     public func getObject<T>(withType type: T.Type) -> T? where T: NSObject, T: Injectable {
-        if let object = bindings.findBinding(type: type) as? T {
+        if let object = bindings[type]?.getObject(withInjector: self) as? T {
+            return object
+        }
+        if let object = type.init(injector: self) {
+            object.injectDependencies(injector: self)
+            return object
+        }
+        return nil
+    }
+    
+    public subscript(type: Any.Type) -> Any? {
+        if let object = bindings[type]?.getObject(withInjector: self) {
+            return object
+        }
+        return nil
+    }
+    
+    public subscript(type: NSObject.Type) -> NSObject? {
+        if let object = bindings[type]?.getObject(withInjector: self) as? NSObject {
+            if let injectable = object as? Injectable {
+                injectable.injectDependencies(injector: self)
+            }
+            return object
+        }
+        return type.init()
+    }
+    
+    public subscript(type: Injectable.Type) -> Injectable? {
+        if let object = bindings[type]?.getObject(withInjector: self) as? Injectable {
             return object
         }
         if let object = type.init(injector: self) {

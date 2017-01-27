@@ -38,6 +38,5 @@ public class Swifjector: Injecting {
      */
     required public init(bindings: Bindings) {
         self.bindings = bindings
-        self.bindings.injector = self
     }
 }

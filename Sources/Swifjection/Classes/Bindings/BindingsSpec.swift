@@ -7,12 +7,9 @@ class BindingsSpec: QuickSpec {
     override func spec() {
         
         var bindings: Bindings!
-        var injector: FakeInjector!
         
         beforeEach {
-            injector = FakeInjector()
             bindings = Bindings()
-            bindings.injector = injector
         }
         
         describe("bind(object:, toType:)") {
@@ -383,22 +380,22 @@ class BindingsSpec: QuickSpec {
             
         }
         
-        describe("findBinding(type:)") {
+        describe("subscript(type:)") {
             
             context("when binding for the type exists") {
                 
-                var object: InjectableClass?
+                var objectBinding: Binding?
                 var returnedObject: Any?
                 
                 beforeEach {
-                    object = InjectableClass()
-                    let objectBinding = ObjectBinding(withObject: object!)
-                    bindings.bindings = ["\(InjectableClass.self)": objectBinding]
-                    returnedObject = bindings.findBinding(type: InjectableClass.self)
+                    let object = InjectableClass()
+                    objectBinding = ObjectBinding(withObject: object)
+                    bindings.bindings = ["\(InjectableClass.self)": objectBinding!]
+                    returnedObject = bindings[InjectableClass.self]
                 }
                 
                 it("should return proper object") {
-                    expect(returnedObject).to(beIdenticalTo(object))
+                    expect(returnedObject).to(beIdenticalTo(objectBinding))
                 }
                 
             }
@@ -408,7 +405,7 @@ class BindingsSpec: QuickSpec {
                 var returnedObject: Any?
                 
                 beforeEach {
-                    returnedObject = bindings.findBinding(type: InjectableClass.self)
+                    returnedObject = bindings[InjectableClass.self]
                 }
                 
                 it("should return nil") {

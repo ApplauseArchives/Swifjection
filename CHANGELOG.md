@@ -1,5 +1,14 @@
 # Swifjection Changelog
 
+## [Unreleased]
+### Added
+* Subscript implementation for injecting objects using:
+
+  ```Swift
+  let myObject = injector[MyClass.self]
+  let myOhterObject: MyClass? = injector[MyClass.self] as MyClass // This requires explicit casting
+  ```
+
 ## [0.6.0] - 26.01.2017
 ### Added:
 * Continuous Integration setup with build status badge in README
@@ -8,7 +17,7 @@
 * `CHANGELOG`
 
 ### Changed:
-* Resolved exception when `Swifjection` couldn't create instance of singleton object 
+* Resolved exception when `Swifjection` couldn't create instance of singleton object
 * Changed order of closure binding function parameters:
 
   ```Swift

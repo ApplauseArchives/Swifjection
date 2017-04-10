@@ -44,6 +44,7 @@ open class Bindings {
      - Parameter type: The `type` to which the `object` should be bound.
      */
     public func bind(object: Any?, toType type: Any.Type) {
+        guard object != nil else { return }
         let typeName = "\(type)"
         bindings[typeName] = ObjectBinding(withObject: object)
     }

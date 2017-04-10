@@ -9,7 +9,7 @@
   let myOhterObject: MyClass? = injector[MyClass.self] as MyClass // This requires explicit casting
   ```
 
-### Changed:
+### Fixed:
 * fixes issue with implicitly unwrapped optional used for object bindings in Swift 3.1 (Xcode 8.3.x); now the object bindings defines the property type `Any?`
 
 ## [0.6.0] - 26.01.2017

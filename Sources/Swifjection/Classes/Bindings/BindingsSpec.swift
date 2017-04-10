@@ -14,6 +14,15 @@ class BindingsSpec: QuickSpec {
         
         describe("bind(object:, toType:)") {
             
+            context("when binding nil to some class") {
+                beforeEach {
+                    bindings.bind(object: nil, toType: ClassConformingToProtocol.self)
+                }
+                it("should NOT add binding") {
+                    expect(bindings.bindings.count).to(equal(0))
+                }
+            }
+            
             context("when binding object to it's class") {
                 
                 var object: AnyObject!

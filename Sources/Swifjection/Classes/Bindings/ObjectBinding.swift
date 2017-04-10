@@ -25,7 +25,7 @@ public class ObjectBinding: Binding {
     /**
      Returns the `object` provided during initialization of binding.
      */
-    var object: Any
+    var object: Any?
     
     /**
      Initializes `ClosureBinding` object, using provided `object`.
@@ -34,7 +34,7 @@ public class ObjectBinding: Binding {
      
      - Returns: An initialized `ObjectBinding` object.
      */
-    public init(withObject object: Any) {
+    public init(withObject object: Any?) {
         self.object = object
     }
     

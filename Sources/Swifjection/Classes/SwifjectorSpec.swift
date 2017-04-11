@@ -47,7 +47,69 @@ class InjectingSpec: QuickSpec {
                 }
                 
             }
-            
+
+            context("with bindings with implicitly unwrapped objects") {
+                var objectConformingToProtocol: ClassConformingToProtocol!
+                var structConformingToProtocol: StructConformingToProtocol!
+                var emptySwiftObject: EmptySwiftClass!
+                var injectableObject: InjectableClass!
+                var injectableObjCObject: InjectableObjCClass!
+                var objCObject: ObjCClass!
+                
+                beforeEach {
+                    objectConformingToProtocol = ClassConformingToProtocol()
+                    structConformingToProtocol = StructConformingToProtocol()
+                    emptySwiftObject = EmptySwiftClass()
+                    injectableObject = InjectableClass(injector: injector)
+                    injectableObjCObject = InjectableObjCClass(injector: injector)
+                    objCObject = ObjCClass()
+                }
+                
+                context("for object conforming to protocol") {
+                    beforeEach {
+                        bindings.bind(object: objectConformingToProtocol, toType: EmptySwiftProtocol.self)
+                    }
+                    it("should have object conforming to protocol injected") {
+                        let object = injector.getObject(withType: EmptySwiftProtocol.self)
+                        expect(object).to(beIdenticalTo(objectConformingToProtocol))
+                    }
+                }
+                context("for struct conforming to protocol") {
+                    beforeEach {
+                        bindings.bind(object: structConformingToProtocol, toType: EmptySwiftProtocol.self)
+                    }
+                    it("should have struct conforming to protocol injected") {
+                        let object = injector.getObject(withType: EmptySwiftProtocol.self)
+                        expect(object).to(beAnInstanceOf(StructConformingToProtocol.self))
+                    }
+                }
+                context("for other cases") {
+                    beforeEach {
+                        bindings.bind(object: emptySwiftObject, toType: EmptySwiftClass.self)
+                        bindings.bind(object: injectableObject, toType: InjectableClass.self)
+                        bindings.bind(object: injectableObjCObject, toType: InjectableObjCClass.self)
+                        bindings.bind(object: objCObject, toType: ObjCClass.self)
+                    }
+                    it("should have empty swift object injected") {
+                        expect(injector.getObject(withType: EmptySwiftClass.self)).to(beIdenticalTo(emptySwiftObject))
+                    }
+                    it("should have injectable object injected") {
+                        expect(injector.getObject(withType: InjectableClass.self)).to(beIdenticalTo(injectableObject))
+                    }
+                    it("should inject dependencies in injectable object") {
+                        expect(injector.getObject(withType: InjectableClass.self)!.injectDependenciesCalled).to(beFalse())
+                    }
+                    it("should have injectable ObjC object injected") {
+                        expect(injector.getObject(withType: InjectableObjCClass.self)).to(beIdenticalTo(injectableObjCObject))
+                    }
+                    it("should inject dependencies in injectable ObjC object") {
+                        expect(injector.getObject(withType: InjectableObjCClass.self)!.injectDependenciesCalled).to(beFalse())
+                    }
+                    it("should have ObjC object injected") {
+                        expect(injector.getObject(withType: ObjCClass.self)).to(beIdenticalTo(objCObject))
+                    }
+                }
+            }
             
             context("with bindings") {
                 
@@ -75,11 +137,11 @@ class InjectingSpec: QuickSpec {
                         bindings.bind(object: objCObject!, toType: ObjCClass.self)
                     }
                     
-                    it("should not have object conforming to protocol injected") {
+                    it("should have object conforming to protocol injected") {
                         expect(injector.getObject(withType: EmptySwiftProtocol.self)).to(beIdenticalTo(objectConformingToProtocol))
                     }
                     
-                    it("should not have empty swift object injected") {
+                    it("should have empty swift object injected") {
                         expect(injector.getObject(withType: EmptySwiftClass.self)).to(beIdenticalTo(emptySwiftObject))
                     }
                     
@@ -245,7 +307,8 @@ class InjectingSpec: QuickSpec {
                 }
                 
                 it("should return injectable ObjC object") {
-                    expect(injector[InjectableObjCClass.self as Injectable.Type]).to(beAKindOf(InjectableObjCClass.self))
+                    let object = injector[InjectableObjCClass.self as Injectable.Type]
+                    expect(object).to(beAKindOf(InjectableObjCClass.self))
                 }
                 
                 it("should inject dependencies in injectable ObjC object") {

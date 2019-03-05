@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		07C7AC731D15A8E458884687 /* Pods_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAD44134AC2BB4C40265990A /* Pods_Example.framework */; };
+		155093B7222DBBCA008CBFAE /* AutoInjectableObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 155093B6222DBBCA008CBFAE /* AutoInjectableObject.swift */; };
+		155093B9222DE166008CBFAE /* AutoInjectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 155093B8222DE166008CBFAE /* AutoInjectable.swift */; };
+		155093BB222EDA77008CBFAE /* InjectableProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 155093BA222EDA77008CBFAE /* InjectableProperty.swift */; };
+		155093BD222EDB56008CBFAE /* InjectableKeyPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 155093BC222EDB56008CBFAE /* InjectableKeyPath.swift */; };
 		1550BB181E381D6100BCABA7 /* Binding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1550BB041E381D6100BCABA7 /* Binding.swift */; };
 		1550BB191E381D6100BCABA7 /* Bindings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1550BB051E381D6100BCABA7 /* Bindings.swift */; };
 		1550BB1B1E381D6100BCABA7 /* ClosureBinding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1550BB071E381D6100BCABA7 /* ClosureBinding.swift */; };
@@ -43,6 +47,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		155093B6222DBBCA008CBFAE /* AutoInjectableObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoInjectableObject.swift; sourceTree = "<group>"; };
+		155093B8222DE166008CBFAE /* AutoInjectable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoInjectable.swift; sourceTree = "<group>"; };
+		155093BA222EDA77008CBFAE /* InjectableProperty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InjectableProperty.swift; sourceTree = "<group>"; };
+		155093BC222EDB56008CBFAE /* InjectableKeyPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InjectableKeyPath.swift; sourceTree = "<group>"; };
 		1550BB041E381D6100BCABA7 /* Binding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Binding.swift; sourceTree = "<group>"; };
 		1550BB051E381D6100BCABA7 /* Bindings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bindings.swift; sourceTree = "<group>"; };
 		1550BB061E381D6100BCABA7 /* BindingsSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BindingsSpec.swift; sourceTree = "<group>"; };
@@ -133,6 +141,7 @@
 				1550BB141E381D6100BCABA7 /* Swifjector.swift */,
 				1550BB151E381D6100BCABA7 /* SwifjectorFactory.swift */,
 				1550BB161E381D6100BCABA7 /* SwifjectorSpec.swift */,
+				155093BC222EDB56008CBFAE /* InjectableKeyPath.swift */,
 			);
 			name = Classes;
 			path = ../Sources/Swifjection/Classes;
@@ -160,8 +169,10 @@
 			isa = PBXGroup;
 			children = (
 				1550BB101E381D6100BCABA7 /* Injectable.swift */,
+				155093B8222DE166008CBFAE /* AutoInjectable.swift */,
 				1550BB111E381D6100BCABA7 /* Injecting+CreatingObjects.swift */,
 				1550BB121E381D6100BCABA7 /* Injecting.swift */,
+				155093BA222EDA77008CBFAE /* InjectableProperty.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -236,6 +247,7 @@
 				D87A35981E3A05A900CF2606 /* Fee.swift */,
 				945F5E741DD0770D00A90DC3 /* ExampleSingleton.swift */,
 				945F5E761DD077B400A90DC3 /* MyObject.swift */,
+				155093B6222DBBCA008CBFAE /* AutoInjectableObject.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -379,7 +391,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0800;
-				LastUpgradeCheck = 0810;
+				LastUpgradeCheck = 1010;
 				ORGANIZATIONNAME = "Applause Inc";
 				TargetAttributes = {
 					607FACE41AFB9204008FA782 = {
@@ -551,6 +563,7 @@
 				9405E36B1DC365D3005327D4 /* ViewController.swift in Sources */,
 				945F5E771DD077B400A90DC3 /* MyObject.swift in Sources */,
 				9405E3801DC36933005327D4 /* MyBindings.swift in Sources */,
+				155093B7222DBBCA008CBFAE /* AutoInjectableObject.swift in Sources */,
 				D87A35991E3A05A900CF2606 /* Fee.swift in Sources */,
 				9405E36A1DC365D3005327D4 /* Foo.swift in Sources */,
 				9405E3691DC365D3005327D4 /* Bar.swift in Sources */,
@@ -563,6 +576,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1550BB181E381D6100BCABA7 /* Binding.swift in Sources */,
+				155093BD222EDB56008CBFAE /* InjectableKeyPath.swift in Sources */,
 				1550BB1D1E381D6100BCABA7 /* ObjectBinding.swift in Sources */,
 				1550BB191E381D6100BCABA7 /* Bindings.swift in Sources */,
 				1550BB231E381D6100BCABA7 /* Injectable.swift in Sources */,
@@ -571,6 +585,8 @@
 				1550BB271E381D6100BCABA7 /* Swifjector.swift in Sources */,
 				1550BB241E381D6100BCABA7 /* Injecting+CreatingObjects.swift in Sources */,
 				1550BB1B1E381D6100BCABA7 /* ClosureBinding.swift in Sources */,
+				155093B9222DE166008CBFAE /* AutoInjectable.swift in Sources */,
+				155093BB222EDA77008CBFAE /* InjectableProperty.swift in Sources */,
 				1550BB1F1E381D6100BCABA7 /* SingletonBinding.swift in Sources */,
 				1550BB251E381D6100BCABA7 /* Injecting.swift in Sources */,
 			);
@@ -608,14 +624,22 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -655,14 +679,22 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -731,7 +763,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.applause.Example;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_SWIFT3_OBJC_INFERENCE = On;
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -751,7 +782,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.applause.Example;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_SWIFT3_OBJC_INFERENCE = On;
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

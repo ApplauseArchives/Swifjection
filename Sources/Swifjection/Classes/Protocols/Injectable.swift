@@ -48,5 +48,10 @@ public protocol Injectable {
 }
 
 public extension Injectable {
-    func injectDependencies(injector: Injecting) {}
+    func injectDependencies(injector: Injecting) {
+        guard let autoinjectableSelf = self as? AutoInjectable else {
+            return
+        }
+        autoinjectableSelf.autoinjectDependencies(injector: injector)
+    }
 }

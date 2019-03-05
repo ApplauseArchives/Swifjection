@@ -91,3 +91,30 @@ class ClassWithDependencies: Injectable {
     }
     
 }
+
+class AutoInjectableClass: AutoInjectable {
+
+    var injector: Injecting?
+
+    var objectConformingToProtocol: EmptySwiftProtocol?
+    var emptySwiftObject: EmptySwiftClass?
+    var injectableObject: InjectableClass?
+    var injectableObjCObject: InjectableObjCClass?
+    var objCObject: ObjCClass?
+
+    var injectableProperties: [InjectableProperty] {
+        return [
+            requires(\AutoInjectableClass.objectConformingToProtocol),
+            requires(\AutoInjectableClass.emptySwiftObject),
+            requires(\AutoInjectableClass.injectableObject),
+            requires(\AutoInjectableClass.injectableObjCObject),
+            requires(\AutoInjectableClass.objCObject),
+        ]
+    }
+
+    required convenience init?(injector: Injecting) {
+        self.init()
+        self.injector = injector
+    }
+
+}

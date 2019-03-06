@@ -1,7 +1,7 @@
 PODS:
   - Nimble (8.0.0)
   - Quick (2.0.0)
-  - Swifjection (0.7.0)
+  - Swifjection (0.8.0)
 
 DEPENDENCIES:
   - Nimble
@@ -20,7 +20,7 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   Nimble: a0e6f95b4b91a4f66b6da3512b6bebc07c9cbf49
   Quick: ce1276c7c27ba2da3cb2fd0cde053c3648b3b22d
-  Swifjection: b71d8f39aed2a66b402aa2a2fbff09c6ff30dd29
+  Swifjection: abbad47bcb5642b8d7e8439bfd883d5b8c729fba
 
 PODFILE CHECKSUM: 596a246ecfe7fa4bcb9d4811922607e0ef4f49c2
 

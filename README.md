@@ -42,10 +42,10 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    var injector: Swifjector?
+    var injector: Injecting?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        let binding = Binding()
+        let binding = Bindings()
         [...]
         injector = SwifjectorFactory(bindings: bindings).injector
         [...]
@@ -120,7 +120,21 @@ let otherObject: MyClass? = injector[MyClass.self] as MyClass // This requires e
 
 ## Fetching object's dependencies
 
-Each class or struct which can be injected and/or has dependencies to be injected should conform to `Injectable` protocol:
+Each class or struct which can be injected should conform to `Creatable` or `InjectCreatable` protocol:
+
+```swift
+protocol Creatable {
+    init()
+}
+```
+
+```swift
+protocol InjectCreatable {
+    init?(injector: Injecting)
+}
+```
+
+If this class also has dependencies to be injected, it should conform to `Injectable`, or `AutoInjectable` protocol:
 
 ```swift
 protocol Injectable {
@@ -128,7 +142,14 @@ protocol Injectable {
 }
 ```
 
-This way when your class or struct is created via injector, shortly afterwards it receive `injectDependencies(injector:)` callback. This is the place where you want to fetch your dependencies from `injector`.
+```swift
+protocol AutoInjectable: class, Injectable {
+    var injectableProperties: [InjectableProperty] { get }
+    func autoinjectDependencies(injector: Injecting)
+}
+```
+
+This way when your class or struct is created via injector, shortly afterwards it receives `injectDependencies(injector:)` call. This is the place where you want to fetch your dependencies from `injector`, or dependencies are injected automatically (in case of `AutoInjectable`.
 
 For example, let's assume you have two classes:
 
@@ -137,11 +158,19 @@ class Foo {
 }
 
 class Bar {
-	var foo: Foo?
+    var foo: Foo?
+}
+
+class Fee {
+    var foo: Foo
+}
+
+class Foe {
+    var foo: Foo!
 }
 ```
 
-In order to inject `foo` property using `Swifjection` you need to change your code to following:
+In order to inject `foo` property using `Swifjection` you need to change your code to either of following:
 
 ```swift
 class Foo: Creatable {
@@ -158,6 +187,28 @@ class Bar: Creatable, Injectable {
     }
 }
 
+class Fee: InjectCreatable {
+    var foo: Foo
+
+    required init?(injector: Injecting) {
+        guard let foo = injector.getObject(withType: Foo.self) else {
+            return nil
+        }
+        self.foo = foo 
+    }
+}
+
+class Foe: Creatable, AutoInjectable {
+    var foo: Foo?
+    
+    var injectableProperties: [InjectableProperty] {
+        return [
+            requires(\Foe.foo)
+        ]
+    }
+
+    required init() {}
+}
 ```
 
 
@@ -176,7 +227,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var injector: Swifjector?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        let binding = Binding()
+        let binding = Bindings()
         [...]
         injector = SwifjectorFactory(bindings: bindings).injector // This will return nil during unit testing
         [...]

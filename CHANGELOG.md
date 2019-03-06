@@ -1,5 +1,29 @@
 # Swifjection Changelog
 
+## [0.8.0] - 06.03.2019
+### Added
+* Automatic injection with `AutoInjectable` protocol using:
+
+  ```Swift
+  class MyClass: AutoInjectable {
+
+    var property1: MyOtherClass!
+    var property2: MyOtherClass!
+
+    var injectableProperties: [InjectableProperty] {
+      return [
+          requires(\MyClass.property1),
+          requires(\MyClass.property2)
+      ]
+    }
+
+  }
+  ```
+
+### Changed:
+* Updated to Swift 4.2
+* Separated initialization from `Injectable` protocol by adding `Creatable` and `InjectCreatable` protocols with `init()` and `init(injector: Injecting)` respectively
+
 ## [0.7.0] - 10.04.2017
 ### Added
 * Subscript implementation for injecting objects using:

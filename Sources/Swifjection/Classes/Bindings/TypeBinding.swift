@@ -49,7 +49,7 @@ class TypeBinding: Binding {
      
      - Returns: An initialized `TypeBinding` object.
      */
-    public init<T>(withType type: T.Type) where T: Injectable {
+    public init<T>(withType type: T.Type) where T: Creatable {
         objectCreationClosure = { injector in
             return injector.getObject(withType: type)
         }
@@ -75,7 +75,7 @@ class TypeBinding: Binding {
      
      - Returns: An initialized `TypeBinding` object.
      */
-    public init<T>(withType type: T.Type) where T: NSObject, T: Injectable {
+    public init<T>(withType type: T.Type) where T: NSObject, T: Creatable {
         objectCreationClosure = { injector in
             return injector.getObject(withType: type)
         }

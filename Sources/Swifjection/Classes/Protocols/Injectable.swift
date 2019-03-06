@@ -33,8 +33,8 @@ public protocol Injectable {
      
      - Returns: An initialized `Injectable` object, or nil.
      */
-    init?(injector: Injecting)
-    
+//    init?(injector: Injecting)
+
     /**
      Injects inner dependencies using provided `injector` object.
      

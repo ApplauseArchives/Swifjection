@@ -28,7 +28,7 @@ struct InjectableKeyPath<R>: InjectableProperty {
         }
     }
 
-    public init<T>(_ keyPath: ReferenceWritableKeyPath<R, Optional<T>>) where T: Injectable {
+    public init<T>(_ keyPath: ReferenceWritableKeyPath<R, Optional<T>>) where T: Creatable {
         injectClosure = { instance, injector in
             if let value: T = injector.getObject(withType: T.self) {
                 instance[keyPath: keyPath] = value
@@ -36,7 +36,7 @@ struct InjectableKeyPath<R>: InjectableProperty {
         }
     }
 
-    public init<T>(_ keyPath: ReferenceWritableKeyPath<R, Optional<T>>) where T: NSObject, T: Injectable {
+    public init<T>(_ keyPath: ReferenceWritableKeyPath<R, Optional<T>>) where T: NSObject, T: Creatable {
         injectClosure = { instance, injector in
             if let value: T = injector.getObject(withType: T.self) {
                 instance[keyPath: keyPath] = value
@@ -60,7 +60,7 @@ struct InjectableKeyPath<R>: InjectableProperty {
         }
     }
 
-    public init<T>(_ keyPath: ReferenceWritableKeyPath<R, T>) where T: Injectable {
+    public init<T>(_ keyPath: ReferenceWritableKeyPath<R, T>) where T: Creatable {
         injectClosure = { instance, injector in
             if let value: T = injector.getObject(withType: T.self) {
                 instance[keyPath: keyPath] = value
@@ -68,7 +68,7 @@ struct InjectableKeyPath<R>: InjectableProperty {
         }
     }
 
-    public init<T>(_ keyPath: ReferenceWritableKeyPath<R, T>) where T: NSObject, T: Injectable {
+    public init<T>(_ keyPath: ReferenceWritableKeyPath<R, T>) where T: NSObject, T: Creatable {
         injectClosure = { instance, injector in
             if let value: T = injector.getObject(withType: T.self) {
                 instance[keyPath: keyPath] = value
@@ -93,11 +93,11 @@ public func requires<R, T>(_ keyPath: ReferenceWritableKeyPath<R, Optional<T>>) 
     return InjectableKeyPath(keyPath)
 }
 
-public func requires<R, T>(_ keyPath: ReferenceWritableKeyPath<R, Optional<T>>) -> InjectableProperty where T: Injectable {
+public func requires<R, T>(_ keyPath: ReferenceWritableKeyPath<R, Optional<T>>) -> InjectableProperty where T: Creatable {
     return InjectableKeyPath(keyPath)
 }
 
-public func requires<R, T>(_ keyPath: ReferenceWritableKeyPath<R, Optional<T>>) -> InjectableProperty where T: NSObject & Injectable {
+public func requires<R, T>(_ keyPath: ReferenceWritableKeyPath<R, Optional<T>>) -> InjectableProperty where T: NSObject & Creatable {
     return InjectableKeyPath(keyPath)
 }
 
@@ -109,10 +109,10 @@ public func requires<R, T>(_ keyPath: ReferenceWritableKeyPath<R, T>) -> Injecta
     return InjectableKeyPath(keyPath)
 }
 
-public func requires<R, T>(_ keyPath: ReferenceWritableKeyPath<R, T>) -> InjectableProperty where T: Injectable {
+public func requires<R, T>(_ keyPath: ReferenceWritableKeyPath<R, T>) -> InjectableProperty where T: Creatable {
     return InjectableKeyPath(keyPath)
 }
 
-public func requires<R, T>(_ keyPath: ReferenceWritableKeyPath<R, T>) -> InjectableProperty where T: NSObject & Injectable {
+public func requires<R, T>(_ keyPath: ReferenceWritableKeyPath<R, T>) -> InjectableProperty where T: NSObject & Creatable {
     return InjectableKeyPath(keyPath)
 }

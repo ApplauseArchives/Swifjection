@@ -177,7 +177,7 @@ class BindingsSpec: QuickSpec {
             
         }
         
-        describe("bindSingleton<T>(forType:) where T: Injectable") {
+        describe("bindSingleton<T>(forType:) where T: Creatable") {
             
             beforeEach {
                 bindings.bindSingleton(forType: InjectableClass.self)
@@ -225,7 +225,7 @@ class BindingsSpec: QuickSpec {
             
         }
         
-        describe("bindSingleton<T>(forType:) where T: NSObject, T: Injectable") {
+        describe("bindSingleton<T>(forType:) where T: NSObject, T: Creatable") {
             
             beforeEach {
                 bindings.bindSingleton(forType: InjectableObjCClass.self)
@@ -273,7 +273,7 @@ class BindingsSpec: QuickSpec {
             
         }
         
-        describe("bind<T>(type:, toType:) where T: Injectable") {
+        describe("bind<T>(type:, toType:) where T: Creatable") {
             
             beforeEach {
                 bindings.bind(type: InjectableClass.self, toType: Injectable.self)
@@ -321,7 +321,7 @@ class BindingsSpec: QuickSpec {
             
         }
         
-        describe("bind<T>(type:, toType:) where T: NSObject, T: Injectable") {
+        describe("bind<T>(type:, toType:) where T: NSObject, T: Creatable") {
             
             beforeEach {
                 bindings.bind(type: InjectableObjCClass.self, toType: Injectable.self)

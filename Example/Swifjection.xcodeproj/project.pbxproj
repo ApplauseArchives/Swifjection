@@ -12,6 +12,7 @@
 		155093B9222DE166008CBFAE /* AutoInjectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 155093B8222DE166008CBFAE /* AutoInjectable.swift */; };
 		155093BB222EDA77008CBFAE /* InjectableProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 155093BA222EDA77008CBFAE /* InjectableProperty.swift */; };
 		155093BD222EDB56008CBFAE /* InjectableKeyPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 155093BC222EDB56008CBFAE /* InjectableKeyPath.swift */; };
+		155093BF222EEAF3008CBFAE /* Creatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 155093BE222EEAF3008CBFAE /* Creatable.swift */; };
 		1550BB181E381D6100BCABA7 /* Binding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1550BB041E381D6100BCABA7 /* Binding.swift */; };
 		1550BB191E381D6100BCABA7 /* Bindings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1550BB051E381D6100BCABA7 /* Bindings.swift */; };
 		1550BB1B1E381D6100BCABA7 /* ClosureBinding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1550BB071E381D6100BCABA7 /* ClosureBinding.swift */; };
@@ -51,6 +52,7 @@
 		155093B8222DE166008CBFAE /* AutoInjectable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoInjectable.swift; sourceTree = "<group>"; };
 		155093BA222EDA77008CBFAE /* InjectableProperty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InjectableProperty.swift; sourceTree = "<group>"; };
 		155093BC222EDB56008CBFAE /* InjectableKeyPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InjectableKeyPath.swift; sourceTree = "<group>"; };
+		155093BE222EEAF3008CBFAE /* Creatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Creatable.swift; sourceTree = "<group>"; };
 		1550BB041E381D6100BCABA7 /* Binding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Binding.swift; sourceTree = "<group>"; };
 		1550BB051E381D6100BCABA7 /* Bindings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bindings.swift; sourceTree = "<group>"; };
 		1550BB061E381D6100BCABA7 /* BindingsSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BindingsSpec.swift; sourceTree = "<group>"; };
@@ -168,6 +170,7 @@
 		1550BB0F1E381D6100BCABA7 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
+				155093BE222EEAF3008CBFAE /* Creatable.swift */,
 				1550BB101E381D6100BCABA7 /* Injectable.swift */,
 				155093B8222DE166008CBFAE /* AutoInjectable.swift */,
 				1550BB111E381D6100BCABA7 /* Injecting+CreatingObjects.swift */,
@@ -588,6 +591,7 @@
 				155093B9222DE166008CBFAE /* AutoInjectable.swift in Sources */,
 				155093BB222EDA77008CBFAE /* InjectableProperty.swift in Sources */,
 				1550BB1F1E381D6100BCABA7 /* SingletonBinding.swift in Sources */,
+				155093BF222EEAF3008CBFAE /* Creatable.swift in Sources */,
 				1550BB251E381D6100BCABA7 /* Injecting.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

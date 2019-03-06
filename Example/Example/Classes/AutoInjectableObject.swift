@@ -9,7 +9,7 @@
 import Foundation
 import Swifjection
 
-class AutoInjectableObject: AutoInjectable {
+class AutoInjectableObject: Creatable, AutoInjectable {
     
     var foo: Foo?
     var fie: Fie?
@@ -27,7 +27,6 @@ class AutoInjectableObject: AutoInjectable {
         ]
     }
 
-    required init?(injector: Injecting) {}
-
+    required init() {}
 
 }

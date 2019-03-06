@@ -21,13 +21,13 @@
 
 import Foundation
 
-/// Describes a generic type which serves as `Injectable` types factory. 
+/// Describes a generic type which serves as `Creatable` types factory.
 
 public protocol Injecting: class {
     /**
      Returns the `bindings` object provided to initializer.
      */
-    var bindings: Bindings {get}
+    var bindings: Bindings { get }
     
     /**
      Initializes injector object, using provided `bindings`, which contains information about instances, closures bound to types, or types bound in singleton scope.
@@ -37,7 +37,7 @@ public protocol Injecting: class {
      - Returns: An initialized `Injecting` object.
      */
     init(bindings: Bindings)
-    
+
     /**
      getObject for `Any` type searches for an object or closure bound to provided `type` and returns it, or nil if nothing was bound.
      
@@ -46,7 +46,7 @@ public protocol Injecting: class {
      - Returns: Bound object of provided type, or nil.
      */
     func getObject<T>(withType type: T.Type) -> T? where T: Any
-    
+
     /**
      getObject for `NSObject` subclass searches for an binding for provided `type` and returns it, or tries to create a new instance of provided `type` using `- (instancetype)init;` method if nothing was bound.
      
@@ -55,23 +55,24 @@ public protocol Injecting: class {
      - Returns: Bound object of provided type, or new instance.
      */
     func getObject<T>(withType type: T.Type) -> T? where T: NSObject
-    
+
     /**
-     getObject for type conforming to `Injectable` protocol, searches for an binding for provided `type` and returns it, or tries to create a new instance of provided `type` using `init?(injector: Injecting)` method if nothing was bound.
+     getObject for type conforming to `Creatable` protocol, searches for an binding for provided `type` and returns it, or tries to create a new instance of provided `type` using `init?(injector: Injecting)` method if nothing was bound.
      In case when `type` is a protocol, not a class, and nothing is bound to it, nil will be returned.
      
      - Parameter type: Type of the object to return.
      
      - Returns: Bound object of provided type, new instance, or nil.
      */
-    func getObject<T>(withType type: T.Type) -> T? where T: Injectable
-    
+    func getObject<T>(withType type: T.Type) -> T? where T: Creatable
+
     /**
-     getObject for `NSObject` subclass conforming to `Injectable` protocol, searches for an binding for provided `type` and returns it, or tries to create a new instance of provided `type` using `init?(injector: Injecting)` method if nothing was bound.
+     getObject for `NSObject` subclass conforming to `Creatable` protocol, searches for an binding for provided `type` and returns it, or tries to create a new instance of provided `type` using `init?(injector: Injecting)` method if nothing was bound.
      
      - Parameter type: Type of the object to return.
      
      - Returns: Bound object of provided type, or new instance.
      */
-    func getObject<T>(withType type: T.Type) -> T? where T: NSObject, T: Injectable
+    func getObject<T>(withType type: T.Type) -> T? where T: NSObject, T: Creatable
+
 }

@@ -57,12 +57,13 @@ public class SingletonBinding: Binding {
      */
     public func getObject(withInjector injector: Injecting) -> Any? {
         if instance == nil {
-            if let type = self.type as? Injectable.Type {
-                let instance = type.init(injector: injector)
-                instance?.injectDependencies(injector: injector)
-                self.instance = instance
+            if let type = self.type as? Creatable.Type {
+                self.instance = type.init()
             } else if let type = self.type as? NSObject.Type {
                 self.instance = type.init()
+            }
+            if let injectable = instance as? Injectable {
+                injectable.injectDependencies(injector: injector)
             }
         }        
         return self.instance

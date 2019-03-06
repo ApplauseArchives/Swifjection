@@ -22,67 +22,92 @@
 import Foundation
 
 public extension Injecting {
+
     public func getObject<T>(withType type: T.Type) -> T? where T: Any {
-        if let object = bindings[type]?.getObject(withInjector: self) as? T {
-            return object
+        guard let object = bindings[type]?.getObject(withInjector: self) as? T else {
+            return nil
         }
-        return nil
+        if let injectable = object as? Injectable {
+            injectable.injectDependencies(injector: self)
+        }
+        return object
     }
-    
+
     public func getObject<T>(withType type: T.Type) -> T? where T: NSObject {
-        if let object = bindings[type]?.getObject(withInjector: self) as? T {
-            return object
+        let object: T
+        if let objectFromBinding = bindings[type]?.getObject(withInjector: self) as? T {
+            object = objectFromBinding
+        } else {
+            object = type.init()
         }
-        return type.init()
+        if let injectable = object as? Injectable {
+            injectable.injectDependencies(injector: self)
+        }
+        return object
     }
-    
-    public func getObject<T>(withType type: T.Type) -> T? where T: Injectable {
-        if let object = bindings[type]?.getObject(withInjector: self) as? T {
-            return object
+
+    public func getObject<T>(withType type: T.Type) -> T? where T: Creatable {
+        let object: T
+        if let objectFromBinding = bindings[type]?.getObject(withInjector: self) as? T {
+            object = objectFromBinding
+        } else {
+            object = type.init()
         }
-        if let object = type.init(injector: self) {
-            object.injectDependencies(injector: self)
-            return object
+        if let injectable = object as? Injectable {
+            injectable.injectDependencies(injector: self)
         }
-        return nil
+        return object
     }
-    
-    public func getObject<T>(withType type: T.Type) -> T? where T: NSObject, T: Injectable {
-        if let object = bindings[type]?.getObject(withInjector: self) as? T {
-            return object
+
+    public func getObject<T>(withType type: T.Type) -> T? where T: NSObject, T: Creatable {
+        let object: T
+        if let objectFromBinding = bindings[type]?.getObject(withInjector: self) as? T {
+            object = objectFromBinding
+        } else if let creatableType = type as? Creatable.Type, let createdObject = creatableType.init() as? T {
+            object = createdObject
+        } else {
+            return nil
         }
-        if let object = type.init(injector: self) {
-            object.injectDependencies(injector: self)
-            return object
+        if let injectable = object as? Injectable {
+            injectable.injectDependencies(injector: self)
         }
-        return nil
+        return object
     }
-    
+
     public subscript(type: Any.Type) -> Any? {
-        if let object = bindings[type]?.getObject(withInjector: self) {
-            return object
+        guard let object = bindings[type]?.getObject(withInjector: self) else {
+            return nil
         }
-        return nil
+        if let injectable = object as? Injectable {
+            injectable.injectDependencies(injector: self)
+        }
+        return object
     }
-    
+
     public subscript(type: NSObject.Type) -> NSObject? {
-        if let object = bindings[type]?.getObject(withInjector: self) as? NSObject {
-            if let injectable = object as? Injectable {
-                injectable.injectDependencies(injector: self)
-            }
-            return object
+        let object: NSObject
+        if let objectFromBinding = bindings[type]?.getObject(withInjector: self) as? NSObject {
+            object = objectFromBinding
+        } else {
+            object = type.init()
         }
-        return type.init()
+        if let injectable = object as? Injectable {
+            injectable.injectDependencies(injector: self)
+        }
+        return object
     }
-    
-    public subscript(type: Injectable.Type) -> Injectable? {
-        if let object = bindings[type]?.getObject(withInjector: self) as? Injectable {
-            return object
+
+    public subscript(type: Creatable.Type) -> Creatable? {
+        let object: Creatable
+        if let objectFromBinding = bindings[type]?.getObject(withInjector: self) as? Creatable {
+            object = objectFromBinding
+        } else {
+            object = type.init()
         }
-        if let object = type.init(injector: self) {
-            object.injectDependencies(injector: self)
-            return object
+        if let injectable = object as? Injectable {
+            injectable.injectDependencies(injector: self)
         }
-        return nil
+        return object
     }
+
 }

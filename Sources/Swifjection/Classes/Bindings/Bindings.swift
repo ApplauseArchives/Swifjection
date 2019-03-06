@@ -96,7 +96,7 @@ open class Bindings {
      
      - Returns: Instance of `boundType`, or `nil`.
      */
-    public func bind<T>(type boundType: T.Type, toType type: Any.Type) where T: Injectable {
+    public func bind<T>(type boundType: T.Type, toType type: Any.Type) where T: Creatable {
         let typeName = "\(type)"
         bindings[typeName] = TypeBinding(withType: boundType)
     }
@@ -122,7 +122,7 @@ open class Bindings {
      
      - Returns: Instance of `boundType`, or `nil`.
      */
-    public func bind<T>(type boundType: T.Type, toType type: Any.Type) where T: NSObject, T: Injectable {
+    public func bind<T>(type boundType: T.Type, toType type: Any.Type) where T: NSObject, T: Creatable {
         let typeName = "\(type)"
         bindings[typeName] = TypeBinding(withType: boundType)
     }

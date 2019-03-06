@@ -13,9 +13,9 @@ struct StructConformingToProtocol: EmptySwiftProtocol {}
 
 class EmptySwiftClass {}
 
-protocol InjectableClassProtocol: class, Creatable, Injectable {}
+protocol CreatableClassProtocol: class, Creatable, Injectable {}
 
-class InjectableClass: InjectableClassProtocol {
+class CreatableClass: CreatableClassProtocol {
     
     var injector: Injecting?
     
@@ -35,7 +35,7 @@ class InjectableClass: InjectableClassProtocol {
     
 }
 
-class InjectableObjCClass: NSObject, Creatable, Injectable {
+class CreatableObjCClass: NSObject, Creatable, Injectable {
     
     var injector: Injecting?
     
@@ -72,8 +72,8 @@ class ClassWithDependencies: Creatable, Injectable {
     
     var objectConformingToProtocol: EmptySwiftProtocol?
     var emptySwiftObject: EmptySwiftClass?
-    var injectableObject: InjectableClass?
-    var injectableObjCObject: InjectableObjCClass?
+    var injectableObject: CreatableClass?
+    var injectableObjCObject: CreatableObjCClass?
     var objCObject: ObjCClass?
     
     required init() {}
@@ -82,8 +82,8 @@ class ClassWithDependencies: Creatable, Injectable {
         self.injector = injector
         self.objectConformingToProtocol = injector.getObject(withType: EmptySwiftProtocol.self)
         self.emptySwiftObject = injector.getObject(withType: EmptySwiftClass.self)
-        self.injectableObject = injector.getObject(withType: InjectableClass.self)
-        self.injectableObjCObject = injector.getObject(withType: InjectableObjCClass.self)
+        self.injectableObject = injector.getObject(withType: CreatableClass.self)
+        self.injectableObjCObject = injector.getObject(withType: CreatableObjCClass.self)
         self.objCObject = injector.getObject(withType: ObjCClass.self)
     }
     
@@ -95,8 +95,8 @@ class AutoInjectableClass: Creatable, AutoInjectable {
 
     var objectConformingToProtocol: EmptySwiftProtocol?
     var emptySwiftObject: EmptySwiftClass?
-    var injectableObject: InjectableClass?
-    var injectableObjCObject: InjectableObjCClass?
+    var injectableObject: CreatableClass?
+    var injectableObjCObject: CreatableObjCClass?
     var objCObject: ObjCClass?
 
     var injectableProperties: [InjectableProperty] {

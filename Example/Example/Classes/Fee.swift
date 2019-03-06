@@ -7,8 +7,6 @@ import Swifjection
 
 protocol Fie {}
 
-class Fee: Fie, Injectable {
-    convenience required init?(injector: Injecting) {
-        self.init()
-    }
+class Fee: Fie, Creatable {
+    required init() {}
 }

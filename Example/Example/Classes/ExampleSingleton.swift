@@ -5,9 +5,7 @@
 import Foundation
 import Swifjection
 
-class ExampleSingleton: Injectable {
-    required init?(injector: Injecting) {
-        
-    }
+class ExampleSingleton: Creatable {
+    required init() {}
 }
 

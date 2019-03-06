@@ -5,15 +5,11 @@
 import UIKit
 import Swifjection
 
-class ViewController: UIViewController, Injectable {
+class ViewController: UIViewController, Creatable, Injectable {
     
     var bar: Bar?
     var singleton: ExampleSingleton?
     var automaticallyInjectableObject: AutoInjectableObject?
-    
-    required convenience init?(injector: Injecting) {
-        self.init()
-    }
     
     func injectDependencies(injector: Injecting) {
         bar = injector.getObject(withType: Bar.self)

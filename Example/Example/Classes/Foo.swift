@@ -5,8 +5,6 @@
 import Foundation
 import Swifjection
 
-class Foo: Injectable {
-    convenience required init?(injector: Injecting) {
-        self.init()
-    }    
+class Foo: Creatable {
+    required init() {}
 }

@@ -1,5 +1,5 @@
 //
-//  Copyright © 2017 Applause Inc. All rights reserved.
+//  Copyright © 2019 Applause Inc. All rights reserved.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -57,7 +57,7 @@ public protocol Injecting: class {
     func getObject<T>(withType type: T.Type) -> T? where T: NSObject
 
     /**
-     getObject for type conforming to `Creatable` protocol, searches for an binding for provided `type` and returns it, or tries to create a new instance of provided `type` using `init?(injector: Injecting)` method if nothing was bound.
+     getObject for type conforming to `Creatable` protocol, searches for an binding for provided `type` and returns it, or tries to create a new instance of provided `type` using `init()` method if nothing was bound.
      In case when `type` is a protocol, not a class, and nothing is bound to it, nil will be returned.
      
      - Parameter type: Type of the object to return.
@@ -67,7 +67,7 @@ public protocol Injecting: class {
     func getObject<T>(withType type: T.Type) -> T? where T: Creatable
 
     /**
-     getObject for `NSObject` subclass conforming to `Creatable` protocol, searches for an binding for provided `type` and returns it, or tries to create a new instance of provided `type` using `init?(injector: Injecting)` method if nothing was bound.
+     getObject for `NSObject` subclass conforming to `Creatable` protocol, searches for an binding for provided `type` and returns it, or tries to create a new instance of provided `type` using `init()` method if nothing was bound.
      
      - Parameter type: Type of the object to return.
      

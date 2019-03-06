@@ -1,8 +1,4 @@
 //
-//  AutoInjectableObject.swift
-//  Example
-//
-//  Created by Łukasz Przytuła on 04/03/2019.
 //  Copyright © 2019 Applause Inc. All rights reserved.
 //
 

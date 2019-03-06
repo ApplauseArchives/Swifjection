@@ -14,7 +14,7 @@ class TypeBindingSpec: QuickSpec {
             injector = FakeInjector()
         }
         
-        context("when created with non NSObject and non Injectable type") {
+        context("when created with non NSObject and non Creatable type") {
             
             beforeEach {
                 object = EmptySwiftClass()
@@ -44,12 +44,12 @@ class TypeBindingSpec: QuickSpec {
             
         }
         
-        context("when created with Injectable type") {
+        context("when created with Creatable type") {
             
             beforeEach {
-                object = InjectableClass()
+                object = CreatableClass()
                 injector.objectToReturn = object
-                typeBinding = TypeBinding(withType: InjectableClass.self)
+                typeBinding = TypeBinding(withType: CreatableClass.self)
             }
             
             describe("getObject") {
@@ -64,7 +64,7 @@ class TypeBindingSpec: QuickSpec {
                     expect(injector.getObjectCalled).to(beTrue())
                 }
                 it("should pass proper type to injector") {
-                    expect(injector.passedType).to(beIdenticalTo(InjectableClass.self))
+                    expect(injector.passedType).to(beIdenticalTo(CreatableClass.self))
                 }
                 it("should return the object") {
                     expect(returnedObject).to(beIdenticalTo(object))
@@ -104,12 +104,12 @@ class TypeBindingSpec: QuickSpec {
             
         }
         
-        context("when created with NSObject<Injectable> type") {
+        context("when created with NSObject<Creatable> type") {
             
             beforeEach {
-                object = InjectableObjCClass()
+                object = CreatableObjCClass()
                 injector.objectToReturn = object
-                typeBinding = TypeBinding(withType: InjectableObjCClass.self)
+                typeBinding = TypeBinding(withType: CreatableObjCClass.self)
             }
             
             describe("getObject") {
@@ -124,7 +124,7 @@ class TypeBindingSpec: QuickSpec {
                     expect(injector.getObjectCalled).to(beTrue())
                 }
                 it("should pass proper type to injector") {
-                    expect(injector.passedType).to(beIdenticalTo(InjectableObjCClass.self))
+                    expect(injector.passedType).to(beIdenticalTo(CreatableObjCClass.self))
                 }
                 it("should return the object") {
                     expect(returnedObject).to(beIdenticalTo(object))

@@ -1,5 +1,5 @@
 //
-//  Copyright © 2017 Applause Inc. All rights reserved.
+//  Copyright © 2019 Applause Inc. All rights reserved.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -63,8 +63,8 @@ open class Bindings {
     /**
      Binds provided `type` in singleton scope using `SingletonBinding`.
      
-     This function works properly with `Injectable` or `NSObject` types.
-     In case when non `NSObject` and non `Injectable` `type` is bound as singleton, the binding will return `nil`.
+     This function works properly with `Creatable` or `NSObject` types.
+     In case when non `NSObject` and non `Creatable` `type` is bound as singleton, the binding will return `nil`.
      
      - Parameter type: The `type` which should be bound as singleton.
      */
@@ -76,7 +76,7 @@ open class Bindings {
     /**
      Binds provided `boundType` using `TypeBinding` to the `type`.
      
-     When there is no other `Binding` bound to `boundType`, this function will return `nil`, as non `NSObject` and non `Injectable` type cannot be initialized.
+     When there is no other `Binding` bound to `boundType`, this function will return `nil`, as non `NSObject` and non `Creatable` type cannot be initialized.
      
      - Parameter boundType: Injector will look for another `Binding`, bound to `boundType` when asked for creating `type` object.
      - Parameter type: The `type` to which the `boundType` should be bound.

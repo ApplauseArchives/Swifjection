@@ -1,5 +1,5 @@
 //
-//  Copyright © 2017 Applause Inc. All rights reserved.
+//  Copyright © 2019 Applause Inc. All rights reserved.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -45,7 +45,7 @@ class TypeBinding: Binding {
     /**
      Initializes `TypeBinding` object, using provided `type`.
      
-     - Parameter type: An Type (conforming to `Injectable` protocol) of object which should be returned by `getObject(withInjector injector: Injecting) -> Any?` function.
+     - Parameter type: An Type (conforming to `Creatable` protocol) of object which should be returned by `getObject(withInjector injector: Injecting) -> Any?` function.
      
      - Returns: An initialized `TypeBinding` object.
      */
@@ -71,7 +71,7 @@ class TypeBinding: Binding {
     /**
      Initializes `TypeBinding` object, using provided `type`.
      
-     - Parameter type: An Type (subclass of `NSObject`, conforming to `Injectable` protocol) of object which should be returned by `getObject(withInjector injector: Injecting) -> Any?` function.
+     - Parameter type: An Type (subclass of `NSObject`, conforming to `Creatable` protocol) of object which should be returned by `getObject(withInjector injector: Injecting) -> Any?` function.
      
      - Returns: An initialized `TypeBinding` object.
      */

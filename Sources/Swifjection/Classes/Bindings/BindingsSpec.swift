@@ -180,7 +180,7 @@ class BindingsSpec: QuickSpec {
         describe("bindSingleton<T>(forType:) where T: Creatable") {
             
             beforeEach {
-                bindings.bindSingleton(forType: InjectableClass.self)
+                bindings.bindSingleton(forType: CreatableClass.self)
             }
             
             it("should add one binding") {
@@ -190,7 +190,7 @@ class BindingsSpec: QuickSpec {
             context("when adding another singleton binding for the same type") {
                 
                 beforeEach {
-                    bindings.bindSingleton(forType: InjectableClass.self)
+                    bindings.bindSingleton(forType: CreatableClass.self)
                 }
                 
                 it("should replace the binding") {
@@ -228,7 +228,7 @@ class BindingsSpec: QuickSpec {
         describe("bindSingleton<T>(forType:) where T: NSObject, T: Creatable") {
             
             beforeEach {
-                bindings.bindSingleton(forType: InjectableObjCClass.self)
+                bindings.bindSingleton(forType: CreatableObjCClass.self)
             }
             
             it("should add one binding") {
@@ -238,7 +238,7 @@ class BindingsSpec: QuickSpec {
             context("when adding another singleton binding for the same type") {
                 
                 beforeEach {
-                    bindings.bindSingleton(forType: InjectableObjCClass.self)
+                    bindings.bindSingleton(forType: CreatableObjCClass.self)
                 }
                 
                 it("should replace the binding") {
@@ -276,7 +276,7 @@ class BindingsSpec: QuickSpec {
         describe("bind<T>(type:, toType:) where T: Creatable") {
             
             beforeEach {
-                bindings.bind(type: InjectableClass.self, toType: Injectable.self)
+                bindings.bind(type: CreatableClass.self, toType: Creatable.self)
             }
             
             it("should add one binding") {
@@ -286,7 +286,7 @@ class BindingsSpec: QuickSpec {
             context("when adding another singleton binding for the same type") {
                 
                 beforeEach {
-                    bindings.bind(type: InjectableClass.self, toType: Injectable.self)
+                    bindings.bind(type: CreatableClass.self, toType: Creatable.self)
                 }
                 
                 it("should replace the binding") {
@@ -324,7 +324,7 @@ class BindingsSpec: QuickSpec {
         describe("bind<T>(type:, toType:) where T: NSObject, T: Creatable") {
             
             beforeEach {
-                bindings.bind(type: InjectableObjCClass.self, toType: Injectable.self)
+                bindings.bind(type: CreatableObjCClass.self, toType: Creatable.self)
             }
             
             it("should add one binding") {
@@ -334,7 +334,7 @@ class BindingsSpec: QuickSpec {
             context("when adding another singleton binding for the same type") {
                 
                 beforeEach {
-                    bindings.bind(type: InjectableObjCClass.self, toType: Injectable.self)
+                    bindings.bind(type: CreatableObjCClass.self, toType: Creatable.self)
                 }
                 
                 it("should replace the binding") {
@@ -348,16 +348,16 @@ class BindingsSpec: QuickSpec {
         describe("when adding multiple bindings for one type") {
             
             var closureCalled = false
-            var object: InjectableClass!
+            var object: CreatableClass!
             
             beforeEach {
-                object = InjectableClass()
-                bindings.bind(object: object, toType: InjectableClass.self)
-                bindings.bind(type: InjectableClass.self) { injector in
+                object = CreatableClass()
+                bindings.bind(object: object, toType: CreatableClass.self)
+                bindings.bind(type: CreatableClass.self) { injector in
                     closureCalled = true
                     return object
                 }
-                bindings.bindSingleton(forType: InjectableClass.self)
+                bindings.bindSingleton(forType: CreatableClass.self)
             }
             
             afterEach {
@@ -374,7 +374,7 @@ class BindingsSpec: QuickSpec {
                 var returnedObject: Any?
                 
                 beforeEach {
-                    binding = bindings.bindings["\(InjectableClass.self)"]
+                    binding = bindings.bindings["\(CreatableClass.self)"]
                     returnedObject = binding?.getObject(withInjector: FakeInjector())
                 }
                 
@@ -397,10 +397,10 @@ class BindingsSpec: QuickSpec {
                 var returnedObject: Any?
                 
                 beforeEach {
-                    let object = InjectableClass()
+                    let object = CreatableClass()
                     objectBinding = ObjectBinding(withObject: object)
-                    bindings.bindings = ["\(InjectableClass.self)": objectBinding!]
-                    returnedObject = bindings[InjectableClass.self]
+                    bindings.bindings = ["\(CreatableClass.self)": objectBinding!]
+                    returnedObject = bindings[CreatableClass.self]
                 }
                 
                 it("should return proper object") {
@@ -414,7 +414,7 @@ class BindingsSpec: QuickSpec {
                 var returnedObject: Any?
                 
                 beforeEach {
-                    returnedObject = bindings[InjectableClass.self]
+                    returnedObject = bindings[CreatableClass.self]
                 }
                 
                 it("should return nil") {

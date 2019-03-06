@@ -13,8 +13,8 @@ The main idea behind this project is to achieve DI for Swift objects that does n
 We built **Swifjection** for our use in the first place. These are the key points what was our motivation:
 
 * No need to inherit from `NSObject` in order to inject dependencies
-* To inject *pure* `Swift` types you just need to conform to simple `Injectable` protocol
-* No action required to inject `NSObject` sublcasses, or classes conforming to `Injectable` protocol
+* To inject *pure* `Swift` types you just need to conform to simple `Creatable` protocol
+* No action required to inject `NSObject` sublcasses, or classes conforming to `Creatable` protocol
 * Clear and simple binding system inspired by Objective-C framework [Objection](https://github.com/atomicobject/objection)
 * Lightweight -- we wanted to avoid unnecessary clutter and made the APIs as simple as possible
 
@@ -98,7 +98,7 @@ As in any other DI framework you can setup mapping for objects you would like to
 
 The biggest advantage of using Swifjection as your Dependency Injection framework is that you don't have to map all your types in the module. When no instance or closure is mapped to type in module, Swifjection *tries* to create a fresh instance if one of the condition is met:
 - class inherits from `NSObject` - instance is created by calling `init`
-- class or struct conforms to `Injectable` protocol - instance is created by calling `init?(injector:)`
+- class or struct conforms to `Creatable` protocol - instance is created by calling `init`
 
 Othewrwise injector will return nil.
 
@@ -124,12 +124,11 @@ Each class or struct which can be injected and/or has dependencies to be injecte
 
 ```swift
 protocol Injectable {
-    init?(injector: Injecting)
     func injectDependencies(injector: Injecting)
 }
 ```
 
-This way when your class or struct is created via injector (using `init?(injector:)`) shortly afterwards it receive `injectDependencies(injector:)` callback. This is the place where you want to fetch your dependencies from `injector`.
+This way when your class or struct is created via injector, shortly afterwards it receive `injectDependencies(injector:)` callback. This is the place where you want to fetch your dependencies from `injector`.
 
 For example, let's assume you have two classes:
 
@@ -145,18 +144,14 @@ class Bar {
 In order to inject `foo` property using `Swifjection` you need to change your code to following:
 
 ```swift
-class Foo: Injectable {
-    required convenience init(injector: Injecting) {				
-        self.init()
-    }
+class Foo: Creatable {
+    required init() {}
 }
 
-class Bar: Injectable {
+class Bar: Creatable, Injectable {
     var foo: Foo?
 
-    required convenience init(injector: Injecting) {				
-        self.init()
-    }
+    required init() {}
 
     func injectDependencies(injector: Injecting) {
         foo = injector.getObject(withType: Foo.self)
@@ -196,16 +191,16 @@ You can use Swifjection binding to replace real objects with mocks/fakes during 
 To illustrate this in more detail, let's use two classes from the example above:
 
 ```swift
-class Foo: Injectable {
-    required convenience init(injector: Injecting) {				
+class Foo: Creatable {
+    required init() {				
         self.init()
     }
 }
 
-class Bar: Injectable {
+class Bar: Creatable, Injectable {
     var foo: Foo?
 
-    required convenience init(injector: Injecting) {				
+    required init() {				
         self.init()
     }
 
@@ -240,8 +235,8 @@ let barSUT = injector.getObject(withType: Bar.self)
 
 # Authors
 
-* [Łukasz Przytuła](mailto:lprzytula@applause.com)
-* [Aleksander Zubala](mailto:azubala@applause.com)
+* [Łukasz Przytuła](mailto:lprzytula@gmail.com)
+* [Aleksander Zubala](mailto:alek@zubala.com)
 
 # License
 

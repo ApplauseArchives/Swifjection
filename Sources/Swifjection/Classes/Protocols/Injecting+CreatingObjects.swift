@@ -1,5 +1,5 @@
 //
-//  Copyright © 2017 Applause Inc. All rights reserved.
+//  Copyright © 2019 Applause Inc. All rights reserved.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -63,7 +63,7 @@ public extension Injecting {
         let object: T
         if let objectFromBinding = bindings[type]?.getObject(withInjector: self) as? T {
             object = objectFromBinding
-        } else if let creatableType = type as? Creatable.Type, let createdObject = creatableType.init() as? T {
+        } else if let createdObject = (type as Creatable.Type).init() as? T {
             object = createdObject
         } else {
             return nil

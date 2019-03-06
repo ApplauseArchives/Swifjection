@@ -83,12 +83,12 @@ class SwifjectionIntegrationTests: QuickSpec {
             var fourthReturnedObject: AnyObject?
             
             beforeEach {
-                bindings.bindSingleton(forType: InjectableClass.self)
+                bindings.bindSingleton(forType: CreatableClass.self)
                 
-                returnedObject = injector.getObject(withType: InjectableClass.self)
-                secondReturnedObject = injector.getObject(withType: InjectableClass.self)
-                thirdReturnedObject = injector.getObject(withType: InjectableClass.self)
-                fourthReturnedObject = injector.getObject(withType: InjectableClass.self)
+                returnedObject = injector.getObject(withType: CreatableClass.self)
+                secondReturnedObject = injector.getObject(withType: CreatableClass.self)
+                thirdReturnedObject = injector.getObject(withType: CreatableClass.self)
+                fourthReturnedObject = injector.getObject(withType: CreatableClass.self)
             }
             
             it("first returned object should be equal to second returned object") {
@@ -108,29 +108,29 @@ class SwifjectionIntegrationTests: QuickSpec {
         context("when type is bound to other type") {
             
             beforeEach {
-                bindings.bind(type: InjectableClass.self, toType: InjectableClassProtocol.self)
+                bindings.bind(type: CreatableClass.self, toType: CreatableClassProtocol.self)
             }
             
             context("and there's no other binding for the bound type") {
                 
                 beforeEach {
-                    returnedObject = injector.getObject(withType: InjectableClassProtocol.self)
+                    returnedObject = injector.getObject(withType: CreatableClassProtocol.self)
                 }
                 
                 it("should return object of the bound type") {
-                    expect(returnedObject as? InjectableClass).notTo(beNil())
+                    expect(returnedObject as? CreatableClass).notTo(beNil())
                 }
                 
             }
             
             context("and there's object bound to the bound type") {
                 
-                var object: InjectableClass!
+                var object: CreatableClass!
                 
                 beforeEach {
-                    object = InjectableClass()
-                    bindings.bind(object: object, toType: InjectableClass.self)
-                    returnedObject = injector.getObject(withType: InjectableClassProtocol.self)
+                    object = CreatableClass()
+                    bindings.bind(object: object, toType: CreatableClass.self)
+                    returnedObject = injector.getObject(withType: CreatableClassProtocol.self)
                 }
                 
                 it("should return bound object") {
@@ -142,16 +142,16 @@ class SwifjectionIntegrationTests: QuickSpec {
             context("and there's closure bound to the bound type") {
                 
                 var closureCalled = false
-                var object: InjectableClass!
+                var object: CreatableClass!
                 
                 beforeEach {
-                    object = InjectableClass()
-                    bindings.bind(type: InjectableClass.self) { injector in
+                    object = CreatableClass()
+                    bindings.bind(type: CreatableClass.self) { injector in
                         closureCalled = true
                         return object
                     }
                     
-                    returnedObject = injector.getObject(withType: InjectableClassProtocol.self)
+                    returnedObject = injector.getObject(withType: CreatableClassProtocol.self)
                 }
                 
                 it("should call the closure") {
@@ -170,12 +170,12 @@ class SwifjectionIntegrationTests: QuickSpec {
                 var fourthReturnedObject: AnyObject?
                 
                 beforeEach {
-                    bindings.bindSingleton(forType: InjectableClass.self)
+                    bindings.bindSingleton(forType: CreatableClass.self)
                     
-                    returnedObject = injector.getObject(withType: InjectableClassProtocol.self)
-                    secondReturnedObject = injector.getObject(withType: InjectableClassProtocol.self)
-                    thirdReturnedObject = injector.getObject(withType: InjectableClassProtocol.self)
-                    fourthReturnedObject = injector.getObject(withType: InjectableClassProtocol.self)
+                    returnedObject = injector.getObject(withType: CreatableClassProtocol.self)
+                    secondReturnedObject = injector.getObject(withType: CreatableClassProtocol.self)
+                    thirdReturnedObject = injector.getObject(withType: CreatableClassProtocol.self)
+                    fourthReturnedObject = injector.getObject(withType: CreatableClassProtocol.self)
                 }
                 
                 it("first returned object should be equal to second returned object") {

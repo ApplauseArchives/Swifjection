@@ -117,3 +117,32 @@ class AutoInjectableClass: Creatable, AutoInjectable {
     }
 
 }
+
+class InjectCreatableClass: InjectCreatable {
+
+    var injector: Injecting
+
+    var objectConformingToProtocol: EmptySwiftProtocol
+    var emptySwiftObject: EmptySwiftClass
+    var injectableObject: CreatableClass
+    var injectableObjCObject: CreatableObjCClass
+    var objCObject: ObjCClass
+
+    required init?(injector: Injecting) {
+        guard let objectConformingToProtocol = injector.getObject(withType: EmptySwiftProtocol.self),
+              let emptySwiftObject = injector.getObject(withType: EmptySwiftClass.self),
+              let injectableObject = injector.getObject(withType: CreatableClass.self),
+              let injectableObjCObject = injector.getObject(withType: CreatableObjCClass.self),
+              let objCObject = injector.getObject(withType: ObjCClass.self) else {
+            assertionFailure("Could not initialize all stored properties")
+            return nil
+        }
+        self.injector = injector
+        self.objectConformingToProtocol = objectConformingToProtocol
+        self.emptySwiftObject = emptySwiftObject
+        self.injectableObject = injectableObject
+        self.injectableObjCObject = injectableObjCObject
+        self.objCObject = objCObject
+    }
+
+}

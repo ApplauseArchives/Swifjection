@@ -31,6 +31,8 @@
 		1550BB2E1E381D7000BCABA7 /* TypeBindingSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1550BB0E1E381D6100BCABA7 /* TypeBindingSpec.swift */; };
 		1550BB2F1E381D7500BCABA7 /* SwifjectionIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1550BB131E381D6100BCABA7 /* SwifjectionIntegrationTests.swift */; };
 		1550BB301E381D7500BCABA7 /* SwifjectorSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1550BB161E381D6100BCABA7 /* SwifjectorSpec.swift */; };
+		159757D9222FDF7500FFF4F9 /* InjectCreatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159757D8222FDF7500FFF4F9 /* InjectCreatable.swift */; };
+		159757DB2230125300FFF4F9 /* InjectCreatableObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159757DA2230125300FFF4F9 /* InjectCreatableObject.swift */; };
 		15DFDEB01DC41EE300B4687E /* FakeInjector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DFDEAF1DC41EE300B4687E /* FakeInjector.swift */; };
 		1A6EC6F8F7569BB7B911E9E1 /* Pods_Swifjection_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ACE728CAC97BD5A39E76D531 /* Pods_Swifjection_Tests.framework */; };
 		9405E3691DC365D3005327D4 /* Bar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9405E3651DC365D3005327D4 /* Bar.swift */; };
@@ -71,6 +73,8 @@
 		1550BB141E381D6100BCABA7 /* Swifjector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Swifjector.swift; sourceTree = "<group>"; };
 		1550BB151E381D6100BCABA7 /* SwifjectorFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwifjectorFactory.swift; sourceTree = "<group>"; };
 		1550BB161E381D6100BCABA7 /* SwifjectorSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwifjectorSpec.swift; sourceTree = "<group>"; };
+		159757D8222FDF7500FFF4F9 /* InjectCreatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InjectCreatable.swift; sourceTree = "<group>"; };
+		159757DA2230125300FFF4F9 /* InjectCreatableObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InjectCreatableObject.swift; sourceTree = "<group>"; };
 		15DFDEAF1DC41EE300B4687E /* FakeInjector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FakeInjector.swift; sourceTree = "<group>"; };
 		1D0519A19FF923381A3514B2 /* Pods-Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Example/Pods-Example.debug.xcconfig"; sourceTree = "<group>"; };
 		37AF8943EF5EA45674ABD0A9 /* Pods_Applause_Swiftjection_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Applause_Swiftjection_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -172,6 +176,7 @@
 			children = (
 				155093BE222EEAF3008CBFAE /* Creatable.swift */,
 				1550BB101E381D6100BCABA7 /* Injectable.swift */,
+				159757D8222FDF7500FFF4F9 /* InjectCreatable.swift */,
 				155093B8222DE166008CBFAE /* AutoInjectable.swift */,
 				1550BB111E381D6100BCABA7 /* Injecting+CreatingObjects.swift */,
 				1550BB121E381D6100BCABA7 /* Injecting.swift */,
@@ -251,6 +256,7 @@
 				945F5E741DD0770D00A90DC3 /* ExampleSingleton.swift */,
 				945F5E761DD077B400A90DC3 /* MyObject.swift */,
 				155093B6222DBBCA008CBFAE /* AutoInjectableObject.swift */,
+				159757DA2230125300FFF4F9 /* InjectCreatableObject.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -567,6 +573,7 @@
 				945F5E771DD077B400A90DC3 /* MyObject.swift in Sources */,
 				9405E3801DC36933005327D4 /* MyBindings.swift in Sources */,
 				155093B7222DBBCA008CBFAE /* AutoInjectableObject.swift in Sources */,
+				159757DB2230125300FFF4F9 /* InjectCreatableObject.swift in Sources */,
 				D87A35991E3A05A900CF2606 /* Fee.swift in Sources */,
 				9405E36A1DC365D3005327D4 /* Foo.swift in Sources */,
 				9405E3691DC365D3005327D4 /* Bar.swift in Sources */,
@@ -578,6 +585,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				159757D9222FDF7500FFF4F9 /* InjectCreatable.swift in Sources */,
 				1550BB181E381D6100BCABA7 /* Binding.swift in Sources */,
 				155093BD222EDB56008CBFAE /* InjectableKeyPath.swift in Sources */,
 				1550BB1D1E381D6100BCABA7 /* ObjectBinding.swift in Sources */,

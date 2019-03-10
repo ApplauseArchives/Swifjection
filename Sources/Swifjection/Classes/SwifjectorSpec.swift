@@ -26,20 +26,28 @@ class InjectingSpec: QuickSpec {
                     expect(injector.getObject(withType: EmptySwiftClass.self)).to(beNil())
                 }
                 
-                it("should return injectable object") {
+                it("should return creatable object") {
                     expect(injector.getObject(withType: CreatableClass.self)).notTo(beNil())
                 }
                 
-                it("should inject dependencies in injectable object") {
+                it("should inject dependencies in creatable object") {
                     expect(injector.getObject(withType: CreatableClass.self)!.injectDependenciesCalled).to(beTrue())
                 }
                 
-                it("should return injectable ObjC object") {
+                it("should return creatable ObjC object") {
                     expect(injector.getObject(withType: CreatableObjCClass.self)).to(beAKindOf(CreatableObjCClass.self))
                 }
                 
-                it("should inject dependencies in injectable ObjC object") {
+                it("should inject dependencies in creatable ObjC object") {
                     expect(injector.getObject(withType: CreatableObjCClass.self)!.injectDependenciesCalled).to(beTrue())
+                }
+
+                it("should return inject-creatable ObjC object") {
+                    expect(injector.getObject(withType: InjectCreatableObjCClass.self)).to(beAKindOf(InjectCreatableObjCClass.self))
+                }
+
+                it("should init inject-creatable ObjC object with injector") {
+                    expect(injector.getObject(withType: InjectCreatableObjCClass.self)!.initWithInjectorCalled).to(beTrue())
                 }
                 
                 it("should return ObjC object") {
@@ -52,16 +60,18 @@ class InjectingSpec: QuickSpec {
                 var objectConformingToProtocol: ClassConformingToProtocol!
                 var structConformingToProtocol: StructConformingToProtocol!
                 var emptySwiftObject: EmptySwiftClass!
-                var injectableObject: CreatableClass!
-                var injectableObjCObject: CreatableObjCClass!
+                var creatableObject: CreatableClass!
+                var creatableObjCObject: CreatableObjCClass!
+                var injectCreatableObjCObject: InjectCreatableObjCClass!
                 var objCObject: ObjCClass!
                 
                 beforeEach {
                     objectConformingToProtocol = ClassConformingToProtocol()
                     structConformingToProtocol = StructConformingToProtocol()
                     emptySwiftObject = EmptySwiftClass()
-                    injectableObject = CreatableClass()
-                    injectableObjCObject = CreatableObjCClass()
+                    creatableObject = CreatableClass()
+                    creatableObjCObject = CreatableObjCClass()
+                    injectCreatableObjCObject = InjectCreatableObjCClass(injector: injector)
                     objCObject = ObjCClass()
                 }
                 
@@ -86,24 +96,28 @@ class InjectingSpec: QuickSpec {
                 context("for other cases") {
                     beforeEach {
                         bindings.bind(object: emptySwiftObject, toType: EmptySwiftClass.self)
-                        bindings.bind(object: injectableObject, toType: CreatableClass.self)
-                        bindings.bind(object: injectableObjCObject, toType: CreatableObjCClass.self)
+                        bindings.bind(object: creatableObject, toType: CreatableClass.self)
+                        bindings.bind(object: creatableObjCObject, toType: CreatableObjCClass.self)
+                        bindings.bind(object: injectCreatableObjCObject, toType: InjectCreatableObjCClass.self)
                         bindings.bind(object: objCObject, toType: ObjCClass.self)
                     }
                     it("should have empty swift object injected") {
                         expect(injector.getObject(withType: EmptySwiftClass.self)).to(beIdenticalTo(emptySwiftObject))
                     }
-                    it("should have injectable object injected") {
-                        expect(injector.getObject(withType: CreatableClass.self)).to(beIdenticalTo(injectableObject))
+                    it("should have creatable object injected") {
+                        expect(injector.getObject(withType: CreatableClass.self)).to(beIdenticalTo(creatableObject))
                     }
-                    it("should inject dependencies in injectable object") {
+                    it("should inject dependencies in creatable object") {
                         expect(injector.getObject(withType: CreatableClass.self)!.injectDependenciesCalled).to(beTrue())
                     }
-                    it("should have injectable ObjC object injected") {
-                        expect(injector.getObject(withType: CreatableObjCClass.self)).to(beIdenticalTo(injectableObjCObject))
+                    it("should have creatable ObjC object injected") {
+                        expect(injector.getObject(withType: CreatableObjCClass.self)).to(beIdenticalTo(creatableObjCObject))
                     }
-                    it("should inject dependencies in injectable ObjC object") {
+                    it("should inject dependencies in creatable ObjC object") {
                         expect(injector.getObject(withType: CreatableObjCClass.self)!.injectDependenciesCalled).to(beTrue())
+                    }
+                    it("should have inject-creatable ObjC object injected") {
+                        expect(injector.getObject(withType: InjectCreatableObjCClass.self)).to(beIdenticalTo(injectCreatableObjCObject))
                     }
                     it("should have ObjC object injected") {
                         expect(injector.getObject(withType: ObjCClass.self)).to(beIdenticalTo(objCObject))
@@ -115,15 +129,17 @@ class InjectingSpec: QuickSpec {
                 
                 var objectConformingToProtocol: ClassConformingToProtocol?
                 var emptySwiftObject: EmptySwiftClass?
-                var injectableObject: CreatableClass?
-                var injectableObjCObject: CreatableObjCClass?
+                var creatableObject: CreatableClass?
+                var creatableObjCObject: CreatableObjCClass?
+                var injectCreatableObjCObject: InjectCreatableObjCClass?
                 var objCObject: ObjCClass?
                 
                 beforeEach {
                     objectConformingToProtocol = ClassConformingToProtocol()
                     emptySwiftObject = EmptySwiftClass()
-                    injectableObject = CreatableClass()
-                    injectableObjCObject = CreatableObjCClass()
+                    creatableObject = CreatableClass()
+                    creatableObjCObject = CreatableObjCClass()
+                    injectCreatableObjCObject = InjectCreatableObjCClass(injector: injector)
                     objCObject = ObjCClass()
                 }
                 
@@ -132,8 +148,9 @@ class InjectingSpec: QuickSpec {
                     beforeEach {
                         bindings.bind(object: objectConformingToProtocol!, toType: EmptySwiftProtocol.self)
                         bindings.bind(object: emptySwiftObject!, toType: EmptySwiftClass.self)
-                        bindings.bind(object: injectableObject!, toType: CreatableClass.self)
-                        bindings.bind(object: injectableObjCObject!, toType: CreatableObjCClass.self)
+                        bindings.bind(object: creatableObject!, toType: CreatableClass.self)
+                        bindings.bind(object: creatableObjCObject!, toType: CreatableObjCClass.self)
+                        bindings.bind(object: injectCreatableObjCObject!, toType: InjectCreatableObjCClass.self)
                         bindings.bind(object: objCObject!, toType: ObjCClass.self)
                     }
                     
@@ -145,20 +162,24 @@ class InjectingSpec: QuickSpec {
                         expect(injector.getObject(withType: EmptySwiftClass.self)).to(beIdenticalTo(emptySwiftObject))
                     }
                     
-                    it("should have injectable object injected") {
-                        expect(injector.getObject(withType: CreatableClass.self)).to(beIdenticalTo(injectableObject))
+                    it("should have creatable object injected") {
+                        expect(injector.getObject(withType: CreatableClass.self)).to(beIdenticalTo(creatableObject))
                     }
                     
-                    it("should inject dependencies in injectable object") {
+                    it("should inject dependencies in creatable object") {
                         expect(injector.getObject(withType: CreatableClass.self)!.injectDependenciesCalled).to(beTrue())
                     }
                     
-                    it("should have injectable ObjC object injected") {
-                        expect(injector.getObject(withType: CreatableObjCClass.self)).to(beIdenticalTo(injectableObjCObject))
+                    it("should have creatable ObjC object injected") {
+                        expect(injector.getObject(withType: CreatableObjCClass.self)).to(beIdenticalTo(creatableObjCObject))
                     }
                     
-                    it("should inject dependencies in injectable ObjC object") {
+                    it("should inject dependencies in creatable ObjC object") {
                         expect(injector.getObject(withType: CreatableObjCClass.self)!.injectDependenciesCalled).to(beTrue())
+                    }
+
+                    it("should have inject-creatable ObjC object injected") {
+                        expect(injector.getObject(withType: InjectCreatableObjCClass.self)).to(beIdenticalTo(injectCreatableObjCObject))
                     }
                     
                     it("should have ObjC object injected") {
@@ -170,8 +191,8 @@ class InjectingSpec: QuickSpec {
                 context("closure bindings") {
                     
                     beforeEach {
-                        injectableObject?.injectDependencies(injector: injector)
-                        injectableObjCObject?.injectDependencies(injector: injector)
+                        creatableObject?.injectDependencies(injector: injector)
+                        creatableObjCObject?.injectDependencies(injector: injector)
                         
                         bindings.bind(type: EmptySwiftProtocol.self) { (injector: Injecting) -> AnyObject in
                             return objectConformingToProtocol!
@@ -182,11 +203,15 @@ class InjectingSpec: QuickSpec {
                         }
                         
                         bindings.bind(type: CreatableClass.self) { (injector: Injecting) -> AnyObject in
-                            return injectableObject!
+                            return creatableObject!
                         }
                         
                         bindings.bind(type: CreatableObjCClass.self) { (injector: Injecting) -> AnyObject in
-                            return injectableObjCObject!
+                            return creatableObjCObject!
+                        }
+
+                        bindings.bind(type: InjectCreatableObjCClass.self) { (injector: Injecting) -> AnyObject in
+                            return injectCreatableObjCObject!
                         }
                         
                         bindings.bind(type: ObjCClass.self) { (injector: Injecting) -> AnyObject in
@@ -202,20 +227,24 @@ class InjectingSpec: QuickSpec {
                         expect(injector.getObject(withType: EmptySwiftClass.self)).to(beIdenticalTo(emptySwiftObject))
                     }
                     
-                    it("should have injectable object injected") {
-                        expect(injector.getObject(withType: CreatableClass.self)).to(beIdenticalTo(injectableObject))
+                    it("should have creatable object injected") {
+                        expect(injector.getObject(withType: CreatableClass.self)).to(beIdenticalTo(creatableObject))
                     }
                     
-                    it("should inject dependencies in injectable object") {
+                    it("should inject dependencies in creatable object") {
                         expect(injector.getObject(withType: CreatableClass.self)!.injectDependenciesCalled).to(beTrue())
                     }
                     
-                    it("should have injectable ObjC object injected") {
-                        expect(injector.getObject(withType: CreatableObjCClass.self)).to(beIdenticalTo(injectableObjCObject))
+                    it("should have creatable ObjC object injected") {
+                        expect(injector.getObject(withType: CreatableObjCClass.self)).to(beIdenticalTo(creatableObjCObject))
                     }
                     
-                    it("should inject dependencies in injectable ObjC object") {
+                    it("should inject dependencies in creatable ObjC object") {
                         expect(injector.getObject(withType: CreatableObjCClass.self)!.injectDependenciesCalled).to(beTrue())
+                    }
+
+                    it("should have inject-creatable ObjC object injected") {
+                        expect(injector.getObject(withType: InjectCreatableObjCClass.self)).to(beIdenticalTo(injectCreatableObjCObject))
                     }
                     
                     it("should have ObjC object injected") {
@@ -236,15 +265,20 @@ class InjectingSpec: QuickSpec {
                         }
                         
                         bindings.bind(type: CreatableClass.self) { (injector: Injecting) -> AnyObject in
-                            let injectableObject = CreatableClass()
-                            injectableObject.injectDependencies(injector: injector)
-                            return injectableObject
+                            let creatableObject = CreatableClass()
+                            creatableObject.injectDependencies(injector: injector)
+                            return creatableObject
                         }
                         
                         bindings.bind(type: CreatableObjCClass.self) { (injector: Injecting) -> AnyObject in
-                            let injectableObjCObject = CreatableObjCClass()
-                            injectableObjCObject.injectDependencies(injector: injector)
-                            return injectableObjCObject
+                            let creatableObjCObject = CreatableObjCClass()
+                            creatableObjCObject.injectDependencies(injector: injector)
+                            return creatableObjCObject
+                        }
+
+                        bindings.bind(type: InjectCreatableObjCClass.self) { (injector: Injecting) -> AnyObject? in
+                            let injectCreatableObjCObject = InjectCreatableObjCClass(injector: injector)
+                            return injectCreatableObjCObject
                         }
                         
                         bindings.bind(type: ObjCClass.self) { (injector: Injecting) -> AnyObject in
@@ -260,20 +294,24 @@ class InjectingSpec: QuickSpec {
                         expect(injector.getObject(withType: EmptySwiftClass.self)).notTo(beNil())
                     }
                     
-                    it("should have injectable object injected") {
+                    it("should have creatable object injected") {
                         expect(injector.getObject(withType: CreatableClass.self)).notTo(beNil())
                     }
                     
-                    it("should inject dependencies in injectable object") {
+                    it("should inject dependencies in creatable object") {
                         expect(injector.getObject(withType: CreatableClass.self)!.injectDependenciesCalled).to(beTrue())
                     }
                     
-                    it("should have injectable ObjC object injected") {
+                    it("should have creatable ObjC object injected") {
                         expect(injector.getObject(withType: CreatableObjCClass.self)).to(beAKindOf(CreatableObjCClass.self))
                     }
                     
-                    it("should inject dependencies in injectable ObjC object") {
+                    it("should inject dependencies in creatable ObjC object") {
                         expect(injector.getObject(withType: CreatableObjCClass.self)!.injectDependenciesCalled).to(beTrue())
+                    }
+
+                    it("should have inject-creatable ObjC object injected") {
+                        expect(injector.getObject(withType: InjectCreatableObjCClass.self)).to(beAKindOf(InjectCreatableObjCClass.self))
                     }
                     
                     it("should have ObjC object injected") {
@@ -298,22 +336,28 @@ class InjectingSpec: QuickSpec {
                     expect(injector[EmptySwiftClass.self]).to(beNil())
                 }
                 
-                it("should return injectable object") {
+                it("should return creatable object") {
                     expect(injector[CreatableClass.self]).notTo(beNil())
                 }
                 
-                it("should inject dependencies in injectable object") {
+                it("should inject dependencies in creatable object") {
                     expect((injector[CreatableClass.self]! as! CreatableClass).injectDependenciesCalled).to(beTrue())
                 }
                 
-                it("should return injectable ObjC object") {
+                it("should return creatable ObjC object") {
                     let injector = injector!
                     let object = injector[CreatableObjCClass.self as Creatable.Type]
                     expect(object).to(beAKindOf(CreatableObjCClass.self))
                 }
                 
-                it("should inject dependencies in injectable ObjC object") {
+                it("should inject dependencies in creatable ObjC object") {
                     expect((injector[CreatableObjCClass.self as Creatable.Type]! as! CreatableObjCClass).injectDependenciesCalled).to(beTrue())
+                }
+
+                it("should return inject-creatable ObjC object") {
+                    let injector = injector!
+                    let object = injector[InjectCreatableObjCClass.self as InjectCreatable.Type]
+                    expect(object).to(beAKindOf(InjectCreatableObjCClass.self))
                 }
                 
                 it("should return ObjC object") {
@@ -327,15 +371,17 @@ class InjectingSpec: QuickSpec {
                 
                 var objectConformingToProtocol: ClassConformingToProtocol?
                 var emptySwiftObject: EmptySwiftClass?
-                var injectableObject: CreatableClass?
-                var injectableObjCObject: CreatableObjCClass?
+                var creatableObject: CreatableClass?
+                var creatableObjCObject: CreatableObjCClass?
+                var injectCreatableObjCObject: InjectCreatableObjCClass?
                 var objCObject: ObjCClass?
                 
                 beforeEach {
                     objectConformingToProtocol = ClassConformingToProtocol()
                     emptySwiftObject = EmptySwiftClass()
-                    injectableObject = CreatableClass()
-                    injectableObjCObject = CreatableObjCClass()
+                    creatableObject = CreatableClass()
+                    creatableObjCObject = CreatableObjCClass()
+                    injectCreatableObjCObject = InjectCreatableObjCClass(injector: injector)
                     objCObject = ObjCClass()
                 }
                 
@@ -344,8 +390,9 @@ class InjectingSpec: QuickSpec {
                     beforeEach {
                         bindings.bind(object: objectConformingToProtocol!, toType: EmptySwiftProtocol.self)
                         bindings.bind(object: emptySwiftObject!, toType: EmptySwiftClass.self)
-                        bindings.bind(object: injectableObject!, toType: CreatableClass.self)
-                        bindings.bind(object: injectableObjCObject!, toType: CreatableObjCClass.self)
+                        bindings.bind(object: creatableObject!, toType: CreatableClass.self)
+                        bindings.bind(object: creatableObjCObject!, toType: CreatableObjCClass.self)
+                        bindings.bind(object: injectCreatableObjCObject!, toType: InjectCreatableObjCClass.self)
                         bindings.bind(object: objCObject!, toType: ObjCClass.self)
                     }
                     
@@ -357,20 +404,24 @@ class InjectingSpec: QuickSpec {
                         expect(injector[EmptySwiftClass.self]).to(beIdenticalTo(emptySwiftObject))
                     }
                     
-                    it("should have injectable object injected") {
-                        expect(injector[CreatableClass.self]).to(beIdenticalTo(injectableObject))
+                    it("should have creatable object injected") {
+                        expect(injector[CreatableClass.self]).to(beIdenticalTo(creatableObject))
                     }
                     
-                    it("should inject dependencies in injectable object") {
+                    it("should inject dependencies in creatable object") {
                         expect((injector[CreatableClass.self]! as! CreatableClass).injectDependenciesCalled).to(beTrue())
                     }
                     
-                    it("should have injectable ObjC object injected") {
-                        expect(injector[CreatableObjCClass.self as Creatable.Type]).to(beIdenticalTo(injectableObjCObject))
+                    it("should have creatable ObjC object injected") {
+                        expect(injector[CreatableObjCClass.self as Creatable.Type]).to(beIdenticalTo(creatableObjCObject))
                     }
                     
-                    it("should inject dependencies in injectable ObjC object") {
+                    it("should inject dependencies in creatable ObjC object") {
                         expect((injector[CreatableObjCClass.self as Creatable.Type]! as! CreatableObjCClass).injectDependenciesCalled).to(beTrue())
+                    }
+
+                    it("should have inject-creatable ObjC object injected") {
+                        expect(injector[InjectCreatableObjCClass.self as InjectCreatable.Type]).to(beIdenticalTo(injectCreatableObjCObject))
                     }
                     
                     it("should have ObjC object injected") {
@@ -382,8 +433,8 @@ class InjectingSpec: QuickSpec {
                 context("closure bindings") {
                     
                     beforeEach {
-                        injectableObject?.injectDependencies(injector: injector)
-                        injectableObjCObject?.injectDependencies(injector: injector)
+                        creatableObject?.injectDependencies(injector: injector)
+                        creatableObjCObject?.injectDependencies(injector: injector)
                         
                         bindings.bind(type: EmptySwiftProtocol.self) { (injector: Injecting) -> AnyObject in
                             return objectConformingToProtocol!
@@ -394,11 +445,15 @@ class InjectingSpec: QuickSpec {
                         }
                         
                         bindings.bind(type: CreatableClass.self) { (injector: Injecting) -> AnyObject in
-                            return injectableObject!
+                            return creatableObject!
                         }
                         
                         bindings.bind(type: CreatableObjCClass.self) { (injector: Injecting) -> AnyObject in
-                            return injectableObjCObject!
+                            return creatableObjCObject!
+                        }
+
+                        bindings.bind(type: InjectCreatableObjCClass.self) { (injector: Injecting) -> AnyObject in
+                            return injectCreatableObjCObject!
                         }
                         
                         bindings.bind(type: ObjCClass.self) { (injector: Injecting) -> AnyObject in
@@ -414,20 +469,24 @@ class InjectingSpec: QuickSpec {
                         expect(injector[EmptySwiftClass.self]).to(beIdenticalTo(emptySwiftObject))
                     }
                     
-                    it("should have injectable object injected") {
-                        expect(injector[CreatableClass.self]).to(beIdenticalTo(injectableObject))
+                    it("should have creatable object injected") {
+                        expect(injector[CreatableClass.self]).to(beIdenticalTo(creatableObject))
                     }
                     
-                    it("should inject dependencies in injectable object") {
+                    it("should inject dependencies in creatable object") {
                         expect((injector[CreatableClass.self]! as! CreatableClass).injectDependenciesCalled).to(beTrue())
                     }
                     
-                    it("should have injectable ObjC object injected") {
-                        expect(injector[CreatableObjCClass.self as Creatable.Type]).to(beIdenticalTo(injectableObjCObject))
+                    it("should have creatable ObjC object injected") {
+                        expect(injector[CreatableObjCClass.self as Creatable.Type]).to(beIdenticalTo(creatableObjCObject))
                     }
                     
-                    it("should inject dependencies in injectable ObjC object") {
+                    it("should inject dependencies in creatable ObjC object") {
                         expect((injector[CreatableObjCClass.self as Creatable.Type]! as! CreatableObjCClass).injectDependenciesCalled).to(beTrue())
+                    }
+
+                    it("should have inject-creatable ObjC object injected") {
+                        expect(injector[InjectCreatableObjCClass.self as InjectCreatable.Type]).to(beIdenticalTo(injectCreatableObjCObject))
                     }
                     
                     it("should have ObjC object injected") {
@@ -448,15 +507,20 @@ class InjectingSpec: QuickSpec {
                         }
                         
                         bindings.bind(type: CreatableClass.self) { (injector: Injecting) -> AnyObject in
-                            let injectableObject = CreatableClass()
-                            injectableObject.injectDependencies(injector: injector)
-                            return injectableObject
+                            let creatableObject = CreatableClass()
+                            creatableObject.injectDependencies(injector: injector)
+                            return creatableObject
                         }
                         
                         bindings.bind(type: CreatableObjCClass.self) { (injector: Injecting) -> AnyObject in
-                            let injectableObjCObject = CreatableObjCClass()
-                            injectableObjCObject.injectDependencies(injector: injector)
-                            return injectableObjCObject
+                            let creatableObjCObject = CreatableObjCClass()
+                            creatableObjCObject.injectDependencies(injector: injector)
+                            return creatableObjCObject
+                        }
+
+                        bindings.bind(type: InjectCreatableObjCClass.self) { (injector: Injecting) -> AnyObject? in
+                            let injectCreatableObjCObject = InjectCreatableObjCClass(injector: injector)
+                            return injectCreatableObjCObject
                         }
                         
                         bindings.bind(type: ObjCClass.self) { (injector: Injecting) -> AnyObject in
@@ -472,20 +536,24 @@ class InjectingSpec: QuickSpec {
                         expect(injector[EmptySwiftClass.self]).notTo(beNil())
                     }
                     
-                    it("should have injectable object injected") {
+                    it("should have creatable object injected") {
                         expect(injector[CreatableClass.self]).notTo(beNil())
                     }
                     
-                    it("should inject dependencies in injectable object") {
+                    it("should inject dependencies in creatable object") {
                         expect((injector[CreatableClass.self]! as! CreatableClass).injectDependenciesCalled).to(beTrue())
                     }
                     
-                    it("should have injectable ObjC object injected") {
+                    it("should have creatable ObjC object injected") {
                         expect(injector[CreatableObjCClass.self as Creatable.Type]).to(beAKindOf(CreatableObjCClass.self))
                     }
                     
-                    it("should inject dependencies in injectable ObjC object") {
+                    it("should inject dependencies in creatable ObjC object") {
                         expect((injector[CreatableObjCClass.self as Creatable.Type]! as! CreatableObjCClass).injectDependenciesCalled).to(beTrue())
+                    }
+
+                    it("should have inject-creatable ObjC object injected") {
+                        expect(injector[InjectCreatableObjCClass.self as InjectCreatable.Type]).to(beAKindOf(InjectCreatableObjCClass.self))
                     }
                     
                     it("should have ObjC object injected") {
@@ -517,20 +585,24 @@ class InjectingSpec: QuickSpec {
                     expect(objectWithDependencies.emptySwiftObject).to(beNil())
                 }
 
-                it("should have injectable object injected") {
-                    expect(objectWithDependencies.injectableObject).notTo(beNil())
+                it("should have creatable object injected") {
+                    expect(objectWithDependencies.creatableObject).notTo(beNil())
                 }
 
-                it("should inject dependencies in injectable object") {
-                    expect(objectWithDependencies.injectableObject!.injectDependenciesCalled).to(beTrue())
+                it("should inject dependencies in creatable object") {
+                    expect(objectWithDependencies.creatableObject!.injectDependenciesCalled).to(beTrue())
                 }
 
-                it("should have injectable ObjC object injected") {
-                    expect(objectWithDependencies.injectableObjCObject).to(beAKindOf(CreatableObjCClass.self))
+                it("should have creatable ObjC object injected") {
+                    expect(objectWithDependencies.creatableObjCObject).to(beAKindOf(CreatableObjCClass.self))
                 }
 
-                it("should inject dependencies in injectable ObjC object") {
-                    expect(objectWithDependencies.injectableObjCObject!.injectDependenciesCalled).to(beTrue())
+                it("should inject dependencies in creatable ObjC object") {
+                    expect(objectWithDependencies.creatableObjCObject!.injectDependenciesCalled).to(beTrue())
+                }
+
+                it("should have inject-creatable ObjC object injected") {
+                    expect(objectWithDependencies.injectCreatableObjCObject).to(beAKindOf(InjectCreatableObjCClass.self))
                 }
 
                 it("should have ObjC object injected") {
@@ -543,15 +615,17 @@ class InjectingSpec: QuickSpec {
 
                 var objectConformingToProtocol: ClassConformingToProtocol?
                 var emptySwiftObject: EmptySwiftClass?
-                var injectableObject: CreatableClass?
-                var injectableObjCObject: CreatableObjCClass?
+                var creatableObject: CreatableClass?
+                var creatableObjCObject: CreatableObjCClass?
+                var injectCreatableObjCObject: InjectCreatableObjCClass?
                 var objCObject: ObjCClass?
 
                 beforeEach {
                     objectConformingToProtocol = ClassConformingToProtocol()
                     emptySwiftObject = EmptySwiftClass()
-                    injectableObject = CreatableClass()
-                    injectableObjCObject = CreatableObjCClass()
+                    creatableObject = CreatableClass()
+                    creatableObjCObject = CreatableObjCClass()
+                    injectCreatableObjCObject = InjectCreatableObjCClass(injector: injector)
                     objCObject = ObjCClass()
                 }
 
@@ -560,8 +634,9 @@ class InjectingSpec: QuickSpec {
                     beforeEach {
                         bindings.bind(object: objectConformingToProtocol!, toType: EmptySwiftProtocol.self)
                         bindings.bind(object: emptySwiftObject!, toType: EmptySwiftClass.self)
-                        bindings.bind(object: injectableObject!, toType: CreatableClass.self)
-                        bindings.bind(object: injectableObjCObject!, toType: CreatableObjCClass.self)
+                        bindings.bind(object: creatableObject!, toType: CreatableClass.self)
+                        bindings.bind(object: creatableObjCObject!, toType: CreatableObjCClass.self)
+                        bindings.bind(object: injectCreatableObjCObject!, toType: InjectCreatableObjCClass.self)
                         bindings.bind(object: objCObject!, toType: ObjCClass.self)
 
                         objectWithDependencies = ClassWithDependencies()
@@ -576,20 +651,24 @@ class InjectingSpec: QuickSpec {
                         expect(objectWithDependencies.emptySwiftObject).to(beIdenticalTo(emptySwiftObject))
                     }
 
-                    it("should have injectable object injected") {
-                        expect(objectWithDependencies.injectableObject).to(beIdenticalTo(injectableObject))
+                    it("should have creatable object injected") {
+                        expect(objectWithDependencies.creatableObject).to(beIdenticalTo(creatableObject))
                     }
 
-                    it("should inject dependencies in injectable object") {
-                        expect(objectWithDependencies.injectableObject!.injectDependenciesCalled).to(beTrue())
+                    it("should inject dependencies in creatable object") {
+                        expect(objectWithDependencies.creatableObject!.injectDependenciesCalled).to(beTrue())
                     }
 
-                    it("should have injectable ObjC object injected") {
-                        expect(objectWithDependencies.injectableObjCObject).to(beIdenticalTo(injectableObjCObject))
+                    it("should have creatable ObjC object injected") {
+                        expect(objectWithDependencies.creatableObjCObject).to(beIdenticalTo(creatableObjCObject))
                     }
 
-                    it("should inject dependencies in injectable ObjC object") {
-                        expect(objectWithDependencies.injectableObjCObject!.injectDependenciesCalled).to(beTrue())
+                    it("should inject dependencies in creatable ObjC object") {
+                        expect(objectWithDependencies.creatableObjCObject!.injectDependenciesCalled).to(beTrue())
+                    }
+
+                    it("should have inject-creatable ObjC object injected") {
+                        expect(objectWithDependencies.injectCreatableObjCObject).to(beIdenticalTo(injectCreatableObjCObject))
                     }
 
                     it("should have ObjC object injected") {
@@ -601,8 +680,8 @@ class InjectingSpec: QuickSpec {
                 context("closure bindings") {
 
                     beforeEach {
-                        injectableObject?.injectDependencies(injector: injector)
-                        injectableObjCObject?.injectDependencies(injector: injector)
+                        creatableObject?.injectDependencies(injector: injector)
+                        creatableObjCObject?.injectDependencies(injector: injector)
 
                         bindings.bind(type: EmptySwiftProtocol.self) { (injector: Injecting) -> AnyObject in
                             return objectConformingToProtocol!
@@ -613,11 +692,15 @@ class InjectingSpec: QuickSpec {
                         }
 
                         bindings.bind(type: CreatableClass.self) { (injector: Injecting) -> AnyObject in
-                            return injectableObject!
+                            return creatableObject!
                         }
 
                         bindings.bind(type: CreatableObjCClass.self) { (injector: Injecting) -> AnyObject in
-                            return injectableObjCObject!
+                            return creatableObjCObject!
+                        }
+
+                        bindings.bind(type: InjectCreatableObjCClass.self) { (injector: Injecting) -> AnyObject in
+                            return injectCreatableObjCObject!
                         }
 
                         bindings.bind(type: ObjCClass.self) { (injector: Injecting) -> AnyObject in
@@ -636,20 +719,24 @@ class InjectingSpec: QuickSpec {
                         expect(objectWithDependencies.emptySwiftObject).to(beIdenticalTo(emptySwiftObject))
                     }
 
-                    it("should have injectable object injected") {
-                        expect(objectWithDependencies.injectableObject).to(beIdenticalTo(injectableObject))
+                    it("should have creatable object injected") {
+                        expect(objectWithDependencies.creatableObject).to(beIdenticalTo(creatableObject))
                     }
 
-                    it("should inject dependencies in injectable object") {
-                        expect(objectWithDependencies.injectableObject!.injectDependenciesCalled).to(beTrue())
+                    it("should inject dependencies in creatable object") {
+                        expect(objectWithDependencies.creatableObject!.injectDependenciesCalled).to(beTrue())
                     }
 
-                    it("should have injectable ObjC object injected") {
-                        expect(objectWithDependencies.injectableObjCObject).to(beIdenticalTo(injectableObjCObject))
+                    it("should have creatable ObjC object injected") {
+                        expect(objectWithDependencies.creatableObjCObject).to(beIdenticalTo(creatableObjCObject))
                     }
 
-                    it("should inject dependencies in injectable ObjC object") {
-                        expect(objectWithDependencies.injectableObjCObject!.injectDependenciesCalled).to(beTrue())
+                    it("should inject dependencies in creatable ObjC object") {
+                        expect(objectWithDependencies.creatableObjCObject!.injectDependenciesCalled).to(beTrue())
+                    }
+
+                    it("should have inject-creatable ObjC object injected") {
+                        expect(objectWithDependencies.injectCreatableObjCObject).to(beIdenticalTo(injectCreatableObjCObject))
                     }
 
                     it("should have ObjC object injected") {
@@ -670,15 +757,20 @@ class InjectingSpec: QuickSpec {
                         }
 
                         bindings.bind(type: CreatableClass.self) { (injector: Injecting) -> AnyObject in
-                            let injectableObject = CreatableClass()
-                            injectableObject.injectDependencies(injector: injector)
-                            return injectableObject
+                            let creatableObject = CreatableClass()
+                            creatableObject.injectDependencies(injector: injector)
+                            return creatableObject
                         }
 
                         bindings.bind(type: CreatableObjCClass.self) { (injector: Injecting) -> AnyObject in
-                            let injectableObjCObject = CreatableObjCClass()
-                            injectableObjCObject.injectDependencies(injector: injector)
-                            return injectableObjCObject
+                            let creatableObjCObject = CreatableObjCClass()
+                            creatableObjCObject.injectDependencies(injector: injector)
+                            return creatableObjCObject
+                        }
+
+                        bindings.bind(type: InjectCreatableObjCClass.self) { (injector: Injecting) -> AnyObject? in
+                            let injectCreatableObjCObject = InjectCreatableObjCClass(injector: injector)
+                            return injectCreatableObjCObject
                         }
 
                         bindings.bind(type: ObjCClass.self) { (injector: Injecting) -> AnyObject in
@@ -697,20 +789,24 @@ class InjectingSpec: QuickSpec {
                         expect(objectWithDependencies.emptySwiftObject).notTo(beNil())
                     }
 
-                    it("should have injectable object injected") {
-                        expect(objectWithDependencies.injectableObject).notTo(beNil())
+                    it("should have creatable object injected") {
+                        expect(objectWithDependencies.creatableObject).notTo(beNil())
                     }
 
-                    it("should inject dependencies in injectable object") {
-                        expect(objectWithDependencies.injectableObject!.injectDependenciesCalled).to(beTrue())
+                    it("should inject dependencies in creatable object") {
+                        expect(objectWithDependencies.creatableObject!.injectDependenciesCalled).to(beTrue())
                     }
 
-                    it("should have injectable ObjC object injected") {
-                        expect(objectWithDependencies.injectableObjCObject).to(beAKindOf(CreatableObjCClass.self))
+                    it("should have creatable ObjC object injected") {
+                        expect(objectWithDependencies.creatableObjCObject).to(beAKindOf(CreatableObjCClass.self))
                     }
 
-                    it("should inject dependencies in injectable ObjC object") {
-                        expect(objectWithDependencies.injectableObjCObject!.injectDependenciesCalled).to(beTrue())
+                    it("should inject dependencies in creatable ObjC object") {
+                        expect(objectWithDependencies.creatableObjCObject!.injectDependenciesCalled).to(beTrue())
+                    }
+
+                    it("should have inject-creatable ObjC object injected") {
+                        expect(objectWithDependencies.injectCreatableObjCObject).to(beAKindOf(InjectCreatableObjCClass.self))
                     }
 
                     it("should have ObjC object injected") {
@@ -742,20 +838,24 @@ class InjectingSpec: QuickSpec {
                     expect(automaticallyInjectableObject.emptySwiftObject).to(beNil())
                 }
 
-                it("should have injectable object injected") {
-                    expect(automaticallyInjectableObject.injectableObject).notTo(beNil())
+                it("should have creatable object injected") {
+                    expect(automaticallyInjectableObject.creatableObject).notTo(beNil())
                 }
 
-                it("should inject dependencies in injectable object") {
-                    expect(automaticallyInjectableObject.injectableObject!.injectDependenciesCalled).to(beTrue())
+                it("should inject dependencies in creatable object") {
+                    expect(automaticallyInjectableObject.creatableObject!.injectDependenciesCalled).to(beTrue())
                 }
 
-                it("should have injectable ObjC object injected") {
-                    expect(automaticallyInjectableObject.injectableObjCObject).to(beAKindOf(CreatableObjCClass.self))
+                it("should have creatable ObjC object injected") {
+                    expect(automaticallyInjectableObject.creatableObjCObject).to(beAKindOf(CreatableObjCClass.self))
                 }
 
-                it("should inject dependencies in injectable ObjC object") {
-                    expect(automaticallyInjectableObject.injectableObjCObject!.injectDependenciesCalled).to(beTrue())
+                it("should inject dependencies in creatable ObjC object") {
+                    expect(automaticallyInjectableObject.creatableObjCObject!.injectDependenciesCalled).to(beTrue())
+                }
+
+                it("should have inject-creatable ObjC object injected") {
+                    expect(automaticallyInjectableObject.injectCreatableObjCObject).to(beAKindOf(InjectCreatableObjCClass.self))
                 }
 
                 it("should have ObjC object injected") {
@@ -768,15 +868,17 @@ class InjectingSpec: QuickSpec {
 
                 var objectConformingToProtocol: ClassConformingToProtocol?
                 var emptySwiftObject: EmptySwiftClass?
-                var injectableObject: CreatableClass?
-                var injectableObjCObject: CreatableObjCClass?
+                var creatableObject: CreatableClass?
+                var creatableObjCObject: CreatableObjCClass?
+                var injectCreatableObjCObject: InjectCreatableObjCClass?
                 var objCObject: ObjCClass?
 
                 beforeEach {
                     objectConformingToProtocol = ClassConformingToProtocol()
                     emptySwiftObject = EmptySwiftClass()
-                    injectableObject = CreatableClass()
-                    injectableObjCObject = CreatableObjCClass()
+                    creatableObject = CreatableClass()
+                    creatableObjCObject = CreatableObjCClass()
+                    injectCreatableObjCObject = InjectCreatableObjCClass(injector: injector)
                     objCObject = ObjCClass()
                 }
 
@@ -785,8 +887,9 @@ class InjectingSpec: QuickSpec {
                     beforeEach {
                         bindings.bind(object: objectConformingToProtocol!, toType: EmptySwiftProtocol.self)
                         bindings.bind(object: emptySwiftObject!, toType: EmptySwiftClass.self)
-                        bindings.bind(object: injectableObject!, toType: CreatableClass.self)
-                        bindings.bind(object: injectableObjCObject!, toType: CreatableObjCClass.self)
+                        bindings.bind(object: creatableObject!, toType: CreatableClass.self)
+                        bindings.bind(object: creatableObjCObject!, toType: CreatableObjCClass.self)
+                        bindings.bind(object: injectCreatableObjCObject!, toType: InjectCreatableObjCClass.self)
                         bindings.bind(object: objCObject!, toType: ObjCClass.self)
 
                         automaticallyInjectableObject = AutoInjectableClass()
@@ -801,20 +904,24 @@ class InjectingSpec: QuickSpec {
                         expect(automaticallyInjectableObject.emptySwiftObject).to(beIdenticalTo(emptySwiftObject))
                     }
 
-                    it("should have injectable object injected") {
-                        expect(automaticallyInjectableObject.injectableObject).to(beIdenticalTo(injectableObject))
+                    it("should have creatable object injected") {
+                        expect(automaticallyInjectableObject.creatableObject).to(beIdenticalTo(creatableObject))
                     }
 
-                    it("should inject dependencies in injectable object") {
-                        expect(automaticallyInjectableObject.injectableObject!.injectDependenciesCalled).to(beTrue())
+                    it("should inject dependencies in creatable object") {
+                        expect(automaticallyInjectableObject.creatableObject!.injectDependenciesCalled).to(beTrue())
                     }
 
-                    it("should have injectable ObjC object injected") {
-                        expect(automaticallyInjectableObject.injectableObjCObject).to(beIdenticalTo(injectableObjCObject))
+                    it("should have creatable ObjC object injected") {
+                        expect(automaticallyInjectableObject.creatableObjCObject).to(beIdenticalTo(creatableObjCObject))
                     }
 
-                    it("should inject dependencies in injectable ObjC object") {
-                        expect(automaticallyInjectableObject.injectableObjCObject!.injectDependenciesCalled).to(beTrue())
+                    it("should inject dependencies in creatable ObjC object") {
+                        expect(automaticallyInjectableObject.creatableObjCObject!.injectDependenciesCalled).to(beTrue())
+                    }
+
+                    it("should have inject-creatable ObjC object injected") {
+                        expect(automaticallyInjectableObject.injectCreatableObjCObject).to(beIdenticalTo(injectCreatableObjCObject))
                     }
 
                     it("should have ObjC object injected") {
@@ -826,8 +933,8 @@ class InjectingSpec: QuickSpec {
                 context("closure bindings") {
 
                     beforeEach {
-                        injectableObject?.injectDependencies(injector: injector)
-                        injectableObjCObject?.injectDependencies(injector: injector)
+                        creatableObject?.injectDependencies(injector: injector)
+                        creatableObjCObject?.injectDependencies(injector: injector)
 
                         bindings.bind(type: EmptySwiftProtocol.self) { (injector: Injecting) -> AnyObject in
                             return objectConformingToProtocol!
@@ -838,11 +945,15 @@ class InjectingSpec: QuickSpec {
                         }
 
                         bindings.bind(type: CreatableClass.self) { (injector: Injecting) -> AnyObject in
-                            return injectableObject!
+                            return creatableObject!
                         }
 
                         bindings.bind(type: CreatableObjCClass.self) { (injector: Injecting) -> AnyObject in
-                            return injectableObjCObject!
+                            return creatableObjCObject!
+                        }
+
+                        bindings.bind(type: InjectCreatableObjCClass.self) { (injector: Injecting) -> AnyObject in
+                            return injectCreatableObjCObject!
                         }
 
                         bindings.bind(type: ObjCClass.self) { (injector: Injecting) -> AnyObject in
@@ -861,20 +972,24 @@ class InjectingSpec: QuickSpec {
                         expect(automaticallyInjectableObject.emptySwiftObject).to(beIdenticalTo(emptySwiftObject))
                     }
 
-                    it("should have injectable object injected") {
-                        expect(automaticallyInjectableObject.injectableObject).to(beIdenticalTo(injectableObject))
+                    it("should have creatable object injected") {
+                        expect(automaticallyInjectableObject.creatableObject).to(beIdenticalTo(creatableObject))
                     }
 
-                    it("should inject dependencies in injectable object") {
-                        expect(automaticallyInjectableObject.injectableObject!.injectDependenciesCalled).to(beTrue())
+                    it("should inject dependencies in creatable object") {
+                        expect(automaticallyInjectableObject.creatableObject!.injectDependenciesCalled).to(beTrue())
                     }
 
-                    it("should have injectable ObjC object injected") {
-                        expect(automaticallyInjectableObject.injectableObjCObject).to(beIdenticalTo(injectableObjCObject))
+                    it("should have creatable ObjC object injected") {
+                        expect(automaticallyInjectableObject.creatableObjCObject).to(beIdenticalTo(creatableObjCObject))
                     }
 
-                    it("should inject dependencies in injectable ObjC object") {
-                        expect(automaticallyInjectableObject.injectableObjCObject!.injectDependenciesCalled).to(beTrue())
+                    it("should inject dependencies in creatable ObjC object") {
+                        expect(automaticallyInjectableObject.creatableObjCObject!.injectDependenciesCalled).to(beTrue())
+                    }
+
+                    it("should have inject-creatable ObjC object injected") {
+                        expect(automaticallyInjectableObject.injectCreatableObjCObject).to(beIdenticalTo(injectCreatableObjCObject))
                     }
 
                     it("should have ObjC object injected") {
@@ -895,15 +1010,20 @@ class InjectingSpec: QuickSpec {
                         }
 
                         bindings.bind(type: CreatableClass.self) { (injector: Injecting) -> AnyObject in
-                            let injectableObject = CreatableClass()
-                            injectableObject.injectDependencies(injector: injector)
-                            return injectableObject
+                            let creatableObject = CreatableClass()
+                            creatableObject.injectDependencies(injector: injector)
+                            return creatableObject
                         }
 
                         bindings.bind(type: CreatableObjCClass.self) { (injector: Injecting) -> AnyObject in
-                            let injectableObjCObject = CreatableObjCClass()
-                            injectableObjCObject.injectDependencies(injector: injector)
-                            return injectableObjCObject
+                            let creatableObjCObject = CreatableObjCClass()
+                            creatableObjCObject.injectDependencies(injector: injector)
+                            return creatableObjCObject
+                        }
+
+                        bindings.bind(type: InjectCreatableObjCClass.self) { (injector: Injecting) -> AnyObject? in
+                            let injectCreatableObjCObject = InjectCreatableObjCClass(injector: injector)
+                            return injectCreatableObjCObject
                         }
 
                         bindings.bind(type: ObjCClass.self) { (injector: Injecting) -> AnyObject in
@@ -922,20 +1042,24 @@ class InjectingSpec: QuickSpec {
                         expect(automaticallyInjectableObject.emptySwiftObject).notTo(beNil())
                     }
 
-                    it("should have injectable object injected") {
-                        expect(automaticallyInjectableObject.injectableObject).notTo(beNil())
+                    it("should have creatable object injected") {
+                        expect(automaticallyInjectableObject.creatableObject).notTo(beNil())
                     }
 
-                    it("should inject dependencies in injectable object") {
-                        expect(automaticallyInjectableObject.injectableObject!.injectDependenciesCalled).to(beTrue())
+                    it("should inject dependencies in creatable object") {
+                        expect(automaticallyInjectableObject.creatableObject!.injectDependenciesCalled).to(beTrue())
                     }
 
-                    it("should have injectable ObjC object injected") {
-                        expect(automaticallyInjectableObject.injectableObjCObject).to(beAKindOf(CreatableObjCClass.self))
+                    it("should have creatable ObjC object injected") {
+                        expect(automaticallyInjectableObject.creatableObjCObject).to(beAKindOf(CreatableObjCClass.self))
                     }
 
-                    it("should inject dependencies in injectable ObjC object") {
-                        expect(automaticallyInjectableObject.injectableObjCObject!.injectDependenciesCalled).to(beTrue())
+                    it("should inject dependencies in creatable ObjC object") {
+                        expect(automaticallyInjectableObject.creatableObjCObject!.injectDependenciesCalled).to(beTrue())
+                    }
+
+                    it("should have inject-creatable ObjC object injected") {
+                        expect(automaticallyInjectableObject.injectCreatableObjCObject).to(beAKindOf(InjectCreatableObjCClass.self))
                     }
 
                     it("should have ObjC object injected") {
@@ -964,15 +1088,17 @@ class InjectingSpec: QuickSpec {
 
                 var objectConformingToProtocol: ClassConformingToProtocol?
                 var emptySwiftObject: EmptySwiftClass?
-                var injectableObject: CreatableClass?
-                var injectableObjCObject: CreatableObjCClass?
+                var creatableObject: CreatableClass?
+                var creatableObjCObject: CreatableObjCClass?
+                var injectCreatableObjCObject: InjectCreatableObjCClass?
                 var objCObject: ObjCClass?
 
                 beforeEach {
                     objectConformingToProtocol = ClassConformingToProtocol()
                     emptySwiftObject = EmptySwiftClass()
-                    injectableObject = CreatableClass()
-                    injectableObjCObject = CreatableObjCClass()
+                    creatableObject = CreatableClass()
+                    creatableObjCObject = CreatableObjCClass()
+                    injectCreatableObjCObject = InjectCreatableObjCClass(injector: injector)
                     objCObject = ObjCClass()
                 }
 
@@ -981,8 +1107,9 @@ class InjectingSpec: QuickSpec {
                     beforeEach {
                         bindings.bind(object: objectConformingToProtocol!, toType: EmptySwiftProtocol.self)
                         bindings.bind(object: emptySwiftObject!, toType: EmptySwiftClass.self)
-                        bindings.bind(object: injectableObject!, toType: CreatableClass.self)
-                        bindings.bind(object: injectableObjCObject!, toType: CreatableObjCClass.self)
+                        bindings.bind(object: creatableObject!, toType: CreatableClass.self)
+                        bindings.bind(object: creatableObjCObject!, toType: CreatableObjCClass.self)
+                        bindings.bind(object: injectCreatableObjCObject!, toType: InjectCreatableObjCClass.self)
                         bindings.bind(object: objCObject!, toType: ObjCClass.self)
 
                         injectCreatableObject = InjectCreatableClass(injector: injector)
@@ -996,20 +1123,24 @@ class InjectingSpec: QuickSpec {
                         expect(injectCreatableObject.emptySwiftObject).to(beIdenticalTo(emptySwiftObject))
                     }
 
-                    it("should have injectable object injected") {
-                        expect(injectCreatableObject.injectableObject).to(beIdenticalTo(injectableObject))
+                    it("should have creatable object injected") {
+                        expect(injectCreatableObject.creatableObject).to(beIdenticalTo(creatableObject))
                     }
 
-                    it("should inject dependencies in injectable object") {
-                        expect(injectCreatableObject.injectableObject.injectDependenciesCalled).to(beTrue())
+                    it("should inject dependencies in creatable object") {
+                        expect(injectCreatableObject.creatableObject.injectDependenciesCalled).to(beTrue())
                     }
 
-                    it("should have injectable ObjC object injected") {
-                        expect(injectCreatableObject.injectableObjCObject).to(beIdenticalTo(injectableObjCObject))
+                    it("should have creatable ObjC object injected") {
+                        expect(injectCreatableObject.creatableObjCObject).to(beIdenticalTo(creatableObjCObject))
                     }
 
-                    it("should inject dependencies in injectable ObjC object") {
-                        expect(injectCreatableObject.injectableObjCObject.injectDependenciesCalled).to(beTrue())
+                    it("should inject dependencies in creatable ObjC object") {
+                        expect(injectCreatableObject.creatableObjCObject.injectDependenciesCalled).to(beTrue())
+                    }
+
+                    it("should have inject-creatable ObjC object injected") {
+                        expect(injectCreatableObject.injectCreatableObjCObject).to(beIdenticalTo(injectCreatableObjCObject))
                     }
 
                     it("should have ObjC object injected") {
@@ -1021,8 +1152,8 @@ class InjectingSpec: QuickSpec {
                 context("closure bindings") {
 
                     beforeEach {
-                        injectableObject?.injectDependencies(injector: injector)
-                        injectableObjCObject?.injectDependencies(injector: injector)
+                        creatableObject?.injectDependencies(injector: injector)
+                        creatableObjCObject?.injectDependencies(injector: injector)
 
                         bindings.bind(type: EmptySwiftProtocol.self) { (injector: Injecting) -> AnyObject in
                             return objectConformingToProtocol!
@@ -1033,11 +1164,15 @@ class InjectingSpec: QuickSpec {
                         }
 
                         bindings.bind(type: CreatableClass.self) { (injector: Injecting) -> AnyObject in
-                            return injectableObject!
+                            return creatableObject!
                         }
 
                         bindings.bind(type: CreatableObjCClass.self) { (injector: Injecting) -> AnyObject in
-                            return injectableObjCObject!
+                            return creatableObjCObject!
+                        }
+
+                        bindings.bind(type: InjectCreatableObjCClass.self) { (injector: Injecting) -> AnyObject in
+                            return injectCreatableObjCObject!
                         }
 
                         bindings.bind(type: ObjCClass.self) { (injector: Injecting) -> AnyObject in
@@ -1055,20 +1190,24 @@ class InjectingSpec: QuickSpec {
                         expect(injectCreatableObject.emptySwiftObject).to(beIdenticalTo(emptySwiftObject))
                     }
 
-                    it("should have injectable object injected") {
-                        expect(injectCreatableObject.injectableObject).to(beIdenticalTo(injectableObject))
+                    it("should have creatable object injected") {
+                        expect(injectCreatableObject.creatableObject).to(beIdenticalTo(creatableObject))
                     }
 
-                    it("should inject dependencies in injectable object") {
-                        expect(injectCreatableObject.injectableObject.injectDependenciesCalled).to(beTrue())
+                    it("should inject dependencies in creatable object") {
+                        expect(injectCreatableObject.creatableObject.injectDependenciesCalled).to(beTrue())
                     }
 
-                    it("should have injectable ObjC object injected") {
-                        expect(injectCreatableObject.injectableObjCObject).to(beIdenticalTo(injectableObjCObject))
+                    it("should have creatable ObjC object injected") {
+                        expect(injectCreatableObject.creatableObjCObject).to(beIdenticalTo(creatableObjCObject))
                     }
 
-                    it("should inject dependencies in injectable ObjC object") {
-                        expect(injectCreatableObject.injectableObjCObject.injectDependenciesCalled).to(beTrue())
+                    it("should inject dependencies in creatable ObjC object") {
+                        expect(injectCreatableObject.creatableObjCObject.injectDependenciesCalled).to(beTrue())
+                    }
+
+                    it("should have inject-creatable ObjC object injected") {
+                        expect(injectCreatableObject.injectCreatableObjCObject).to(beIdenticalTo(injectCreatableObjCObject))
                     }
 
                     it("should have ObjC object injected") {
@@ -1089,15 +1228,20 @@ class InjectingSpec: QuickSpec {
                         }
 
                         bindings.bind(type: CreatableClass.self) { (injector: Injecting) -> AnyObject in
-                            let injectableObject = CreatableClass()
-                            injectableObject.injectDependencies(injector: injector)
-                            return injectableObject
+                            let creatableObject = CreatableClass()
+                            creatableObject.injectDependencies(injector: injector)
+                            return creatableObject
                         }
 
                         bindings.bind(type: CreatableObjCClass.self) { (injector: Injecting) -> AnyObject in
-                            let injectableObjCObject = CreatableObjCClass()
-                            injectableObjCObject.injectDependencies(injector: injector)
-                            return injectableObjCObject
+                            let creatableObjCObject = CreatableObjCClass()
+                            creatableObjCObject.injectDependencies(injector: injector)
+                            return creatableObjCObject
+                        }
+
+                        bindings.bind(type: InjectCreatableObjCClass.self) { (injector: Injecting) -> AnyObject? in
+                            let injectCreatableObjCObject = InjectCreatableObjCClass(injector: injector)
+                            return injectCreatableObjCObject
                         }
 
                         bindings.bind(type: ObjCClass.self) { (injector: Injecting) -> AnyObject in
@@ -1115,20 +1259,24 @@ class InjectingSpec: QuickSpec {
                         expect(injectCreatableObject.emptySwiftObject).notTo(beNil())
                     }
 
-                    it("should have injectable object injected") {
-                        expect(injectCreatableObject.injectableObject).notTo(beNil())
+                    it("should have creatable object injected") {
+                        expect(injectCreatableObject.creatableObject).notTo(beNil())
                     }
 
-                    it("should inject dependencies in injectable object") {
-                        expect(injectCreatableObject.injectableObject.injectDependenciesCalled).to(beTrue())
+                    it("should inject dependencies in creatable object") {
+                        expect(injectCreatableObject.creatableObject.injectDependenciesCalled).to(beTrue())
                     }
 
-                    it("should have injectable ObjC object injected") {
-                        expect(injectCreatableObject.injectableObjCObject).to(beAKindOf(CreatableObjCClass.self))
+                    it("should have creatable ObjC object injected") {
+                        expect(injectCreatableObject.creatableObjCObject).to(beAKindOf(CreatableObjCClass.self))
                     }
 
-                    it("should inject dependencies in injectable ObjC object") {
-                        expect(injectCreatableObject.injectableObjCObject.injectDependenciesCalled).to(beTrue())
+                    it("should inject dependencies in creatable ObjC object") {
+                        expect(injectCreatableObject.creatableObjCObject.injectDependenciesCalled).to(beTrue())
+                    }
+
+                    it("should have inject-creatable ObjC object injected") {
+                        expect(injectCreatableObject.injectCreatableObjCObject).to(beAKindOf(InjectCreatableObjCClass.self))
                     }
 
                     it("should have ObjC object injected") {

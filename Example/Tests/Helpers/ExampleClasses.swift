@@ -56,6 +56,24 @@ class CreatableObjCClass: NSObject, Creatable, Injectable {
     
 }
 
+class InjectCreatableObjCClass: NSObject, InjectCreatable {
+
+    var injector: Injecting
+    let creatableObject: CreatableClass
+    var initWithInjectorCalled = false
+
+    required init?(injector: Injecting) {
+        initWithInjectorCalled = true
+        self.injector = injector
+        guard let creatableObject = injector.getObject(withType: CreatableClass.self) else {
+            return nil
+        }
+        self.creatableObject = creatableObject
+        super.init()
+    }
+
+}
+
 class ObjCClass: NSObject {
     
     var initCallsCount = 0
@@ -72,8 +90,9 @@ class ClassWithDependencies: Creatable, Injectable {
     
     var objectConformingToProtocol: EmptySwiftProtocol?
     var emptySwiftObject: EmptySwiftClass?
-    var injectableObject: CreatableClass?
-    var injectableObjCObject: CreatableObjCClass?
+    var creatableObject: CreatableClass?
+    var creatableObjCObject: CreatableObjCClass?
+    var injectCreatableObjCObject: InjectCreatableObjCClass?
     var objCObject: ObjCClass?
     
     required init() {}
@@ -82,8 +101,9 @@ class ClassWithDependencies: Creatable, Injectable {
         self.injector = injector
         self.objectConformingToProtocol = injector.getObject(withType: EmptySwiftProtocol.self)
         self.emptySwiftObject = injector.getObject(withType: EmptySwiftClass.self)
-        self.injectableObject = injector.getObject(withType: CreatableClass.self)
-        self.injectableObjCObject = injector.getObject(withType: CreatableObjCClass.self)
+        self.creatableObject = injector.getObject(withType: CreatableClass.self)
+        self.creatableObjCObject = injector.getObject(withType: CreatableObjCClass.self)
+        self.injectCreatableObjCObject = injector.getObject(withType: InjectCreatableObjCClass.self)
         self.objCObject = injector.getObject(withType: ObjCClass.self)
     }
     
@@ -95,16 +115,18 @@ class AutoInjectableClass: Creatable, AutoInjectable {
 
     var objectConformingToProtocol: EmptySwiftProtocol?
     var emptySwiftObject: EmptySwiftClass?
-    var injectableObject: CreatableClass?
-    var injectableObjCObject: CreatableObjCClass?
+    var creatableObject: CreatableClass?
+    var creatableObjCObject: CreatableObjCClass?
+    var injectCreatableObjCObject: InjectCreatableObjCClass?
     var objCObject: ObjCClass?
 
     var injectableProperties: [InjectableProperty] {
         return [
             requires(\AutoInjectableClass.objectConformingToProtocol),
             requires(\AutoInjectableClass.emptySwiftObject),
-            requires(\AutoInjectableClass.injectableObject),
-            requires(\AutoInjectableClass.injectableObjCObject),
+            requires(\AutoInjectableClass.creatableObject),
+            requires(\AutoInjectableClass.creatableObjCObject),
+            requires(\AutoInjectableClass.injectCreatableObjCObject),
             requires(\AutoInjectableClass.objCObject),
         ]
     }
@@ -124,15 +146,17 @@ class InjectCreatableClass: InjectCreatable {
 
     var objectConformingToProtocol: EmptySwiftProtocol
     var emptySwiftObject: EmptySwiftClass
-    var injectableObject: CreatableClass
-    var injectableObjCObject: CreatableObjCClass
+    var creatableObject: CreatableClass
+    var creatableObjCObject: CreatableObjCClass
+    var injectCreatableObjCObject: InjectCreatableObjCClass
     var objCObject: ObjCClass
 
     required init?(injector: Injecting) {
         guard let objectConformingToProtocol = injector.getObject(withType: EmptySwiftProtocol.self),
               let emptySwiftObject = injector.getObject(withType: EmptySwiftClass.self),
-              let injectableObject = injector.getObject(withType: CreatableClass.self),
-              let injectableObjCObject = injector.getObject(withType: CreatableObjCClass.self),
+              let creatableObject = injector.getObject(withType: CreatableClass.self),
+              let creatableObjCObject = injector.getObject(withType: CreatableObjCClass.self),
+              let injectCreatableObjCObject = injector.getObject(withType: InjectCreatableObjCClass.self),
               let objCObject = injector.getObject(withType: ObjCClass.self) else {
             assertionFailure("Could not initialize all stored properties")
             return nil
@@ -140,8 +164,10 @@ class InjectCreatableClass: InjectCreatable {
         self.injector = injector
         self.objectConformingToProtocol = objectConformingToProtocol
         self.emptySwiftObject = emptySwiftObject
-        self.injectableObject = injectableObject
-        self.injectableObjCObject = injectableObjCObject
+        self.creatableObject = creatableObject
+        self.creatableObjCObject = creatableObjCObject
+        self.creatableObjCObject = creatableObjCObject
+        self.injectCreatableObjCObject = injectCreatableObjCObject
         self.objCObject = objCObject
     }
 

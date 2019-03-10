@@ -74,6 +74,21 @@ public extension Injecting {
         return object
     }
 
+    public func getObject<T>(withType type: T.Type) -> T? where T: NSObject, T: InjectCreatable {
+        let object: T
+        if let objectFromBinding = bindings[type]?.getObject(withInjector: self) as? T {
+            object = objectFromBinding
+        } else if let createdObject = type.init(injector: self) {
+            object = createdObject
+        } else {
+            return nil
+        }
+        if let injectable = object as? Injectable {
+            injectable.injectDependencies(injector: self)
+        }
+        return object
+    }
+
     public subscript(type: Any.Type) -> Any? {
         guard let object = bindings[type]?.getObject(withInjector: self) else {
             return nil

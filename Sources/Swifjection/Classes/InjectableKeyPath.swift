@@ -75,13 +75,28 @@ struct InjectableKeyPath<R>: InjectableProperty {
     }
 
     /**
-     Initializes `InjectableKeyPath` object, using provided `keyPath`, which contains information about property to inject, and it's type, which can be `Optional` of `NSObject` conforming to `Creatable` protocol.
+     Initializes `InjectableKeyPath` object, using provided `keyPath`, which contains information about property to inject, and it's type, which can be `Optional<InjectCreatable> type`.
 
      - Parameter keyPath: Object containing information about the property to inject, owner type, and dependency type
 
      - Returns: An initialized `InjectableKeyPath` object.
      */
-    public init<T>(_ keyPath: ReferenceWritableKeyPath<R, Optional<T>>) where T: NSObject, T: Creatable {
+    public init<T>(_ keyPath: ReferenceWritableKeyPath<R, Optional<T>>) where T: InjectCreatable {
+        injectClosure = { instance, injector in
+            if let value: T = injector.getObject(withType: T.self) {
+                instance[keyPath: keyPath] = value
+            }
+        }
+    }
+
+    /**
+     Initializes `InjectableKeyPath` object, using provided `keyPath`, which contains information about property to inject, and it's type, which can be `Optional` of `NSObject` conforming to `InjectCreatable` protocol.
+
+     - Parameter keyPath: Object containing information about the property to inject, owner type, and dependency type
+
+     - Returns: An initialized `InjectableKeyPath` object.
+     */
+    public init<T>(_ keyPath: ReferenceWritableKeyPath<R, Optional<T>>) where T: NSObject, T: InjectCreatable {
         injectClosure = { instance, injector in
             if let value: T = injector.getObject(withType: T.self) {
                 instance[keyPath: keyPath] = value
@@ -135,13 +150,28 @@ struct InjectableKeyPath<R>: InjectableProperty {
     }
 
     /**
-     Initializes `InjectableKeyPath` object, using provided `keyPath`, which contains information about property to inject, and it's type, which can be `NSObject` conforming to `Creatable` protocol.
+     Initializes `InjectableKeyPath` object, using provided `keyPath`, which contains information about property to inject, and it's type, which conforms to `InjectCreatable` protocol.
 
      - Parameter keyPath: Object containing information about the property to inject, owner type, and dependency type
 
      - Returns: An initialized `InjectableKeyPath` object.
      */
-    public init<T>(_ keyPath: ReferenceWritableKeyPath<R, T>) where T: NSObject, T: Creatable {
+    public init<T>(_ keyPath: ReferenceWritableKeyPath<R, T>) where T: InjectCreatable {
+        injectClosure = { instance, injector in
+            if let value: T = injector.getObject(withType: T.self) {
+                instance[keyPath: keyPath] = value
+            }
+        }
+    }
+
+    /**
+     Initializes `InjectableKeyPath` object, using provided `keyPath`, which contains information about property to inject, and it's type, which can be `NSObject` conforming to `InjectCreatable` protocol.
+
+     - Parameter keyPath: Object containing information about the property to inject, owner type, and dependency type
+
+     - Returns: An initialized `InjectableKeyPath` object.
+     */
+    public init<T>(_ keyPath: ReferenceWritableKeyPath<R, T>) where T: NSObject, T: InjectCreatable {
         injectClosure = { instance, injector in
             if let value: T = injector.getObject(withType: T.self) {
                 instance[keyPath: keyPath] = value
@@ -201,13 +231,24 @@ public func requires<R, T>(_ keyPath: ReferenceWritableKeyPath<R, Optional<T>>) 
 }
 
 /**
- Public function used to create `InjectableProperty` with a `ReferenceWritableKeyPath`, for a property that is `Optional` of `NSObject` conforming to `Creatable` protocol.
+ Public function used to create `InjectableProperty` with a `ReferenceWritableKeyPath`, for a property of `Optional<InjectCreatable> type.
 
  - Parameter keyPath: Object containing information about the property to inject, owner type, and dependency type
 
  - Returns: An initialized `InjectableProperty`.
  */
-public func requires<R, T>(_ keyPath: ReferenceWritableKeyPath<R, Optional<T>>) -> InjectableProperty where T: NSObject & Creatable {
+public func requires<R, T>(_ keyPath: ReferenceWritableKeyPath<R, Optional<T>>) -> InjectableProperty where T: InjectCreatable {
+    return InjectableKeyPath(keyPath)
+}
+
+/**
+ Public function used to create `InjectableProperty` with a `ReferenceWritableKeyPath`, for a property that is `Optional` of `NSObject` conforming to `InjectCreatable` protocol.
+
+ - Parameter keyPath: Object containing information about the property to inject, owner type, and dependency type
+
+ - Returns: An initialized `InjectableProperty`.
+ */
+public func requires<R, T>(_ keyPath: ReferenceWritableKeyPath<R, Optional<T>>) -> InjectableProperty where T: NSObject & InjectCreatable {
     return InjectableKeyPath(keyPath)
 }
 
@@ -245,12 +286,23 @@ public func requires<R, T>(_ keyPath: ReferenceWritableKeyPath<R, T>) -> Injecta
 }
 
 /**
- Public function used to create `InjectableProperty` with a `ReferenceWritableKeyPath`, for a property that is `NSObject` conforming to `Creatable` protocol.
+ Public function used to create `InjectableProperty` with a `ReferenceWritableKeyPath`, for a property of `InjectCreatable` type.
 
  - Parameter keyPath: Object containing information about the property to inject, owner type, and dependency type
 
  - Returns: An initialized `InjectableProperty`.
  */
-public func requires<R, T>(_ keyPath: ReferenceWritableKeyPath<R, T>) -> InjectableProperty where T: NSObject & Creatable {
+public func requires<R, T>(_ keyPath: ReferenceWritableKeyPath<R, T>) -> InjectableProperty where T: InjectCreatable {
+    return InjectableKeyPath(keyPath)
+}
+
+/**
+ Public function used to create `InjectableProperty` with a `ReferenceWritableKeyPath`, for a property that is `NSObject` conforming to `InjectCreatable` protocol.
+
+ - Parameter keyPath: Object containing information about the property to inject, owner type, and dependency type
+
+ - Returns: An initialized `InjectableProperty`.
+ */
+public func requires<R, T>(_ keyPath: ReferenceWritableKeyPath<R, T>) -> InjectableProperty where T: NSObject & InjectCreatable {
     return InjectableKeyPath(keyPath)
 }

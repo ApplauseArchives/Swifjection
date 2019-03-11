@@ -113,6 +113,19 @@ open class Bindings {
         let typeName = "\(type)"
         bindings[typeName] = TypeBinding(withType: boundType)
     }
+
+    /**
+     Binds provided `boundType` using `TypeBinding` to the `type`.
+
+     - Parameter boundType: Injector will try to initialize object of `boundType` when asked for creating `type` object.
+     - Parameter type: The `type` to which the `boundType` should be bound.
+
+     - Returns: Instance of `boundType`, or `nil`.
+     */
+    public func bind<T>(type boundType: T.Type, toType type: Any.Type) where T: InjectCreatable {
+        let typeName = "\(type)"
+        bindings[typeName] = TypeBinding(withType: boundType)
+    }
     
     /**
      Binds provided `boundType` using `TypeBinding` to the `type`.
@@ -122,7 +135,7 @@ open class Bindings {
      
      - Returns: Instance of `boundType`, or `nil`.
      */
-    public func bind<T>(type boundType: T.Type, toType type: Any.Type) where T: NSObject, T: Creatable {
+    public func bind<T>(type boundType: T.Type, toType type: Any.Type) where T: NSObject, T: InjectCreatable {
         let typeName = "\(type)"
         bindings[typeName] = TypeBinding(withType: boundType)
     }

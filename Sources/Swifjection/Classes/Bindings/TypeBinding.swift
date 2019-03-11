@@ -67,15 +67,28 @@ class TypeBinding: Binding {
             return injector.getObject(withType: type)
         }
     }
-    
+
     /**
      Initializes `TypeBinding` object, using provided `type`.
-     
-     - Parameter type: An Type (subclass of `NSObject`, conforming to `Creatable` protocol) of object which should be returned by `getObject(withInjector injector: Injecting) -> Any?` function.
-     
+
+     - Parameter type: An Type (conforming to `InjectCreatable` protocol) of object which should be returned by `getObject(withInjector injector: Injecting) -> Any?` function.
+
      - Returns: An initialized `TypeBinding` object.
      */
-    public init<T>(withType type: T.Type) where T: NSObject, T: Creatable {
+    public init<T>(withType type: T.Type) where T: InjectCreatable {
+        objectCreationClosure = { injector in
+            return injector.getObject(withType: type)
+        }
+    }
+
+    /**
+     Initializes `TypeBinding` object, using provided `type`.
+
+     - Parameter type: An Type (subclass of `NSObject` conforming to `InjectCreatable` protocol) of object which should be returned by `getObject(withInjector injector: Injecting) -> Any?` function.
+
+     - Returns: An initialized `TypeBinding` object.
+     */
+    public init<T>(withType type: T.Type) where T: NSObject, T: InjectCreatable {
         objectCreationClosure = { injector in
             return injector.getObject(withType: type)
         }

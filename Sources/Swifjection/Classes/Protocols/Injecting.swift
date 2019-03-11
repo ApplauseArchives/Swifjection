@@ -75,4 +75,13 @@ public protocol Injecting: class {
      */
     func getObject<T>(withType type: T.Type) -> T? where T: InjectCreatable
 
+    /**
+     getObject for `NSObject` subclass conforming to `InjectCreatable` protocol, searches for an binding for provided `type` and returns it, or tries to create a new instance of provided `type` using `init()` method if nothing was bound.
+
+     - Parameter type: Type of the object to return.
+
+     - Returns: Bound object of provided type, or new instance.
+     */
+    func getObject<T>(withType type: T.Type) -> T? where T: NSObject, T: InjectCreatable
+
 }

@@ -36,8 +36,14 @@ class FakeInjector: Injecting {
         self.passedType = type
         return self.objectToReturn as! T?
     }
+
+    public func getObject<T>(withType type: T.Type) -> T? where T: InjectCreatable {
+        self.getObjectCalled = true
+        self.passedType = type
+        return self.objectToReturn as! T?
+    }
     
-    public func getObject<T>(withType type: T.Type) -> T? where T: NSObject, T: Creatable {
+    public func getObject<T>(withType type: T.Type) -> T? where T: NSObject, T: InjectCreatable {
         self.getObjectCalled = true
         self.passedType = type
         return self.objectToReturn as! T?

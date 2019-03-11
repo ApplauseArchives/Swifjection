@@ -59,6 +59,8 @@ public class SingletonBinding: Binding {
         if instance == nil {
             if let type = self.type as? Creatable.Type {
                 self.instance = type.init()
+            } else if let type = self.type as? InjectCreatable.Type {
+                self.instance = type.init(injector: injector)
             } else if let type = self.type as? NSObject.Type {
                 self.instance = type.init()
             }

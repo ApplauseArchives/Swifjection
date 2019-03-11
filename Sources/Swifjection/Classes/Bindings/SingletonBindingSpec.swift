@@ -97,11 +97,62 @@ class SingletonBindingSpec: QuickSpec {
             }
             
         }
+
+        context("created with InjectCreatable type") {
+
+            var injector: Injecting!
+
+            beforeEach {
+                let bindings = Bindings()
+                bindings.bind(object: ClassConformingToProtocol(), toType: EmptySwiftProtocol.self)
+                bindings.bind(object: EmptySwiftClass(), toType: EmptySwiftClass.self)
+                injector = Swifjector(bindings: bindings)
+                closureBinding = SingletonBinding(withType: InjectCreatableClass.self)
+            }
+
+            describe("getObject") {
+
+                var returnedObject: Any?
+
+                beforeEach {
+                    returnedObject = closureBinding?.getObject(withInjector: injector)
+                }
+
+                it("should create and return object conforming to InjctCreatable protocol") {
+                    expect(returnedObject as? InjectCreatable).notTo(beNil())
+                }
+                it("should create and return object of InjectCreatableClass type") {
+                    expect(returnedObject as? InjectCreatableClass).notTo(beNil())
+                }
+
+                context("when called second time") {
+
+                    var anotherReturnedObject: Any?
+
+                    beforeEach {
+                        anotherReturnedObject = closureBinding?.getObject(withInjector: Swifjector(bindings: Bindings()))
+                    }
+
+                    it("should return object equal to previous one") {
+                        expect(anotherReturnedObject).to(beIdenticalTo(returnedObject))
+                    }
+
+                }
+
+            }
+
+        }
         
-        context("created with NSObject<Creatable> type") {
+        context("created with NSObject<InjectCreatable> type") {
+
+            var injector: Injecting!
             
             beforeEach {
-                closureBinding = SingletonBinding(withType: CreatableObjCClass.self)
+                let bindings = Bindings()
+                bindings.bind(object: ClassConformingToProtocol(), toType: EmptySwiftProtocol.self)
+                bindings.bind(object: EmptySwiftClass(), toType: EmptySwiftClass.self)
+                injector = Swifjector(bindings: bindings)
+                closureBinding = SingletonBinding(withType: InjectCreatableObjCClass.self)
             }
             
             describe("getObject") {
@@ -109,17 +160,17 @@ class SingletonBindingSpec: QuickSpec {
                 var returnedObject: Any?
                 
                 beforeEach {
-                    returnedObject = closureBinding?.getObject(withInjector: FakeInjector())
+                    returnedObject = closureBinding?.getObject(withInjector: injector)
                 }
                 
                 it("should create and return object conforming to Injctable protocol") {
-                    expect(returnedObject as? Creatable).notTo(beNil())
+                    expect(returnedObject as? InjectCreatable).notTo(beNil())
                 }
                 it("should create and return object of NSObject type") {
                     expect(returnedObject as? NSObject).notTo(beNil())
                 }
                 it("should create and return object of CreatableObjCClass type") {
-                    expect(returnedObject as? CreatableObjCClass).notTo(beNil())
+                    expect(returnedObject as? InjectCreatableObjCClass).notTo(beNil())
                 }
                 
                 context("when called second time") {
@@ -127,19 +178,11 @@ class SingletonBindingSpec: QuickSpec {
                     var anotherReturnedObject: Any?
                     
                     beforeEach {
-                        anotherReturnedObject = closureBinding?.getObject(withInjector: FakeInjector())
+                        anotherReturnedObject = closureBinding?.getObject(withInjector: Swifjector(bindings: Bindings()))
                     }
                     
                     it("should return object equal to previous one") {
                         expect(anotherReturnedObject).to(beIdenticalTo(returnedObject))
-                    }
-                    it("should initialize the object only once") {
-                        let object = anotherReturnedObject as? CreatableObjCClass
-                        expect(object?.initCallsCount).to(equal(1))
-                    }
-                    it("should inject dependencies into the object only once") {
-                        let object = anotherReturnedObject as? CreatableObjCClass
-                        expect(object?.injectDependenciesCallsCount).to(equal(1))
                     }
                     
                 }

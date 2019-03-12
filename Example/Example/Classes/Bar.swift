@@ -1,11 +1,11 @@
 //
-//  Copyright © 2017 Applause Inc. All rights reserved.
+//  Copyright © 2019 Applause Inc. All rights reserved.
 //
 
 import Foundation
 import Swifjection
 
-class Bar: Injectable {
+class Bar: Creatable, Injectable {
     var foo: Foo
     var fie: Fie?
     var fie2: Fie?
@@ -16,11 +16,14 @@ class Bar: Injectable {
         self.foo = foo
     }
     
-    convenience required init?(injector: Injecting) {
-        guard let foo = injector.getObject(withType: Foo.self) else {
-            return nil
+    required convenience init() {
+        self.init(foo: Foo())
+    }
+
+    func injectDependencies(injector: Injecting) {
+        if let foo = injector.getObject(withType: Foo.self) {
+            self.foo = foo
         }
-        self.init(foo: foo)
         fie = injector.getObject(withType: Fie.self)
         fie2 = injector.getObject(withType: Fie.self)
         singleton = injector.getObject(withType: ExampleSingleton.self)

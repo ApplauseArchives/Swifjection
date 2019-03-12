@@ -1,22 +1,31 @@
 //
-//  Copyright © 2017 Applause Inc. All rights reserved.
+//  Copyright © 2019 Applause Inc. All rights reserved.
 //
 
 import UIKit
 import Swifjection
 
-class ViewController: UIViewController, Injectable {
+class ViewController: UIViewController, Creatable, Injectable {
     
     var bar: Bar?
     var singleton: ExampleSingleton?
-    
-    required convenience init?(injector: Injecting) {
-        self.init()
-    }
+    var automaticallyInjectableObject: AutoInjectableObject?
+    var injectCreatableObject: InjectCreatableObject?
     
     func injectDependencies(injector: Injecting) {
         bar = injector.getObject(withType: Bar.self)
         singleton = injector.getObject(withType: ExampleSingleton.self)
+        automaticallyInjectableObject = injector.getObject(withType: AutoInjectableObject.self)
+        injectCreatableObject = injector.getObject(withType: InjectCreatableObject.self)
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        NSLog("\(String(describing: bar))")
+        NSLog("\(String(describing: singleton))")
+        NSLog("\(String(describing: automaticallyInjectableObject))")
+        NSLog("\(String(describing: injectCreatableObject))")
     }
 }
 

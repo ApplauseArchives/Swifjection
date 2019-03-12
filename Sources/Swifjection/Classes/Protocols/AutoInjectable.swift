@@ -19,35 +19,34 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-/// Binds closure to create an object for given type. 
+import Foundation
 
-public class ClosureBinding: Binding {
+/// Describes a type which can have its dependencies injected automatically
+
+public protocol AutoInjectable: class, Injectable {
     /**
-     Returns the `closure` provided during initialization of binding.
-     
-     Injector will be passed when calling the `closure` and can be used to create returned object.
+     Array of objects conforming to `InjectableProperty` protocol, used to inject automatically.
      */
-    var closure: ((Injecting) -> Any)
+    var injectableProperties: [InjectableProperty] { get }
+
+    /**
+     Automatically injects inner dependencies using provided `injector` object.
+
+     When implementing an object conforming to `AutoInjectable` protocol, default implementation of this function is called from default implementation of `injectDependencies(injector:)` and automatically creates dependant objects and sets them to the properties.
+
+     The `injector` object can be used to inject inner dependencies of `AutoInjectable` object.
+
+     - Parameter injector: An object used to inject inner dependencies.
+     */
+    func autoinjectDependencies(injector: Injecting)
+}
+
+public extension AutoInjectable {
     
-    /**
-     Initializes `ClosureBinding` object, using provided `closure`.
-     
-     - Parameter closure: An closure used by `getObject` function to return some object.
-     
-     - Returns: An initialized `ClosureBinding` object.
-     */
-    public init(withClosure closure: @escaping (Injecting) -> Any) {
-        self.closure = closure
+    func autoinjectDependencies(injector: Injecting) {
+        for injectableProperty in injectableProperties {
+            injectableProperty.inject(to: self, with: injector)
+        }
     }
-    
-    /**
-     Uses the `closure` provided during initialization, to return an object.
-     
-     - Parameter injector: Injector which can be used in the closure to provide object to return.
-     
-     - Returns: Object created using the `closure`.
-     */
-    public func getObject(withInjector injector: Injecting) -> Any? {
-        return closure(injector)
-    }    
+
 }

@@ -14,7 +14,7 @@ class TypeBindingSpec: QuickSpec {
             injector = FakeInjector()
         }
         
-        context("when created with non NSObject and non Injectable type") {
+        context("when created with non NSObject and non Creatable type") {
             
             beforeEach {
                 object = EmptySwiftClass()
@@ -44,12 +44,12 @@ class TypeBindingSpec: QuickSpec {
             
         }
         
-        context("when created with Injectable type") {
+        context("when created with Creatable type") {
             
             beforeEach {
-                object = InjectableClass()
+                object = CreatableClass()
                 injector.objectToReturn = object
-                typeBinding = TypeBinding(withType: InjectableClass.self)
+                typeBinding = TypeBinding(withType: CreatableClass.self)
             }
             
             describe("getObject") {
@@ -64,7 +64,7 @@ class TypeBindingSpec: QuickSpec {
                     expect(injector.getObjectCalled).to(beTrue())
                 }
                 it("should pass proper type to injector") {
-                    expect(injector.passedType).to(beIdenticalTo(InjectableClass.self))
+                    expect(injector.passedType).to(beIdenticalTo(CreatableClass.self))
                 }
                 it("should return the object") {
                     expect(returnedObject).to(beIdenticalTo(object))
@@ -103,13 +103,51 @@ class TypeBindingSpec: QuickSpec {
             }
             
         }
+
+        context("when created with InjectCreatable type") {
+
+            beforeEach {
+                let bindings = Bindings()
+                bindings.bind(object: ClassConformingToProtocol(), toType: EmptySwiftProtocol.self)
+                bindings.bind(object: EmptySwiftClass(), toType: EmptySwiftClass.self)
+                let swifjector = Swifjector(bindings: bindings)
+                object = InjectCreatableClass(injector: swifjector)
+                injector.objectToReturn = object
+                typeBinding = TypeBinding(withType: InjectCreatableClass.self)
+            }
+
+            describe("getObject") {
+
+                var returnedObject: Any?
+
+                beforeEach {
+                    returnedObject = typeBinding.getObject(withInjector: injector)
+                }
+
+                it("should create object using injector") {
+                    expect(injector.getObjectCalled).to(beTrue())
+                }
+                it("should pass proper type to injector") {
+                    expect(injector.passedType).to(beIdenticalTo(InjectCreatableClass.self))
+                }
+                it("should return the object") {
+                    expect(returnedObject).to(beIdenticalTo(object))
+                }
+
+            }
+
+        }
         
-        context("when created with NSObject<Injectable> type") {
+        context("when created with NSObject<InjectCreatable> type") {
             
             beforeEach {
-                object = InjectableObjCClass()
+                let bindings = Bindings()
+                bindings.bind(object: ClassConformingToProtocol(), toType: EmptySwiftProtocol.self)
+                bindings.bind(object: EmptySwiftClass(), toType: EmptySwiftClass.self)
+                let swifjector = Swifjector(bindings: bindings)
+                object = InjectCreatableObjCClass(injector: swifjector)
                 injector.objectToReturn = object
-                typeBinding = TypeBinding(withType: InjectableObjCClass.self)
+                typeBinding = TypeBinding(withType: InjectCreatableObjCClass.self)
             }
             
             describe("getObject") {
@@ -124,7 +162,7 @@ class TypeBindingSpec: QuickSpec {
                     expect(injector.getObjectCalled).to(beTrue())
                 }
                 it("should pass proper type to injector") {
-                    expect(injector.passedType).to(beIdenticalTo(InjectableObjCClass.self))
+                    expect(injector.passedType).to(beIdenticalTo(InjectCreatableObjCClass.self))
                 }
                 it("should return the object") {
                     expect(returnedObject).to(beIdenticalTo(object))

@@ -13,8 +13,8 @@ The main idea behind this project is to achieve DI for Swift objects that does n
 We built **Swifjection** for our use in the first place. These are the key points what was our motivation:
 
 * No need to inherit from `NSObject` in order to inject dependencies
-* To inject *pure* `Swift` types you just need to conform to simple `Injectable` protocol
-* No action required to inject `NSObject` sublcasses, or classes conforming to `Injectable` protocol
+* To inject *pure* `Swift` types you just need to conform to simple `Creatable` protocol
+* No action required to inject `NSObject` sublcasses, or classes conforming to `Creatable` protocol
 * Clear and simple binding system inspired by Objective-C framework [Objection](https://github.com/atomicobject/objection)
 * Lightweight -- we wanted to avoid unnecessary clutter and made the APIs as simple as possible
 
@@ -42,10 +42,10 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    var injector: Swifjector?
+    var injector: Injecting?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        let binding = Binding()
+        let binding = Bindings()
         [...]
         injector = SwifjectorFactory(bindings: bindings).injector
         [...]
@@ -98,7 +98,7 @@ As in any other DI framework you can setup mapping for objects you would like to
 
 The biggest advantage of using Swifjection as your Dependency Injection framework is that you don't have to map all your types in the module. When no instance or closure is mapped to type in module, Swifjection *tries* to create a fresh instance if one of the condition is met:
 - class inherits from `NSObject` - instance is created by calling `init`
-- class or struct conforms to `Injectable` protocol - instance is created by calling `init?(injector:)`
+- class or struct conforms to `Creatable` protocol - instance is created by calling `init`
 
 Othewrwise injector will return nil.
 
@@ -120,16 +120,36 @@ let otherObject: MyClass? = injector[MyClass.self] as MyClass // This requires e
 
 ## Fetching object's dependencies
 
-Each class or struct which can be injected and/or has dependencies to be injected should conform to `Injectable` protocol:
+Each class or struct which can be injected should conform to `Creatable` or `InjectCreatable` protocol:
+
+```swift
+protocol Creatable {
+    init()
+}
+```
+
+```swift
+protocol InjectCreatable {
+    init?(injector: Injecting)
+}
+```
+
+If this class also has dependencies to be injected, it should conform to `Injectable`, or `AutoInjectable` protocol:
 
 ```swift
 protocol Injectable {
-    init?(injector: Injecting)
     func injectDependencies(injector: Injecting)
 }
 ```
 
-This way when your class or struct is created via injector (using `init?(injector:)`) shortly afterwards it receive `injectDependencies(injector:)` callback. This is the place where you want to fetch your dependencies from `injector`.
+```swift
+protocol AutoInjectable: class, Injectable {
+    var injectableProperties: [InjectableProperty] { get }
+    func autoinjectDependencies(injector: Injecting)
+}
+```
+
+This way when your class or struct is created via injector, shortly afterwards it receives `injectDependencies(injector:)` call. This is the place where you want to fetch your dependencies from `injector`, or dependencies are injected automatically (in case of `AutoInjectable`.
 
 For example, let's assume you have two classes:
 
@@ -138,31 +158,57 @@ class Foo {
 }
 
 class Bar {
-	var foo: Foo?
+    var foo: Foo?
+}
+
+class Fee {
+    var foo: Foo
+}
+
+class Foe {
+    var foo: Foo!
 }
 ```
 
-In order to inject `foo` property using `Swifjection` you need to change your code to following:
+In order to inject `foo` property using `Swifjection` you need to change your code to either of following:
 
 ```swift
-class Foo: Injectable {
-    required convenience init(injector: Injecting) {				
-        self.init()
-    }
+class Foo: Creatable {
+    required init() {}
 }
 
-class Bar: Injectable {
+class Bar: Creatable, Injectable {
     var foo: Foo?
 
-    required convenience init(injector: Injecting) {				
-        self.init()
-    }
+    required init() {}
 
     func injectDependencies(injector: Injecting) {
         foo = injector.getObject(withType: Foo.self)
     }
 }
 
+class Fee: InjectCreatable {
+    var foo: Foo
+
+    required init?(injector: Injecting) {
+        guard let foo = injector.getObject(withType: Foo.self) else {
+            return nil
+        }
+        self.foo = foo 
+    }
+}
+
+class Foe: Creatable, AutoInjectable {
+    var foo: Foo?
+    
+    var injectableProperties: [InjectableProperty] {
+        return [
+            requires(\Foe.foo)
+        ]
+    }
+
+    required init() {}
+}
 ```
 
 
@@ -181,7 +227,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var injector: Swifjector?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        let binding = Binding()
+        let binding = Bindings()
         [...]
         injector = SwifjectorFactory(bindings: bindings).injector // This will return nil during unit testing
         [...]
@@ -196,16 +242,16 @@ You can use Swifjection binding to replace real objects with mocks/fakes during 
 To illustrate this in more detail, let's use two classes from the example above:
 
 ```swift
-class Foo: Injectable {
-    required convenience init(injector: Injecting) {				
+class Foo: Creatable {
+    required init() {				
         self.init()
     }
 }
 
-class Bar: Injectable {
+class Bar: Creatable, Injectable {
     var foo: Foo?
 
-    required convenience init(injector: Injecting) {				
+    required init() {				
         self.init()
     }
 
@@ -240,8 +286,8 @@ let barSUT = injector.getObject(withType: Bar.self)
 
 # Authors
 
-* [Łukasz Przytuła](mailto:lprzytula@applause.com)
-* [Aleksander Zubala](mailto:azubala@applause.com)
+* [Łukasz Przytuła](mailto:lprzytula@gmail.com)
+* [Aleksander Zubala](mailto:alek@zubala.com)
 
 # License
 

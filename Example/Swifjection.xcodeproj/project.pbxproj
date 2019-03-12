@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		07C7AC731D15A8E458884687 /* Pods_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAD44134AC2BB4C40265990A /* Pods_Example.framework */; };
+		155093B7222DBBCA008CBFAE /* AutoInjectableObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 155093B6222DBBCA008CBFAE /* AutoInjectableObject.swift */; };
+		155093B9222DE166008CBFAE /* AutoInjectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 155093B8222DE166008CBFAE /* AutoInjectable.swift */; };
+		155093BB222EDA77008CBFAE /* InjectableProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 155093BA222EDA77008CBFAE /* InjectableProperty.swift */; };
+		155093BD222EDB56008CBFAE /* InjectableKeyPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 155093BC222EDB56008CBFAE /* InjectableKeyPath.swift */; };
+		155093BF222EEAF3008CBFAE /* Creatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 155093BE222EEAF3008CBFAE /* Creatable.swift */; };
 		1550BB181E381D6100BCABA7 /* Binding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1550BB041E381D6100BCABA7 /* Binding.swift */; };
 		1550BB191E381D6100BCABA7 /* Bindings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1550BB051E381D6100BCABA7 /* Bindings.swift */; };
 		1550BB1B1E381D6100BCABA7 /* ClosureBinding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1550BB071E381D6100BCABA7 /* ClosureBinding.swift */; };
@@ -26,6 +31,8 @@
 		1550BB2E1E381D7000BCABA7 /* TypeBindingSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1550BB0E1E381D6100BCABA7 /* TypeBindingSpec.swift */; };
 		1550BB2F1E381D7500BCABA7 /* SwifjectionIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1550BB131E381D6100BCABA7 /* SwifjectionIntegrationTests.swift */; };
 		1550BB301E381D7500BCABA7 /* SwifjectorSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1550BB161E381D6100BCABA7 /* SwifjectorSpec.swift */; };
+		159757D9222FDF7500FFF4F9 /* InjectCreatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159757D8222FDF7500FFF4F9 /* InjectCreatable.swift */; };
+		159757DB2230125300FFF4F9 /* InjectCreatableObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 159757DA2230125300FFF4F9 /* InjectCreatableObject.swift */; };
 		15DFDEB01DC41EE300B4687E /* FakeInjector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15DFDEAF1DC41EE300B4687E /* FakeInjector.swift */; };
 		1A6EC6F8F7569BB7B911E9E1 /* Pods_Swifjection_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ACE728CAC97BD5A39E76D531 /* Pods_Swifjection_Tests.framework */; };
 		9405E3691DC365D3005327D4 /* Bar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9405E3651DC365D3005327D4 /* Bar.swift */; };
@@ -43,6 +50,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		155093B6222DBBCA008CBFAE /* AutoInjectableObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoInjectableObject.swift; sourceTree = "<group>"; };
+		155093B8222DE166008CBFAE /* AutoInjectable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoInjectable.swift; sourceTree = "<group>"; };
+		155093BA222EDA77008CBFAE /* InjectableProperty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InjectableProperty.swift; sourceTree = "<group>"; };
+		155093BC222EDB56008CBFAE /* InjectableKeyPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InjectableKeyPath.swift; sourceTree = "<group>"; };
+		155093BE222EEAF3008CBFAE /* Creatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Creatable.swift; sourceTree = "<group>"; };
 		1550BB041E381D6100BCABA7 /* Binding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Binding.swift; sourceTree = "<group>"; };
 		1550BB051E381D6100BCABA7 /* Bindings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bindings.swift; sourceTree = "<group>"; };
 		1550BB061E381D6100BCABA7 /* BindingsSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BindingsSpec.swift; sourceTree = "<group>"; };
@@ -61,6 +73,8 @@
 		1550BB141E381D6100BCABA7 /* Swifjector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Swifjector.swift; sourceTree = "<group>"; };
 		1550BB151E381D6100BCABA7 /* SwifjectorFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwifjectorFactory.swift; sourceTree = "<group>"; };
 		1550BB161E381D6100BCABA7 /* SwifjectorSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwifjectorSpec.swift; sourceTree = "<group>"; };
+		159757D8222FDF7500FFF4F9 /* InjectCreatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InjectCreatable.swift; sourceTree = "<group>"; };
+		159757DA2230125300FFF4F9 /* InjectCreatableObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InjectCreatableObject.swift; sourceTree = "<group>"; };
 		15DFDEAF1DC41EE300B4687E /* FakeInjector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FakeInjector.swift; sourceTree = "<group>"; };
 		1D0519A19FF923381A3514B2 /* Pods-Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Example/Pods-Example.debug.xcconfig"; sourceTree = "<group>"; };
 		37AF8943EF5EA45674ABD0A9 /* Pods_Applause_Swiftjection_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Applause_Swiftjection_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -86,7 +100,7 @@
 		CC7D4013D08A3EA58164DAFC /* Pods-Swifjection_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Swifjection_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Swifjection_Tests/Pods-Swifjection_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		D538D3ACA8044EF8B68E264E /* Pods-Applause-Swiftjection_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Applause-Swiftjection_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Applause-Swiftjection_Tests/Pods-Applause-Swiftjection_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		D7F3F747FB45DD40710AB145 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
-		D838D33F1DC33591002B091C /* Swifjection.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; name = Swifjection.podspec; path = ../Swifjection.podspec; sourceTree = "<group>"; };
+		D838D33F1DC33591002B091C /* Swifjection.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; name = Swifjection.podspec; path = ../Swifjection.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		D85568AD1DC3308B0081E014 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D87A35981E3A05A900CF2606 /* Fee.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Fee.swift; sourceTree = "<group>"; };
 		D8BD00F41DC2358E00122227 /* Swifjection.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Swifjection.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -133,6 +147,7 @@
 				1550BB141E381D6100BCABA7 /* Swifjector.swift */,
 				1550BB151E381D6100BCABA7 /* SwifjectorFactory.swift */,
 				1550BB161E381D6100BCABA7 /* SwifjectorSpec.swift */,
+				155093BC222EDB56008CBFAE /* InjectableKeyPath.swift */,
 			);
 			name = Classes;
 			path = ../Sources/Swifjection/Classes;
@@ -159,9 +174,13 @@
 		1550BB0F1E381D6100BCABA7 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
+				155093BE222EEAF3008CBFAE /* Creatable.swift */,
 				1550BB101E381D6100BCABA7 /* Injectable.swift */,
+				159757D8222FDF7500FFF4F9 /* InjectCreatable.swift */,
+				155093B8222DE166008CBFAE /* AutoInjectable.swift */,
 				1550BB111E381D6100BCABA7 /* Injecting+CreatingObjects.swift */,
 				1550BB121E381D6100BCABA7 /* Injecting.swift */,
+				155093BA222EDA77008CBFAE /* InjectableProperty.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -236,6 +255,8 @@
 				D87A35981E3A05A900CF2606 /* Fee.swift */,
 				945F5E741DD0770D00A90DC3 /* ExampleSingleton.swift */,
 				945F5E761DD077B400A90DC3 /* MyObject.swift */,
+				155093B6222DBBCA008CBFAE /* AutoInjectableObject.swift */,
+				159757DA2230125300FFF4F9 /* InjectCreatableObject.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -325,7 +346,6 @@
 				607FACE21AFB9204008FA782 /* Frameworks */,
 				607FACE31AFB9204008FA782 /* Resources */,
 				F4C790C5A194C62E41AD9ED3 /* [CP] Embed Pods Frameworks */,
-				F12151D5F330A749E291DFDE /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -345,7 +365,6 @@
 				944F76591DC35E3E004A2C63 /* Frameworks */,
 				944F765A1DC35E3E004A2C63 /* Resources */,
 				C1921CC01AE8A1B2839DB236 /* [CP] Embed Pods Frameworks */,
-				F53EBFC127D081F66E768CD3 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -381,7 +400,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0800;
-				LastUpgradeCheck = 0810;
+				LastUpgradeCheck = 1010;
 				ORGANIZATIONNAME = "Applause Inc";
 				TargetAttributes = {
 					607FACE41AFB9204008FA782 = {
@@ -392,6 +411,7 @@
 					944F765B1DC35E3E004A2C63 = {
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = LYUD6CM45U;
+						LastSwiftMigration = 1010;
 						ProvisioningStyle = Automatic;
 					};
 					D8BD00F31DC2358E00122227 = {
@@ -455,13 +475,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Example-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		A295988C9C352BBCD580EF20 /* [CP] Check Pods Manifest.lock */ = {
@@ -470,13 +493,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Swifjection_Tests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		C1921CC01AE8A1B2839DB236 /* [CP] Embed Pods Frameworks */ = {
@@ -485,28 +511,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Example/Pods-Example-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Swifjection/Swifjection.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Swifjection.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Example/Pods-Example-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		F12151D5F330A749E291DFDE /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Swifjection_Tests/Pods-Swifjection_Tests-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Example/Pods-Example-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		F4C790C5A194C62E41AD9ED3 /* [CP] Embed Pods Frameworks */ = {
@@ -515,28 +529,20 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Swifjection_Tests/Pods-Swifjection_Tests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Nimble/Nimble.framework",
+				"${BUILT_PRODUCTS_DIR}/Quick/Quick.framework",
+				"${BUILT_PRODUCTS_DIR}/Swifjection/Swifjection.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Nimble.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Quick.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Swifjection.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Swifjection_Tests/Pods-Swifjection_Tests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		F53EBFC127D081F66E768CD3 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Example/Pods-Example-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Swifjection_Tests/Pods-Swifjection_Tests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -566,6 +572,8 @@
 				9405E36B1DC365D3005327D4 /* ViewController.swift in Sources */,
 				945F5E771DD077B400A90DC3 /* MyObject.swift in Sources */,
 				9405E3801DC36933005327D4 /* MyBindings.swift in Sources */,
+				155093B7222DBBCA008CBFAE /* AutoInjectableObject.swift in Sources */,
+				159757DB2230125300FFF4F9 /* InjectCreatableObject.swift in Sources */,
 				D87A35991E3A05A900CF2606 /* Fee.swift in Sources */,
 				9405E36A1DC365D3005327D4 /* Foo.swift in Sources */,
 				9405E3691DC365D3005327D4 /* Bar.swift in Sources */,
@@ -577,7 +585,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				159757D9222FDF7500FFF4F9 /* InjectCreatable.swift in Sources */,
 				1550BB181E381D6100BCABA7 /* Binding.swift in Sources */,
+				155093BD222EDB56008CBFAE /* InjectableKeyPath.swift in Sources */,
 				1550BB1D1E381D6100BCABA7 /* ObjectBinding.swift in Sources */,
 				1550BB191E381D6100BCABA7 /* Bindings.swift in Sources */,
 				1550BB231E381D6100BCABA7 /* Injectable.swift in Sources */,
@@ -586,7 +596,10 @@
 				1550BB271E381D6100BCABA7 /* Swifjector.swift in Sources */,
 				1550BB241E381D6100BCABA7 /* Injecting+CreatingObjects.swift in Sources */,
 				1550BB1B1E381D6100BCABA7 /* ClosureBinding.swift in Sources */,
+				155093B9222DE166008CBFAE /* AutoInjectable.swift in Sources */,
+				155093BB222EDA77008CBFAE /* InjectableProperty.swift in Sources */,
 				1550BB1F1E381D6100BCABA7 /* SingletonBinding.swift in Sources */,
+				155093BF222EEAF3008CBFAE /* Creatable.swift in Sources */,
 				1550BB251E381D6100BCABA7 /* Injecting.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -623,14 +636,22 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -670,14 +691,22 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -714,7 +743,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.2;
 			};
 			name = Debug;
 		};
@@ -726,7 +755,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.2;
 			};
 			name = Release;
 		};
@@ -746,7 +775,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.applause.Example;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -765,7 +794,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.applause.Example;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -793,7 +822,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -822,7 +851,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";

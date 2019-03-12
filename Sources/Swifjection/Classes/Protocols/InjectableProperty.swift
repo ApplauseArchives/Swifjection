@@ -19,35 +19,19 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-/// Binds closure to create an object for given type. 
+import Foundation
 
-public class ClosureBinding: Binding {
+public protocol InjectableProperty {
     /**
-     Returns the `closure` provided during initialization of binding.
+     Creates an dependency objects and injects into `owner` object.
+
+     When implementing an object conforming to `InjectableProperty` protocol, this function is the place where injector should be used to create dependendant object, and assigned to a property of the `owner`.
+
+     The `injector` object can be used to inject an dependency of the `AutoInjectable` `owner`.
+
+     - Parameter owner: An object to which the dependency should be injected.
      
-     Injector will be passed when calling the `closure` and can be used to create returned object.
+     - Parameter injector: An object used to inject inner dependency.
      */
-    var closure: ((Injecting) -> Any)
-    
-    /**
-     Initializes `ClosureBinding` object, using provided `closure`.
-     
-     - Parameter closure: An closure used by `getObject` function to return some object.
-     
-     - Returns: An initialized `ClosureBinding` object.
-     */
-    public init(withClosure closure: @escaping (Injecting) -> Any) {
-        self.closure = closure
-    }
-    
-    /**
-     Uses the `closure` provided during initialization, to return an object.
-     
-     - Parameter injector: Injector which can be used in the closure to provide object to return.
-     
-     - Returns: Object created using the `closure`.
-     */
-    public func getObject(withInjector injector: Injecting) -> Any? {
-        return closure(injector)
-    }    
+    func inject<T: AnyObject>(to owner: T, with injector: Injecting)
 }

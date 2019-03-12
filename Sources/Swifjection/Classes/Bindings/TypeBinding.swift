@@ -1,5 +1,5 @@
 //
-//  Copyright © 2017 Applause Inc. All rights reserved.
+//  Copyright © 2019 Applause Inc. All rights reserved.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -45,11 +45,11 @@ class TypeBinding: Binding {
     /**
      Initializes `TypeBinding` object, using provided `type`.
      
-     - Parameter type: An Type (conforming to `Injectable` protocol) of object which should be returned by `getObject(withInjector injector: Injecting) -> Any?` function.
+     - Parameter type: An Type (conforming to `Creatable` protocol) of object which should be returned by `getObject(withInjector injector: Injecting) -> Any?` function.
      
      - Returns: An initialized `TypeBinding` object.
      */
-    public init<T>(withType type: T.Type) where T: Injectable {
+    public init<T>(withType type: T.Type) where T: Creatable {
         objectCreationClosure = { injector in
             return injector.getObject(withType: type)
         }
@@ -67,15 +67,28 @@ class TypeBinding: Binding {
             return injector.getObject(withType: type)
         }
     }
-    
+
     /**
      Initializes `TypeBinding` object, using provided `type`.
-     
-     - Parameter type: An Type (subclass of `NSObject`, conforming to `Injectable` protocol) of object which should be returned by `getObject(withInjector injector: Injecting) -> Any?` function.
-     
+
+     - Parameter type: An Type (conforming to `InjectCreatable` protocol) of object which should be returned by `getObject(withInjector injector: Injecting) -> Any?` function.
+
      - Returns: An initialized `TypeBinding` object.
      */
-    public init<T>(withType type: T.Type) where T: NSObject, T: Injectable {
+    public init<T>(withType type: T.Type) where T: InjectCreatable {
+        objectCreationClosure = { injector in
+            return injector.getObject(withType: type)
+        }
+    }
+
+    /**
+     Initializes `TypeBinding` object, using provided `type`.
+
+     - Parameter type: An Type (subclass of `NSObject` conforming to `InjectCreatable` protocol) of object which should be returned by `getObject(withInjector injector: Injecting) -> Any?` function.
+
+     - Returns: An initialized `TypeBinding` object.
+     */
+    public init<T>(withType type: T.Type) where T: NSObject, T: InjectCreatable {
         objectCreationClosure = { injector in
             return injector.getObject(withType: type)
         }

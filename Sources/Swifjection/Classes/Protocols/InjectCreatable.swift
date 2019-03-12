@@ -19,35 +19,19 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-/// Binds closure to create an object for given type. 
+import Foundation
 
-public class ClosureBinding: Binding {
+/// Describes a type which is compatible with Swijection, for use with non-optional properties -- it can be created from injector and inject dependencies during initialization
+
+public protocol InjectCreatable {
     /**
-     Returns the `closure` provided during initialization of binding.
-     
-     Injector will be passed when calling the `closure` and can be used to create returned object.
+     Initializes injectable object, using provided `injector`.
+
+     The `injector` object can be used to inject inner dependencies of created `Creatable` object.
+
+     - Parameter injector: An object used to inject inner dependencies.
+
+     - Returns: An initialized `InjectCreatable` object, or nil.
      */
-    var closure: ((Injecting) -> Any)
-    
-    /**
-     Initializes `ClosureBinding` object, using provided `closure`.
-     
-     - Parameter closure: An closure used by `getObject` function to return some object.
-     
-     - Returns: An initialized `ClosureBinding` object.
-     */
-    public init(withClosure closure: @escaping (Injecting) -> Any) {
-        self.closure = closure
-    }
-    
-    /**
-     Uses the `closure` provided during initialization, to return an object.
-     
-     - Parameter injector: Injector which can be used in the closure to provide object to return.
-     
-     - Returns: Object created using the `closure`.
-     */
-    public func getObject(withInjector injector: Injecting) -> Any? {
-        return closure(injector)
-    }    
+    init?(injector: Injecting)
 }
